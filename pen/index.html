@@ -42,7 +42,7 @@ canvas{position:absolute;left:0;top:0;width:100%;height:100%;touch-action:none;-
     </select>
     <button id="diagBtn" class="active">التشخيص: يعمل</button>
   </div>
-  <div id="info">نسخة محسنة من التجربة الأولى: نفس الإصلاح السابق، مع جعل الوصل في الانحناءات ناعماً بدل الزاوية الحادة.</div>
+  <div id="info">نسخة V1.2: نفس إحساس التجربة الأولى، مع إصلاح ذكي للفجوات الأطول في الانحناءات فقط دون تنعيم الرسم كله.</div>
   <div id="wrap">
     <canvas id="guide"></canvas>
     <canvas id="draw"></canvas>
@@ -57,7 +57,7 @@ var ctx=canvas.getContext('2d'), gctx=guide.getContext('2d');
 var repair=document.getElementById('repair'), repairPower=document.getElementById('repairPower'), width=document.getElementById('width');
 var lesson=document.getElementById('lesson'), diag=document.getElementById('diag'), diagBtn=document.getElementById('diagBtn');
 var drawing=false, last=null, prev=null, lastEnd=null, lastEndPrev=null, lastEndTime=0, currentStroke=null, strokes=[], pendingBridge=null;
-var stats={starts:0,moves:0,ends:0,repaired:0}; var showDiag=true;
+var stats={starts:0,moves:0,ends:0,repaired:0,smart:0}; var showDiag=true;
 var raf=window.requestAnimationFrame||window.webkitRequestAnimationFrame||function(fn){return setTimeout(fn,16)};
 function now(){return (new Date()).getTime()}
 function size(){
@@ -70,10 +70,11 @@ function size(){
 function posFromTouch(t){var r=canvas.getBoundingClientRect();return {x:t.clientX-r.left,y:t.clientY-r.top,t:now()}}
 function posFromMouse(e){var r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top,t:now()}}
 function dist(a,b){var dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy)}
-function cfg(){var p=parseInt(repairPower.value,10)||3;return {maxGap:80+p*55,maxDist:18+p*18}}
+function cfg(){var p=parseInt(repairPower.value,10)||3;return {maxGap:80+p*55,maxDist:18+p*18,smartGap:300+p*110,smartDist:52+p*20}}
 function setPen(){ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#111';ctx.lineWidth=parseInt(width.value,10)||7}
 function segment(a,b){setPen();ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
 function unit(a,b){var dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy);if(d<0.01)return {x:0,y:0};return {x:dx/d,y:dy/d}}
+function dot(a,b){return a.x*b.x+a.y*b.y}
 function curvedBridge(a0,a1,b0,b1){
   var gap=dist(a1,b0),h=Math.max(4,Math.min(30,gap*.45));
   var va=a0?unit(a0,a1):unit(a1,b0),vb=b1?unit(b0,b1):unit(a1,b0);
@@ -84,12 +85,12 @@ function curvedBridge(a0,a1,b0,b1){
   ctx.stroke();
   if(currentStroke){
     var ins=[],i,t,u,tt,uu,uuu,ttt;
+    ins.push({x:a1.x,y:a1.y,bridge:true});
     for(i=1;i<=6;i++){t=i/7;u=1-t;tt=t*t;uu=u*u;uuu=uu*u;ttt=tt*t;
       ins.push({x:uuu*a1.x+3*uu*t*c1.x+3*u*tt*c2.x+ttt*b0.x,
                 y:uuu*a1.y+3*uu*t*c1.y+3*u*tt*c2.y+ttt*b0.y,bridge:true});
     }
-    var at=Math.max(0,currentStroke.length-1);
-    Array.prototype.splice.apply(currentStroke,[at,0].concat(ins));
+    Array.prototype.unshift.apply(currentStroke,ins);
   }
 }
 function smoothTo(p){
@@ -101,17 +102,33 @@ function smoothTo(p){
 }
 function begin(p){
   stats.starts++;
-  var c=cfg(); pendingBridge=null;
-  if(repair.checked && lastEnd && (p.t-lastEndTime)<=c.maxGap && dist(lastEnd,p)<=c.maxDist){
-    pendingBridge={a0:lastEndPrev,a1:lastEnd,b0:p};
-    if(strokes.length){strokes[strokes.length-1].push({x:p.x,y:p.y,bridge:true}); currentStroke=strokes[strokes.length-1];}
-    else{currentStroke=[p];strokes.push(currentStroke)}
-  } else {currentStroke=[p];strokes.push(currentStroke)}
+  var c=cfg(),dt=0,d=0; pendingBridge=null;
+  currentStroke=[p];strokes.push(currentStroke);
+  if(repair.checked && lastEnd){
+    dt=p.t-lastEndTime;d=dist(lastEnd,p);
+    if(dt<=c.smartGap && d<=c.smartDist){
+      pendingBridge={a0:lastEndPrev,a1:lastEnd,b0:p,dt:dt,gap:d,moves:0};
+    }
+  }
   drawing=true;last=p;prev=p; updateDiag();
 }
 function move(p){
   if(!drawing)return;stats.moves++;
-  if(pendingBridge){curvedBridge(pendingBridge.a0,pendingBridge.a1,pendingBridge.b0,p);pendingBridge=null;stats.repaired++}
+  if(pendingBridge){
+    pendingBridge.moves++;
+    var c=cfg(),normal=(pendingBridge.dt<=c.maxGap && pendingBridge.gap<=c.maxDist);
+    var travel=dist(pendingBridge.b0,p),accept=false,smart=false;
+    if(normal && pendingBridge.moves>=1){accept=true}
+    else if(pendingBridge.moves>=2 && travel>=8){
+      var va=pendingBridge.a0?unit(pendingBridge.a0,pendingBridge.a1):unit(pendingBridge.a1,pendingBridge.b0);
+      var vg=unit(pendingBridge.a1,pendingBridge.b0);
+      var vb=unit(pendingBridge.b0,p);
+      var s1=dot(va,vg),s2=dot(vg,vb),s3=dot(va,vb);
+      if(pendingBridge.dt<=c.smartGap && pendingBridge.gap<=c.smartDist && s1>-0.15 && s2>-0.15 && s3>-0.35){accept=true;smart=true}
+    }
+    if(accept){curvedBridge(pendingBridge.a0,pendingBridge.a1,pendingBridge.b0,p);pendingBridge=null;stats.repaired++;if(smart)stats.smart++}
+    else if(pendingBridge && (pendingBridge.moves>=4 || pendingBridge.dt>c.smartGap || pendingBridge.gap>c.smartDist)){pendingBridge=null}
+  }
   smoothTo(p);if(currentStroke)currentStroke.push(p);updateDiag()
 }
 function end(p){
@@ -123,7 +140,7 @@ function end(p){
   lastEnd=last;lastEndTime=now();pendingBridge=null;last=null;prev=null;updateDiag()
 }
 function redraw(){ctx.clearRect(0,0,canvas.width,canvas.height);setPen();for(var s=0;s<strokes.length;s++){var st=strokes[s];if(!st||st.length<1)continue;ctx.beginPath();ctx.moveTo(st[0].x,st[0].y);for(var i=1;i<st.length;i++)ctx.lineTo(st[i].x,st[i].y);ctx.stroke()}}
-function clearAll(){strokes=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastEnd=null;lastEndPrev=null;pendingBridge=null;stats={starts:0,moves:0,ends:0,repaired:0};updateDiag()}
+function clearAll(){strokes=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastEnd=null;lastEndPrev=null;pendingBridge=null;stats={starts:0,moves:0,ends:0,repaired:0,smart:0};updateDiag()}
 function undo(){strokes.pop();redraw()}
 function dottedPath(points){
   gctx.save();gctx.strokeStyle='#a8a8a8';gctx.fillStyle='#a8a8a8';gctx.lineWidth=2;var step=12,acc=0;
@@ -142,7 +159,7 @@ function drawGuide(){
   else if(v==='A'){pts=[{x:w*.36,y:h*.82},{x:w*.50,y:h*.18},{x:w*.64,y:h*.82}];dottedPath(pts);dottedPath([{x:w*.42,y:h*.55},{x:w*.58,y:h*.55}]);return}
   dottedPath(pts)
 }
-function updateDiag(){if(!showDiag){diag.style.display='none';return}diag.style.display='block';var c=cfg();diag.innerHTML='starts: '+stats.starts+' &nbsp; moves: '+stats.moves+' &nbsp; ends: '+stats.ends+'<br>repaired: '+stats.repaired+' &nbsp; gap≤'+c.maxGap+'ms &nbsp; dist≤'+c.maxDist+'px'}
+function updateDiag(){if(!showDiag){diag.style.display='none';return}diag.style.display='block';var c=cfg();diag.innerHTML='starts: '+stats.starts+' &nbsp; moves: '+stats.moves+' &nbsp; ends: '+stats.ends+'<br>repaired: '+stats.repaired+' &nbsp; smart: '+stats.smart+'<br>gap≤'+c.maxGap+'ms / smart≤'+c.smartGap+'ms &nbsp; dist≤'+c.smartDist+'px'}
 canvas.addEventListener('touchstart',function(e){if(e.touches&&e.touches.length){e.preventDefault();begin(posFromTouch(e.touches[0]))}},false);
 canvas.addEventListener('touchmove',function(e){if(e.touches&&e.touches.length){e.preventDefault();move(posFromTouch(e.touches[0]))}},false);
 canvas.addEventListener('touchend',function(e){e.preventDefault();var t=(e.changedTouches&&e.changedTouches.length)?posFromTouch(e.changedTouches[0]):null;end(t)},false);
