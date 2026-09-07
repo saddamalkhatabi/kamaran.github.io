@@ -29,8 +29,8 @@ canvas{position:absolute;left:0;top:0;width:100%;height:100%;touch-action:none;-
     <button id="clearBtn">مسح</button>
     <button id="undoBtn">تراجع</button>
     <label><input id="repair" type="checkbox" checked> إصلاح التقطيع</label>
-    <label>حساسية القلم القديم <input id="repairPower" type="range" min="1" max="5" value="3"></label>
-    <label>السماكة <input id="width" type="range" min="2" max="16" value="7"></label><label><input id="penSmooth" type="checkbox" checked> تنعيم القلم</label>
+    <label>قوة الإصلاح <input id="repairPower" type="range" min="1" max="5" value="3"></label>
+    <label>السماكة <input id="width" type="range" min="2" max="16" value="7"></label>
     <select id="lesson">
       <option value="free">رسم حر</option>
       <option value="line">تتبع خط</option>
@@ -42,362 +42,120 @@ canvas{position:absolute;left:0;top:0;width:100%;height:100%;touch-action:none;-
     </select>
     <button id="diagBtn" class="active">التشخيص: يعمل</button>
   </div>
-  <div id="info">نسخة V2: إصلاح منحني للفجوات + حماية النقاط والهمزات من الوصل الخاطئ + تنعيم خفيف للقلم.</div>
+  <div id="info">نسخة محسنة من التجربة الأولى: نفس الإصلاح السابق، مع جعل الوصل في الانحناءات ناعماً بدل الزاوية الحادة.</div>
   <div id="wrap">
     <canvas id="guide"></canvas>
     <canvas id="draw"></canvas>
     <div id="diag"></div>
   </div>
 </div>
-
 <script>
 (function(){
 'use strict';
 var wrap=document.getElementById('wrap'), canvas=document.getElementById('draw'), guide=document.getElementById('guide');
 var ctx=canvas.getContext('2d'), gctx=guide.getContext('2d');
 var repair=document.getElementById('repair'), repairPower=document.getElementById('repairPower'), width=document.getElementById('width');
-var penSmooth=document.getElementById('penSmooth');
 var lesson=document.getElementById('lesson'), diag=document.getElementById('diag'), diagBtn=document.getElementById('diagBtn');
-
-var drawing=false, rawStroke=null, rawStrokes=[];
-var liveLast=null, liveMid=null, filterLast=null;
-var prevChunk=null, prevEndTime=0;
-var bridgeCandidate=null;
-var stats={starts:0,moves:0,ends:0,repaired:0,dotsProtected:0,rejected:0};
-var showDiag=true;
+var drawing=false, last=null, prev=null, lastEnd=null, lastEndPrev=null, lastEndTime=0, currentStroke=null, strokes=[], pendingBridge=null;
+var stats={starts:0,moves:0,ends:0,repaired:0}; var showDiag=true;
 var raf=window.requestAnimationFrame||window.webkitRequestAnimationFrame||function(fn){return setTimeout(fn,16)};
-
 function now(){return (new Date()).getTime()}
-function dist(a,b){var dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy)}
-function clamp(v,a,b){return v<a?a:(v>b?b:v)}
-
-function cfg(){
-  var p=parseInt(repairPower.value,10)||3;
-  return {
-    maxGap: 180+p*85,
-    maxDist: 42+p*22,
-    minResumeLen: 7+p*1.5,
-    dotBox: 18+p*1.5,
-    dotLen: 20+p*2,
-    smoothAlpha: 0.62-(p-1)*0.045
-  };
-}
-
 function size(){
-  var r=wrap.getBoundingClientRect(), dpr=window.devicePixelRatio||1;
-  if(dpr>2)dpr=2;
-  canvas.width=Math.max(1,Math.round(r.width*dpr));
-  canvas.height=Math.max(1,Math.round(r.height*dpr));
-  guide.width=canvas.width; guide.height=canvas.height;
-  ctx.setTransform(dpr,0,0,dpr,0,0); gctx.setTransform(dpr,0,0,dpr,0,0);
-  redraw(); drawGuide();
+  var r=wrap.getBoundingClientRect(), dpr=window.devicePixelRatio||1; if(dpr>2)dpr=2;
+  canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));
+  guide.width=canvas.width;guide.height=canvas.height;
+  ctx.setTransform(dpr,0,0,dpr,0,0);gctx.setTransform(dpr,0,0,dpr,0,0);
+  canvas._dpr=dpr; redraw(); drawGuide();
 }
-
-function posFromTouch(t){
-  var r=canvas.getBoundingClientRect();
-  return {x:t.clientX-r.left,y:t.clientY-r.top,t:now()};
-}
-function posFromMouse(e){
-  var r=canvas.getBoundingClientRect();
-  return {x:e.clientX-r.left,y:e.clientY-r.top,t:now()};
-}
-
-function setPen(){
-  ctx.lineCap='round';
-  ctx.lineJoin='round';
-  ctx.strokeStyle='#111';
-  ctx.lineWidth=parseInt(width.value,10)||7;
-}
-
-function filtered(p){
-  if(!penSmooth || !penSmooth.checked){filterLast={x:p.x,y:p.y,t:p.t};return p}
-  if(!filterLast){filterLast={x:p.x,y:p.y,t:p.t};return p}
-  var a=cfg().smoothAlpha;
-  var q={
-    x:filterLast.x+(p.x-filterLast.x)*a,
-    y:filterLast.y+(p.y-filterLast.y)*a,
-    t:p.t
-  };
-  filterLast=q;
-  return q;
-}
-
-function drawLivePoint(p){
-  if(!liveLast){liveLast=p;liveMid=p;return}
-  setPen();
-  var mx=(liveLast.x+p.x)/2, my=(liveLast.y+p.y)/2;
-  ctx.beginPath();
-  ctx.moveTo(liveMid.x,liveMid.y);
-  ctx.quadraticCurveTo(liveLast.x,liveLast.y,mx,my);
+function posFromTouch(t){var r=canvas.getBoundingClientRect();return {x:t.clientX-r.left,y:t.clientY-r.top,t:now()}}
+function posFromMouse(e){var r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top,t:now()}}
+function dist(a,b){var dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy)}
+function cfg(){var p=parseInt(repairPower.value,10)||3;return {maxGap:80+p*55,maxDist:18+p*18}}
+function setPen(){ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#111';ctx.lineWidth=parseInt(width.value,10)||7}
+function segment(a,b){setPen();ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
+function unit(a,b){var dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy);if(d<0.01)return {x:0,y:0};return {x:dx/d,y:dy/d}}
+function curvedBridge(a0,a1,b0,b1){
+  var gap=dist(a1,b0),h=Math.max(4,Math.min(30,gap*.45));
+  var va=a0?unit(a0,a1):unit(a1,b0),vb=b1?unit(b0,b1):unit(a1,b0);
+  var c1={x:a1.x+va.x*h,y:a1.y+va.y*h};
+  var c2={x:b0.x-vb.x*h,y:b0.y-vb.y*h};
+  setPen();ctx.beginPath();ctx.moveTo(a1.x,a1.y);
+  if(ctx.bezierCurveTo){ctx.bezierCurveTo(c1.x,c1.y,c2.x,c2.y,b0.x,b0.y)}else{ctx.lineTo(b0.x,b0.y)}
   ctx.stroke();
-  liveMid={x:mx,y:my,t:p.t};
-  liveLast=p;
-}
-
-function strokeMetrics(st){
-  var i, len=0, minx=99999,miny=99999,maxx=-99999,maxy=-99999;
-  if(!st||!st.length)return {len:0,w:0,h:0};
-  for(i=0;i<st.length;i++){
-    if(st[i].x<minx)minx=st[i].x;if(st[i].x>maxx)maxx=st[i].x;
-    if(st[i].y<miny)miny=st[i].y;if(st[i].y>maxy)maxy=st[i].y;
-    if(i)len+=dist(st[i-1],st[i]);
-  }
-  return {len:len,w:maxx-minx,h:maxy-miny};
-}
-
-function unit(a,b){
-  var dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy);
-  if(d<0.01)return {x:0,y:0};
-  return {x:dx/d,y:dy/d};
-}
-
-function pointOnCubic(p0,p1,p2,p3,t){
-  var u=1-t,tt=t*t,uu=u*u,uuu=uu*u,ttt=tt*t;
-  return {
-    x:uuu*p0.x+3*uu*t*p1.x+3*u*tt*p2.x+ttt*p3.x,
-    y:uuu*p0.y+3*uu*t*p1.y+3*u*tt*p2.y+ttt*p3.y,
-    t:now(),
-    synthetic:true
-  };
-}
-
-function drawCurvedBridge(oldStroke,newStroke){
-  if(!oldStroke||oldStroke.length<2||!newStroke||newStroke.length<2)return false;
-  var p0=oldStroke[oldStroke.length-1];
-  var p3=newStroke[0];
-  var oldRef=oldStroke[Math.max(0,oldStroke.length-4)];
-  var newRef=newStroke[Math.min(newStroke.length-1,3)];
-  var v0=unit(oldRef,p0);
-  var v1=unit(p3,newRef);
-  var gap=dist(p0,p3);
-  var handle=clamp(gap*0.48,8,42);
-  var p1={x:p0.x+v0.x*handle,y:p0.y+v0.y*handle};
-  var p2={x:p3.x-v1.x*handle,y:p3.y-v1.y*handle};
-
-  setPen();
-  ctx.beginPath();
-  ctx.moveTo(p0.x,p0.y);
-  if(ctx.bezierCurveTo){
-    ctx.bezierCurveTo(p1.x,p1.y,p2.x,p2.y,p3.x,p3.y);
-  }else{
-    ctx.lineTo(p3.x,p3.y);
-  }
-  ctx.stroke();
-
-  var j, synth=[];
-  for(j=1;j<=7;j++)synth.push(pointOnCubic(p0,p1,p2,p3,j/8));
-  oldStroke._bridgeTo = oldStroke._bridgeTo || [];
-  oldStroke._bridgeTo.push({to:newStroke,points:synth});
-  return true;
-}
-
-function mayRepair(){
-  if(!repair.checked || !bridgeCandidate || bridgeCandidate.done || !prevChunk)return;
-  var c=cfg(), cur=rawStroke;
-  if(!cur||cur.length<2)return;
-
-  var elapsed=cur[0].t-prevEndTime;
-  var gap=dist(prevChunk[prevChunk.length-1],cur[0]);
-  var cm=strokeMetrics(cur);
-  var pm=strokeMetrics(prevChunk);
-
-  var currentTiny=(cm.len<c.dotLen && cm.w<c.dotBox && cm.h<c.dotBox);
-  var previousTiny=(pm.len<c.dotLen && pm.w<c.dotBox && pm.h<c.dotBox);
-
-  if(currentTiny && cur.length<5)return;
-
-  if(currentTiny || previousTiny){
-    bridgeCandidate.done=true;
-    stats.dotsProtected++;
-    updateDiag();
-    return;
-  }
-
-  if(elapsed<=c.maxGap && gap<=c.maxDist && cm.len>=c.minResumeLen){
-    if(drawCurvedBridge(prevChunk,cur)){
-      stats.repaired++;
-      bridgeCandidate.done=true;
-      updateDiag();
+  if(currentStroke){
+    var ins=[],i,t,u,tt,uu,uuu,ttt;
+    for(i=1;i<=6;i++){t=i/7;u=1-t;tt=t*t;uu=u*u;uuu=uu*u;ttt=tt*t;
+      ins.push({x:uuu*a1.x+3*uu*t*c1.x+3*u*tt*c2.x+ttt*b0.x,
+                y:uuu*a1.y+3*uu*t*c1.y+3*u*tt*c2.y+ttt*b0.y,bridge:true});
     }
-  }else if(elapsed>c.maxGap || gap>c.maxDist){
-    bridgeCandidate.done=true;
-    stats.rejected++;
-    updateDiag();
+    var at=Math.max(0,currentStroke.length-1);
+    Array.prototype.splice.apply(currentStroke,[at,0].concat(ins));
   }
 }
-
+function smoothTo(p){
+  if(!last){last=p;prev=p;return}
+  setPen();
+  var mx=(last.x+p.x)/2,my=(last.y+p.y)/2;
+  ctx.beginPath();ctx.moveTo(prev.x,prev.y);ctx.quadraticCurveTo(last.x,last.y,mx,my);ctx.stroke();
+  prev={x:mx,y:my,t:p.t};last=p;
+}
 function begin(p){
   stats.starts++;
-  drawing=true;
-  filterLast=null; liveLast=null; liveMid=null;
-  rawStroke=[];
-  rawStrokes.push(rawStroke);
-  bridgeCandidate={done:false};
-  var q=filtered(p);
-  rawStroke.push(q);
-  liveLast=q; liveMid=q;
-  updateDiag();
+  var c=cfg(); pendingBridge=null;
+  if(repair.checked && lastEnd && (p.t-lastEndTime)<=c.maxGap && dist(lastEnd,p)<=c.maxDist){
+    pendingBridge={a0:lastEndPrev,a1:lastEnd,b0:p};
+    if(strokes.length){strokes[strokes.length-1].push({x:p.x,y:p.y,bridge:true}); currentStroke=strokes[strokes.length-1];}
+    else{currentStroke=[p];strokes.push(currentStroke)}
+  } else {currentStroke=[p];strokes.push(currentStroke)}
+  drawing=true;last=p;prev=p; updateDiag();
 }
-
 function move(p){
-  if(!drawing)return;
-  stats.moves++;
-  var q=filtered(p);
-  rawStroke.push(q);
-  drawLivePoint(q);
-  mayRepair();
-  updateDiag();
+  if(!drawing)return;stats.moves++;
+  if(pendingBridge){curvedBridge(pendingBridge.a0,pendingBridge.a1,pendingBridge.b0,p);pendingBridge=null;stats.repaired++}
+  smoothTo(p);if(currentStroke)currentStroke.push(p);updateDiag()
 }
-
 function end(p){
-  if(!drawing)return;
-  if(p){
-    var q=filtered(p);
-    if(!rawStroke.length || dist(rawStroke[rawStroke.length-1],q)>0.8){
-      rawStroke.push(q);
-      drawLivePoint(q);
-    }
-  }
-  stats.ends++;
-  mayRepair();
-
-  var m=strokeMetrics(rawStroke), c=cfg();
-  if(bridgeCandidate && !bridgeCandidate.done && m.len<c.dotLen && m.w<c.dotBox && m.h<c.dotBox){
-    bridgeCandidate.done=true;
-    stats.dotsProtected++;
-  }
-
-  prevChunk=rawStroke;
-  prevEndTime=now();
+  if(!drawing)return;stats.ends++;
+  if(p&&last&&dist(last,p)>1){move(p)}
+  if(last){segment(prev||last,last)}
   drawing=false;
-  rawStroke=null; filterLast=null; liveLast=null; liveMid=null;
-  updateDiag();
+  if(currentStroke&&currentStroke.length>1){lastEndPrev=currentStroke[currentStroke.length-2]}else{lastEndPrev=last}
+  lastEnd=last;lastEndTime=now();pendingBridge=null;last=null;prev=null;updateDiag()
 }
-
-function drawOneStroke(st){
-  if(!st||!st.length)return;
-  setPen();
-  if(st.length===1){
-    ctx.beginPath();ctx.arc(st[0].x,st[0].y,ctx.lineWidth/2,0,Math.PI*2);ctx.fillStyle='#111';ctx.fill();return;
-  }
-  var i,last=st[0],mid=st[0],p,mx,my;
-  for(i=1;i<st.length;i++){
-    p=st[i];mx=(last.x+p.x)/2;my=(last.y+p.y)/2;
-    ctx.beginPath();ctx.moveTo(mid.x,mid.y);ctx.quadraticCurveTo(last.x,last.y,mx,my);ctx.stroke();
-    mid={x:mx,y:my};last=p;
-  }
-}
-
-function redraw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  var i,j,b;
-  for(i=0;i<rawStrokes.length;i++){
-    drawOneStroke(rawStrokes[i]);
-    if(rawStrokes[i]._bridgeTo){
-      for(j=0;j<rawStrokes[i]._bridgeTo.length;j++){
-        b=rawStrokes[i]._bridgeTo[j];
-        if(b.points&&b.points.length){
-          var tmp=[rawStrokes[i][rawStrokes[i].length-1]].concat(b.points,[b.to[0]]);
-          drawOneStroke(tmp);
-        }
-      }
-    }
-  }
-}
-
-function clearAll(){
-  rawStrokes=[];ctx.clearRect(0,0,canvas.width,canvas.height);
-  prevChunk=null;prevEndTime=0;bridgeCandidate=null;
-  stats={starts:0,moves:0,ends:0,repaired:0,dotsProtected:0,rejected:0};
-  updateDiag();
-}
-
-function undo(){
-  rawStrokes.pop();
-  prevChunk=rawStrokes.length?rawStrokes[rawStrokes.length-1]:null;
-  prevEndTime=0;
-  redraw();
-}
-
+function redraw(){ctx.clearRect(0,0,canvas.width,canvas.height);setPen();for(var s=0;s<strokes.length;s++){var st=strokes[s];if(!st||st.length<1)continue;ctx.beginPath();ctx.moveTo(st[0].x,st[0].y);for(var i=1;i<st.length;i++)ctx.lineTo(st[i].x,st[i].y);ctx.stroke()}}
+function clearAll(){strokes=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastEnd=null;lastEndPrev=null;pendingBridge=null;stats={starts:0,moves:0,ends:0,repaired:0};updateDiag()}
+function undo(){strokes.pop();redraw()}
 function dottedPath(points){
-  gctx.save();gctx.strokeStyle='#a8a8a8';gctx.fillStyle='#a8a8a8';gctx.lineWidth=2;
-  var step=12,i,j,a,b,d,n,q,x,y;
-  for(i=1;i<points.length;i++){
-    a=points[i-1];b=points[i];d=dist(a,b);n=Math.max(1,Math.floor(d/step));
-    for(j=0;j<=n;j++){
-      q=j/n;x=a.x+(b.x-a.x)*q;y=a.y+(b.y-a.y)*q;
-      gctx.beginPath();gctx.arc(x,y,2.2,0,Math.PI*2);gctx.fill();
-    }
-  }
+  gctx.save();gctx.strokeStyle='#a8a8a8';gctx.fillStyle='#a8a8a8';gctx.lineWidth=2;var step=12,acc=0;
+  for(var i=1;i<points.length;i++){var a=points[i-1],b=points[i],d=dist(a,b),n=Math.max(1,Math.floor(d/step));for(var j=0;j<=n;j++){var q=j/n,x=a.x+(b.x-a.x)*q,y=a.y+(b.y-a.y)*q;gctx.beginPath();gctx.arc(x,y,2.2,0,Math.PI*2);gctx.fill()}}
   gctx.restore();
 }
-
 function drawGuide(){
-  var r=wrap.getBoundingClientRect(),w=r.width,h=r.height;
-  gctx.clearRect(0,0,guide.width,guide.height);
+  var r=wrap.getBoundingClientRect(),w=r.width,h=r.height;gctx.clearRect(0,0,guide.width,guide.height);
   var v=lesson.value,pts=[],i,t;
   if(v==='free')return;
   if(v==='line'){pts=[{x:w*.12,y:h*.5},{x:w*.88,y:h*.5}]}
   else if(v==='circle'){for(i=0;i<=120;i++){t=Math.PI*2*i/120;pts.push({x:w*.5+Math.min(w,h)*.27*Math.cos(t),y:h*.5+Math.min(w,h)*.27*Math.sin(t)})}}
   else if(v==='alif'){pts=[{x:w*.58,y:h*.18},{x:w*.58,y:h*.82}]}
-  else if(v==='baa'){
-    for(i=0;i<=60;i++){t=Math.PI*i/60;pts.push({x:w*.72-w*.28*(i/60),y:h*.50+h*.17*Math.sin(t)})}
-    dottedPath(pts);gctx.beginPath();gctx.arc(w*.5,h*.73,4,0,Math.PI*2);gctx.fillStyle='#a8a8a8';gctx.fill();return;
-  }
+  else if(v==='baa'){for(i=0;i<=60;i++){t=Math.PI*i/60;pts.push({x:w*.72-w*.28*(i/60),y:h*.50+h*.17*Math.sin(t)})} dottedPath(pts);gctx.beginPath();gctx.arc(w*.5,h*.73,4,0,Math.PI*2);gctx.fillStyle='#a8a8a8';gctx.fill();return}
   else if(v==='one'){pts=[{x:w*.48,y:h*.28},{x:w*.55,y:h*.18},{x:w*.55,y:h*.82}]}
-  else if(v==='A'){
-    pts=[{x:w*.36,y:h*.82},{x:w*.50,y:h*.18},{x:w*.64,y:h*.82}];
-    dottedPath(pts);dottedPath([{x:w*.42,y:h*.55},{x:w*.58,y:h*.55}]);return;
-  }
-  dottedPath(pts);
+  else if(v==='A'){pts=[{x:w*.36,y:h*.82},{x:w*.50,y:h*.18},{x:w*.64,y:h*.82}];dottedPath(pts);dottedPath([{x:w*.42,y:h*.55},{x:w*.58,y:h*.55}]);return}
+  dottedPath(pts)
 }
-
-function updateDiag(){
-  if(!showDiag){diag.style.display='none';return}
-  diag.style.display='block';
-  var c=cfg();
-  diag.innerHTML=
-    'starts: '+stats.starts+' &nbsp; moves: '+stats.moves+' &nbsp; ends: '+stats.ends+
-    '<br>repaired: '+stats.repaired+' &nbsp; dots: '+stats.dotsProtected+' &nbsp; rejected: '+stats.rejected+
-    '<br>gap≤'+c.maxGap+'ms &nbsp; dist≤'+c.maxDist+'px';
-}
-
-canvas.addEventListener('touchstart',function(e){
-  if(e.touches&&e.touches.length){e.preventDefault();begin(posFromTouch(e.touches[0]))}
-},false);
-canvas.addEventListener('touchmove',function(e){
-  if(e.touches&&e.touches.length){e.preventDefault();move(posFromTouch(e.touches[0]))}
-},false);
-canvas.addEventListener('touchend',function(e){
-  e.preventDefault();
-  var t=(e.changedTouches&&e.changedTouches.length)?posFromTouch(e.changedTouches[0]):null;
-  end(t);
-},false);
+function updateDiag(){if(!showDiag){diag.style.display='none';return}diag.style.display='block';var c=cfg();diag.innerHTML='starts: '+stats.starts+' &nbsp; moves: '+stats.moves+' &nbsp; ends: '+stats.ends+'<br>repaired: '+stats.repaired+' &nbsp; gap≤'+c.maxGap+'ms &nbsp; dist≤'+c.maxDist+'px'}
+canvas.addEventListener('touchstart',function(e){if(e.touches&&e.touches.length){e.preventDefault();begin(posFromTouch(e.touches[0]))}},false);
+canvas.addEventListener('touchmove',function(e){if(e.touches&&e.touches.length){e.preventDefault();move(posFromTouch(e.touches[0]))}},false);
+canvas.addEventListener('touchend',function(e){e.preventDefault();var t=(e.changedTouches&&e.changedTouches.length)?posFromTouch(e.changedTouches[0]):null;end(t)},false);
 canvas.addEventListener('touchcancel',function(e){e.preventDefault();end(null)},false);
-
 canvas.addEventListener('mousedown',function(e){e.preventDefault();begin(posFromMouse(e))},false);
 window.addEventListener('mousemove',function(e){if(drawing)move(posFromMouse(e))},false);
 window.addEventListener('mouseup',function(e){if(drawing)end(posFromMouse(e))},false);
-
-document.getElementById('clearBtn').onclick=clearAll;
-document.getElementById('undoBtn').onclick=undo;
-lesson.onchange=function(){clearAll();drawGuide()};
-repairPower.onchange=updateDiag;
-width.onchange=redraw;
-if(penSmooth)penSmooth.onchange=function(){};
-
-diagBtn.onclick=function(){
-  showDiag=!showDiag;
-  diagBtn.className=showDiag?'active':'';
-  diagBtn.innerHTML=showDiag?'التشخيص: يعمل':'التشخيص: متوقف';
-  updateDiag();
-};
-
-window.addEventListener('resize',function(){raf(size)},false);
-window.addEventListener('orientationchange',function(){setTimeout(size,400)},false);
+document.getElementById('clearBtn').onclick=clearAll;document.getElementById('undoBtn').onclick=undo;
+lesson.onchange=function(){clearAll();drawGuide()};repairPower.onchange=updateDiag;width.onchange=redraw;
+diagBtn.onclick=function(){showDiag=!showDiag;diagBtn.className=showDiag?'active':'';diagBtn.innerHTML=showDiag?'التشخيص: يعمل':'التشخيص: متوقف';updateDiag()};
+window.addEventListener('resize',function(){raf(size)},false);window.addEventListener('orientationchange',function(){setTimeout(size,400)},false);
 size();updateDiag();
 })();
 </script>
-
 </body>
 </html>
