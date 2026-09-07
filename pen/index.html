@@ -3,24 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>لوحة الطفل - اختبار القلم</title>
+<title>لوحة الطفل - امسك القلم وارسم</title>
 <style>
 html,body{margin:0;padding:0;height:100%;background:#f5f5f5;font-family:Tahoma,Arial,sans-serif;overflow:hidden}
-#app{height:100%;display:flex;flex-direction:column}
-#bar{background:#0f8f8a;color:#fff;padding:7px 8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;box-sizing:border-box}
-#bar button,#bar select,#bar input{font-size:14px;height:34px;border:0;border-radius:4px;padding:0 8px;box-sizing:border-box}
+#app{height:100%;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;flex-direction:column}
+#bar{background:#0f8f8a;color:#fff;padding:6px;min-height:42px;font-size:13px;box-sizing:border-box;white-space:normal}
+#bar button,#bar select,#bar input{font-family:Tahoma,Arial,sans-serif;font-size:13px;height:32px;border:0;border-radius:4px;padding:0 7px;margin:2px;box-sizing:border-box;vertical-align:middle}
 #bar button{background:#fff;color:#222}
 #bar button.active{background:#ffd54f}
-#bar label{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.12);padding:2px 6px;border-radius:4px;height:30px}
-#bar input[type=range]{width:95px;height:28px;padding:0}
-#bar input[type=checkbox]{height:auto}
-#info{background:#fff3cd;color:#5d4a00;padding:5px 8px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:1px solid #e5d38c}
-#wrap{position:relative;flex:1;min-height:0;background:#fff;touch-action:none}
+#bar label{display:inline-block;background:rgba(255,255,255,.12);padding:1px 5px;border-radius:4px;margin:2px;height:30px;line-height:30px;vertical-align:middle}
+#bar input[type=range]{width:82px;height:24px;padding:0;margin:0 3px;vertical-align:middle}
+#bar input[type=checkbox]{height:auto;vertical-align:middle}
+#info{background:#fff3cd;color:#5d4a00;padding:5px 8px;font-size:12px;border-bottom:1px solid #e5d38c;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#wrap{position:relative;-webkit-box-flex:1;-webkit-flex:1;flex:1;min-height:0;background:#fff;touch-action:none}
 canvas{position:absolute;left:0;top:0;width:100%;height:100%;touch-action:none;-ms-touch-action:none}
 #guide{pointer-events:none}
 #draw{pointer-events:auto}
-#diag{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.68);color:#fff;padding:5px 7px;border-radius:4px;font-size:11px;direction:ltr;text-align:left;pointer-events:none}
-@media(max-width:700px){#bar{font-size:12px;padding:5px}#bar button,#bar select{font-size:12px;height:30px}#bar label{height:26px}#bar input[type=range]{width:70px}}
+#diag{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.68);color:#fff;padding:5px 7px;border-radius:4px;font-size:11px;direction:ltr;text-align:left;pointer-events:none;display:none}
+#picker{display:none;position:absolute;left:4%;right:4%;top:5%;bottom:5%;background:rgba(255,255,255,.97);border:2px solid #0f8f8a;border-radius:8px;z-index:20;padding:8px;overflow:auto;text-align:center;box-sizing:border-box}
+#pickerTitle{font-size:18px;font-weight:bold;color:#0f6f6b;margin:4px 0 8px}
+#pickerButtons button{min-width:62px;height:58px;margin:4px;font-size:28px;border:1px solid #bbb;background:#fff;border-radius:7px;font-family:Tahoma,Arial,sans-serif}
+#pickerClose{position:absolute;left:8px;top:7px;width:54px;height:34px;font-size:14px;border:0;border-radius:5px;background:#eee}
+#cheer{display:none;position:absolute;left:50%;top:12%;margin-left:-80px;width:160px;text-align:center;background:rgba(255,213,79,.95);padding:10px;border-radius:8px;font-size:20px;font-weight:bold;color:#4a3b00;z-index:10;pointer-events:none}
+@media(max-width:700px){#bar{font-size:11px;padding:4px}#bar button,#bar select{font-size:11px;height:29px}#bar label{height:27px;line-height:27px}#bar input[type=range]{width:65px}}
 </style>
 </head>
 <body>
@@ -28,188 +33,99 @@ canvas{position:absolute;left:0;top:0;width:100%;height:100%;touch-action:none;-
   <div id="bar">
     <button id="clearBtn">مسح</button>
     <button id="undoBtn">تراجع</button>
+    <button id="prevBtn">السابق</button>
+    <button id="nextBtn">التالي</button>
+    <select id="category">
+      <option value="free">رسم حر</option>
+      <option value="letters">الحروف العربية</option>
+      <option value="numbers">الأرقام العربية</option>
+      <option value="shapes">الأشكال الهندسية</option>
+    </select>
+    <select id="itemSelect"><option value="free">رسم حر</option></select>
+    <button id="showAllBtn">عرض الكل</button>
     <label><input id="repair" type="checkbox" checked> إصلاح التقطيع</label>
-    <label><input id="palm" type="checkbox" checked> حماية اليد</label>
     <label>قوة الإصلاح <input id="repairPower" type="range" min="1" max="5" value="3"></label>
     <label>السماكة <input id="width" type="range" min="2" max="16" value="7"></label>
-    <select id="lesson">
-      <option value="free">رسم حر</option>
-      <option value="line">تتبع خط</option>
-      <option value="circle">تتبع دائرة</option>
-      <option value="alif">تتبع حرف ا</option>
-      <option value="baa">تتبع حرف ب</option>
-      <option value="one">تتبع رقم 1</option>
-      <option value="A">Trace A</option>
-    </select>
-    <button id="diagBtn" class="active">التشخيص: يعمل</button>
+    <label><input id="palm" type="checkbox" checked> حماية اليد</label>
+    <button id="diagBtn">التشخيص</button>
   </div>
-  <div id="info">V1.3: نفس إحساس الرسم السابق + قفل لمسة القلم وتجاهل اليد واللمسات الإضافية ومنع القفزات الطويلة المفاجئة.</div>
+  <div id="info">الهدف الآن بسيط: شجّع الطفل على مسك القلم وتتبع الشكل بهدوء. اختر حرفاً أو رقماً أو شكلاً ثم ارسم فوقه.</div>
   <div id="wrap">
     <canvas id="guide"></canvas>
     <canvas id="draw"></canvas>
     <div id="diag"></div>
+    <div id="cheer">أحسنت!</div>
+    <div id="picker"><button id="pickerClose">إغلاق</button><div id="pickerTitle"></div><div id="pickerButtons"></div></div>
   </div>
 </div>
 <script>
 (function(){
 'use strict';
-var wrap=document.getElementById('wrap'), canvas=document.getElementById('draw'), guide=document.getElementById('guide');
-var ctx=canvas.getContext('2d'), gctx=guide.getContext('2d');
-var repair=document.getElementById('repair'), palm=document.getElementById('palm'), repairPower=document.getElementById('repairPower'), width=document.getElementById('width');
-var lesson=document.getElementById('lesson'), diag=document.getElementById('diag'), diagBtn=document.getElementById('diagBtn');
-var drawing=false, last=null, prev=null, lastEnd=null, lastEndPrev=null, lastEndTime=0, currentStroke=null, strokes=[], pendingBridge=null;
-var activeTouchId=null, activeTouchRadius=0;
-var stats={starts:0,moves:0,ends:0,repaired:0,smart:0,palm:0,jumps:0}; var showDiag=true;
+var wrap=document.getElementById('wrap'),canvas=document.getElementById('draw'),guide=document.getElementById('guide');
+var ctx=canvas.getContext('2d'),gctx=guide.getContext('2d');
+var repair=document.getElementById('repair'),repairPower=document.getElementById('repairPower'),width=document.getElementById('width'),palm=document.getElementById('palm');
+var category=document.getElementById('category'),itemSelect=document.getElementById('itemSelect');
+var diag=document.getElementById('diag'),diagBtn=document.getElementById('diagBtn'),showAllBtn=document.getElementById('showAllBtn');
+var picker=document.getElementById('picker'),pickerTitle=document.getElementById('pickerTitle'),pickerButtons=document.getElementById('pickerButtons'),cheer=document.getElementById('cheer');
+var drawing=false,last=null,prev=null,lastEnd=null,lastEndTime=0,currentStroke=null,strokes=[];
+var activeTouchId=null,strokeStarts=0,showDiag=false,cheerTimer=null;
+var stats={starts:0,moves:0,ends:0,repaired:0,palm:0,jumps:0};
+var letters=['ا','ب','ت','ث','ج','ح','خ','د','ذ','ر','ز','س','ش','ص','ض','ط','ظ','ع','غ','ف','ق','ك','ل','م','ن','ه','و','ي'];
+var numbers=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+var shapes=[
+  {id:'circle',name:'دائرة'},
+  {id:'square',name:'مربع'},
+  {id:'triangle',name:'مثلث'},
+  {id:'rectangle',name:'مستطيل'},
+  {id:'diamond',name:'معين'},
+  {id:'oval',name:'بيضاوي'},
+  {id:'star',name:'نجمة'},
+  {id:'heart',name:'قلب'},
+  {id:'line_h',name:'خط أفقي'},
+  {id:'line_v',name:'خط رأسي'},
+  {id:'zigzag',name:'خط متعرج'},
+  {id:'wave',name:'موجة'}
+];
 var raf=window.requestAnimationFrame||window.webkitRequestAnimationFrame||function(fn){return setTimeout(fn,16)};
-function now(){return (new Date()).getTime()}
-function size(){
-  var r=wrap.getBoundingClientRect(), dpr=window.devicePixelRatio||1; if(dpr>2)dpr=2;
-  canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));
-  guide.width=canvas.width;guide.height=canvas.height;
-  ctx.setTransform(dpr,0,0,dpr,0,0);gctx.setTransform(dpr,0,0,dpr,0,0);
-  redraw(); drawGuide();
-}
-function posFromTouch(t){var r=canvas.getBoundingClientRect();return {x:t.clientX-r.left,y:t.clientY-r.top,t:now()}}
-function posFromMouse(e){var r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top,t:now()}}
+function now(){return(new Date()).getTime()}
 function dist(a,b){var dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy)}
-function cfg(){var p=parseInt(repairPower.value,10)||3;return {maxGap:80+p*55,maxDist:18+p*18,smartGap:300+p*110,smartDist:52+p*20}}
+function cfg(){var p=parseInt(repairPower.value,10)||3;return{maxGap:80+p*55,maxDist:18+p*18}}
+function size(){var r=wrap.getBoundingClientRect(),dpr=window.devicePixelRatio||1;if(dpr>2)dpr=2;canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));guide.width=canvas.width;guide.height=canvas.height;ctx.setTransform(dpr,0,0,dpr,0,0);gctx.setTransform(dpr,0,0,dpr,0,0);redraw();drawGuide()}
+function posFromTouch(t){var r=canvas.getBoundingClientRect();return{x:t.clientX-r.left,y:t.clientY-r.top,t:now()}}
+function posFromMouse(e){var r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top,t:now()}}
 function setPen(){ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#111';ctx.lineWidth=parseInt(width.value,10)||7}
 function segment(a,b){setPen();ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
-function unit(a,b){var dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy);if(d<0.01)return {x:0,y:0};return {x:dx/d,y:dy/d}}
-function dot(a,b){return a.x*b.x+a.y*b.y}
-function touchRadius(t){var rx=t.radiusX||t.webkitRadiusX||0,ry=t.radiusY||t.webkitRadiusY||0;return Math.max(rx,ry)}
-function findTouch(list,id){if(!list)return null;for(var i=0;i<list.length;i++){if(list[i].identifier===id)return list[i]}return null}
-function pickStartTouch(e){
-  var list=(e.changedTouches&&e.changedTouches.length)?e.changedTouches:e.touches;
-  if(!list||!list.length)return null;
-  var best=list[0],br=touchRadius(best),i,r;
-  if(palm.checked && list.length>1){
-    for(i=1;i<list.length;i++){r=touchRadius(list[i]);if(r>0 && (br===0 || r<br)){best=list[i];br=r}}
-  }
-  return best;
-}
-function curvedBridge(a0,a1,b0,b1){
-  var gap=dist(a1,b0),h=Math.max(4,Math.min(30,gap*.45));
-  var va=a0?unit(a0,a1):unit(a1,b0),vb=b1?unit(b0,b1):unit(a1,b0);
-  var c1={x:a1.x+va.x*h,y:a1.y+va.y*h};
-  var c2={x:b0.x-vb.x*h,y:b0.y-vb.y*h};
-  setPen();ctx.beginPath();ctx.moveTo(a1.x,a1.y);
-  if(ctx.bezierCurveTo){ctx.bezierCurveTo(c1.x,c1.y,c2.x,c2.y,b0.x,b0.y)}else{ctx.lineTo(b0.x,b0.y)}
-  ctx.stroke();
-  if(currentStroke){
-    var ins=[],i,t,u,tt,uu,uuu,ttt;
-    ins.push({x:a1.x,y:a1.y,bridge:true});
-    for(i=1;i<=6;i++){t=i/7;u=1-t;tt=t*t;uu=u*u;uuu=uu*u;ttt=tt*t;
-      ins.push({x:uuu*a1.x+3*uu*t*c1.x+3*u*tt*c2.x+ttt*b0.x,y:uuu*a1.y+3*uu*t*c1.y+3*u*tt*c2.y+ttt*b0.y,bridge:true});
-    }
-    Array.prototype.unshift.apply(currentStroke,ins);
-  }
-}
-function smoothTo(p){
-  if(!last){last=p;prev=p;return}
-  setPen();
-  var mx=(last.x+p.x)/2,my=(last.y+p.y)/2;
-  ctx.beginPath();ctx.moveTo(prev.x,prev.y);ctx.quadraticCurveTo(last.x,last.y,mx,my);ctx.stroke();
-  prev={x:mx,y:my,t:p.t};last=p;
-}
-function begin(p,blockRepair){
-  stats.starts++;
-  var c=cfg(),dt=0,d=0; pendingBridge=null;
-  currentStroke=[p];strokes.push(currentStroke);
-  if(repair.checked && lastEnd && !blockRepair){
-    dt=p.t-lastEndTime;d=dist(lastEnd,p);
-    if(dt<=c.smartGap && d<=c.smartDist){pendingBridge={a0:lastEndPrev,a1:lastEnd,b0:p,dt:dt,gap:d,moves:0}}
-  }
-  drawing=true;last=p;prev=p; updateDiag();
-}
-function suspiciousJump(p){
-  if(!palm.checked || !last)return false;
-  var dt=Math.max(1,p.t-last.t),d=dist(last,p);
-  var allowed=Math.max(70,35+dt*2.6);
-  if(d>allowed){stats.jumps++;stats.palm++;pendingBridge=null;updateDiag();return true}
-  return false;
-}
-function move(p){
-  if(!drawing)return;
-  if(suspiciousJump(p))return;
-  stats.moves++;
-  if(pendingBridge){
-    pendingBridge.moves++;
-    var c=cfg(),normal=(pendingBridge.dt<=c.maxGap && pendingBridge.gap<=c.maxDist);
-    var travel=dist(pendingBridge.b0,p),accept=false,smart=false;
-    if(normal && pendingBridge.moves>=1){accept=true}
-    else if(pendingBridge.moves>=2 && travel>=8){
-      var va=pendingBridge.a0?unit(pendingBridge.a0,pendingBridge.a1):unit(pendingBridge.a1,pendingBridge.b0);
-      var vg=unit(pendingBridge.a1,pendingBridge.b0);
-      var vb=unit(pendingBridge.b0,p);
-      var s1=dot(va,vg),s2=dot(vg,vb),s3=dot(va,vb);
-      if(pendingBridge.dt<=c.smartGap && pendingBridge.gap<=c.smartDist && s1>-0.15 && s2>-0.15 && s3>-0.35){accept=true;smart=true}
-    }
-    if(accept){curvedBridge(pendingBridge.a0,pendingBridge.a1,pendingBridge.b0,p);pendingBridge=null;stats.repaired++;if(smart)stats.smart++}
-    else if(pendingBridge && (pendingBridge.moves>=4 || pendingBridge.dt>c.smartGap || pendingBridge.gap>c.smartDist)){pendingBridge=null}
-  }
-  smoothTo(p);if(currentStroke)currentStroke.push(p);updateDiag()
-}
-function end(p){
-  if(!drawing)return;stats.ends++;
-  if(p&&last&&dist(last,p)>1 && !suspiciousJump(p)){move(p)}
-  if(last){segment(prev||last,last)}
-  drawing=false;
-  if(currentStroke&&currentStroke.length>1){lastEndPrev=currentStroke[currentStroke.length-2]}else{lastEndPrev=last}
-  lastEnd=last;lastEndTime=now();pendingBridge=null;last=null;prev=null;updateDiag()
-}
+function smoothTo(p){if(!last){last=p;prev=p;return}if(dist(last,p)>180){stats.jumps++;updateDiag();return}setPen();var mx=(last.x+p.x)/2,my=(last.y+p.y)/2;ctx.beginPath();ctx.moveTo(prev.x,prev.y);ctx.quadraticCurveTo(last.x,last.y,mx,my);ctx.stroke();prev={x:mx,y:my,t:p.t};last=p}
+function begin(p){stats.starts++;strokeStarts++;var c=cfg();if(repair.checked&&lastEnd&&(p.t-lastEndTime)<=c.maxGap&&dist(lastEnd,p)<=c.maxDist){segment(lastEnd,p);stats.repaired++;if(strokes.length){strokes[strokes.length-1].push({x:p.x,y:p.y,bridge:true});currentStroke=strokes[strokes.length-1]}else{currentStroke=[p];strokes.push(currentStroke)}}else{currentStroke=[p];strokes.push(currentStroke)}drawing=true;last=p;prev=p;updateDiag()}
+function move(p){if(!drawing)return;stats.moves++;if(last&&dist(last,p)>180){stats.jumps++;updateDiag();return}smoothTo(p);if(currentStroke)currentStroke.push(p);updateDiag()}
+function end(p){if(!drawing)return;stats.ends++;if(p&&last&&dist(last,p)>1&&dist(last,p)<180){move(p)}if(last){segment(prev||last,last)}drawing=false;lastEnd=last;lastEndTime=now();last=null;prev=null;activeTouchId=null;updateDiag();maybeCheer()}
 function redraw(){ctx.clearRect(0,0,canvas.width,canvas.height);setPen();for(var s=0;s<strokes.length;s++){var st=strokes[s];if(!st||st.length<1)continue;ctx.beginPath();ctx.moveTo(st[0].x,st[0].y);for(var i=1;i<st.length;i++)ctx.lineTo(st[i].x,st[i].y);ctx.stroke()}}
-function clearAll(){strokes=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastEnd=null;lastEndPrev=null;pendingBridge=null;activeTouchId=null;stats={starts:0,moves:0,ends:0,repaired:0,smart:0,palm:0,jumps:0};updateDiag()}
+function clearDraw(){strokes=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastEnd=null;activeTouchId=null;strokeStarts=0;stats={starts:0,moves:0,ends:0,repaired:0,palm:0,jumps:0};updateDiag()}
 function undo(){strokes.pop();redraw()}
-function dottedPath(points){
-  gctx.save();gctx.strokeStyle='#a8a8a8';gctx.fillStyle='#a8a8a8';gctx.lineWidth=2;var step=12;
-  for(var i=1;i<points.length;i++){var a=points[i-1],b=points[i],d=dist(a,b),n=Math.max(1,Math.floor(d/step));for(var j=0;j<=n;j++){var q=j/n,x=a.x+(b.x-a.x)*q,y=a.y+(b.y-a.y)*q;gctx.beginPath();gctx.arc(x,y,2.2,0,Math.PI*2);gctx.fill()}}
-  gctx.restore();
-}
-function drawGuide(){
-  var r=wrap.getBoundingClientRect(),w=r.width,h=r.height;gctx.clearRect(0,0,guide.width,guide.height);
-  var v=lesson.value,pts=[],i,t;
-  if(v==='free')return;
-  if(v==='line'){pts=[{x:w*.12,y:h*.5},{x:w*.88,y:h*.5}]}
-  else if(v==='circle'){for(i=0;i<=120;i++){t=Math.PI*2*i/120;pts.push({x:w*.5+Math.min(w,h)*.27*Math.cos(t),y:h*.5+Math.min(w,h)*.27*Math.sin(t)})}}
-  else if(v==='alif'){pts=[{x:w*.58,y:h*.18},{x:w*.58,y:h*.82}]}
-  else if(v==='baa'){for(i=0;i<=60;i++){t=Math.PI*i/60;pts.push({x:w*.72-w*.28*(i/60),y:h*.50+h*.17*Math.sin(t)})} dottedPath(pts);gctx.beginPath();gctx.arc(w*.5,h*.73,4,0,Math.PI*2);gctx.fillStyle='#a8a8a8';gctx.fill();return}
-  else if(v==='one'){pts=[{x:w*.48,y:h*.28},{x:w*.55,y:h*.18},{x:w*.55,y:h*.82}]}
-  else if(v==='A'){pts=[{x:w*.36,y:h*.82},{x:w*.50,y:h*.18},{x:w*.64,y:h*.82}];dottedPath(pts);dottedPath([{x:w*.42,y:h*.55},{x:w*.58,y:h*.55}]);return}
-  dottedPath(pts)
-}
-function updateDiag(){if(!showDiag){diag.style.display='none';return}diag.style.display='block';var c=cfg();diag.innerHTML='starts: '+stats.starts+' &nbsp; moves: '+stats.moves+' &nbsp; ends: '+stats.ends+'<br>repaired: '+stats.repaired+' &nbsp; smart: '+stats.smart+' &nbsp; palm: '+stats.palm+' &nbsp; jumps: '+stats.jumps+'<br>gap≤'+c.maxGap+'ms / smart≤'+c.smartGap+'ms &nbsp; dist≤'+c.smartDist+'px'}
-canvas.addEventListener('touchstart',function(e){
-  if(!e.touches||!e.touches.length)return;e.preventDefault();
-  if(drawing){if(palm.checked){stats.palm++;updateDiag();return}}
-  var t=pickStartTouch(e);if(!t)return;
-  activeTouchId=t.identifier;activeTouchRadius=touchRadius(t);
-  begin(posFromTouch(t),palm.checked && e.touches.length>1);
-},false);
-canvas.addEventListener('touchmove',function(e){
-  if(!drawing)return;e.preventDefault();
-  var t=findTouch(e.touches,activeTouchId);
-  if(!t){if(palm.checked){stats.palm++;updateDiag()}return}
-  move(posFromTouch(t));
-},false);
-canvas.addEventListener('touchend',function(e){
-  e.preventDefault();
-  var t=findTouch(e.changedTouches,activeTouchId);
-  if(!t){if(palm.checked){stats.palm++;updateDiag()}return}
-  end(posFromTouch(t));activeTouchId=null;activeTouchRadius=0;
-},false);
-canvas.addEventListener('touchcancel',function(e){
-  e.preventDefault();var t=findTouch(e.changedTouches,activeTouchId);
-  if(t||drawing){end(t?posFromTouch(t):null)}activeTouchId=null;activeTouchRadius=0;
-},false);
-canvas.addEventListener('mousedown',function(e){e.preventDefault();begin(posFromMouse(e),false)},false);
-window.addEventListener('mousemove',function(e){if(drawing)move(posFromMouse(e))},false);
-window.addEventListener('mouseup',function(e){if(drawing)end(posFromMouse(e))},false);
-document.getElementById('clearBtn').onclick=clearAll;document.getElementById('undoBtn').onclick=undo;
-lesson.onchange=function(){clearAll();drawGuide()};repairPower.onchange=updateDiag;width.onchange=redraw;
-diagBtn.onclick=function(){showDiag=!showDiag;diagBtn.className=showDiag?'active':'';diagBtn.innerHTML=showDiag?'التشخيص: يعمل':'التشخيص: متوقف';updateDiag()};
+function maybeCheer(){if(strokeStarts>0&&strokeStarts%4===0){cheer.style.display='block';if(cheerTimer)clearTimeout(cheerTimer);cheerTimer=setTimeout(function(){cheer.style.display='none'},900)}}
+function findTouch(list,id){if(!list)return null;for(var i=0;i<list.length;i++){if(list[i].identifier===id)return list[i]}return null}
+function populateItems(){var c=category.value,arr=[],i,opt;itemSelect.options.length=0;if(c==='free'){opt=document.createElement('option');opt.value='free';opt.text='رسم حر';itemSelect.appendChild(opt)}else if(c==='letters'){arr=letters;for(i=0;i<arr.length;i++){opt=document.createElement('option');opt.value=arr[i];opt.text='حرف '+arr[i];itemSelect.appendChild(opt)}}else if(c==='numbers'){arr=numbers;for(i=0;i<arr.length;i++){opt=document.createElement('option');opt.value=arr[i];opt.text='رقم '+arr[i];itemSelect.appendChild(opt)}}else if(c==='shapes'){for(i=0;i<shapes.length;i++){opt=document.createElement('option');opt.value=shapes[i].id;opt.text=shapes[i].name;itemSelect.appendChild(opt)}}clearDraw();drawGuide()}
+function currentIndex(){return itemSelect.selectedIndex<0?0:itemSelect.selectedIndex}
+function go(delta){if(itemSelect.options.length<1)return;var n=itemSelect.options.length,i=currentIndex()+delta;if(i<0)i=n-1;if(i>=n)i=0;itemSelect.selectedIndex=i;clearDraw();drawGuide()}
+function showPicker(){var c=category.value,i,title;if(c==='free')return;pickerButtons.innerHTML='';if(c==='letters'){title='كل الحروف العربية';for(i=0;i<letters.length;i++)addPickButton(letters[i],letters[i])}else if(c==='numbers'){title='كل الأرقام العربية';for(i=0;i<numbers.length;i++)addPickButton(numbers[i],numbers[i])}else{title='كل الأشكال الهندسية';for(i=0;i<shapes.length;i++)addPickButton(shapes[i].name,shapes[i].id)}pickerTitle.innerHTML=title;picker.style.display='block'}
+function addPickButton(label,value){var b=document.createElement('button');b.innerHTML=label;b.onclick=function(){for(var i=0;i<itemSelect.options.length;i++){if(itemSelect.options[i].value===value){itemSelect.selectedIndex=i;break}}picker.style.display='none';clearDraw();drawGuide()};pickerButtons.appendChild(b)}
+function guideText(text){var r=wrap.getBoundingClientRect(),w=r.width,h=r.height,sizePx=Math.floor(Math.min(w*.48,h*.72));gctx.save();gctx.textAlign='center';gctx.textBaseline='middle';gctx.font='bold '+sizePx+'px Tahoma, Arial, sans-serif';gctx.lineWidth=Math.max(8,sizePx*.08);gctx.strokeStyle='rgba(80,80,80,.16)';gctx.fillStyle='rgba(120,120,120,.08)';gctx.strokeText(text,w*.5,h*.53);gctx.fillText(text,w*.5,h*.53);gctx.restore()}
+function dottedPath(points,closed){gctx.save();gctx.fillStyle='rgba(100,100,100,.42)';var step=12;for(var i=1;i<points.length;i++){var a=points[i-1],b=points[i],d=dist(a,b),n=Math.max(1,Math.floor(d/step));for(var j=0;j<=n;j++){var q=j/n,x=a.x+(b.x-a.x)*q,y=a.y+(b.y-a.y)*q;gctx.beginPath();gctx.arc(x,y,2.2,0,Math.PI*2);gctx.fill()}}if(closed&&points.length>1){var aa=points[points.length-1],bb=points[0],dd=dist(aa,bb),nn=Math.max(1,Math.floor(dd/step));for(var k=0;k<=nn;k++){var qq=k/nn,xx=aa.x+(bb.x-aa.x)*qq,yy=aa.y+(bb.y-aa.y)*qq;gctx.beginPath();gctx.arc(xx,yy,2.2,0,Math.PI*2);gctx.fill()}}gctx.restore()}
+function shapeGuide(id){var r=wrap.getBoundingClientRect(),w=r.width,h=r.height,cx=w*.5,cy=h*.53,R=Math.min(w,h)*.28,pts=[],i,t;if(id==='circle'){for(i=0;i<100;i++){t=Math.PI*2*i/100;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)})}dottedPath(pts,true)}else if(id==='oval'){for(i=0;i<100;i++){t=Math.PI*2*i/100;pts.push({x:cx+R*1.35*Math.cos(t),y:cy+R*.72*Math.sin(t)})}dottedPath(pts,true)}else if(id==='square'){pts=[{x:cx-R,y:cy-R},{x:cx+R,y:cy-R},{x:cx+R,y:cy+R},{x:cx-R,y:cy+R}];dottedPath(pts,true)}else if(id==='rectangle'){pts=[{x:cx-R*1.4,y:cy-R*.75},{x:cx+R*1.4,y:cy-R*.75},{x:cx+R*1.4,y:cy+R*.75},{x:cx-R*1.4,y:cy+R*.75}];dottedPath(pts,true)}else if(id==='triangle'){pts=[{x:cx,y:cy-R},{x:cx+R,y:cy+R},{x:cx-R,y:cy+R}];dottedPath(pts,true)}else if(id==='diamond'){pts=[{x:cx,y:cy-R},{x:cx+R,y:cy},{x:cx,y:cy+R},{x:cx-R,y:cy}];dottedPath(pts,true)}else if(id==='star'){for(i=0;i<10;i++){t=-Math.PI/2+i*Math.PI/5;var rr=(i%2===0)?R:R*.42;pts.push({x:cx+rr*Math.cos(t),y:cy+rr*Math.sin(t)})}dottedPath(pts,true)}else if(id==='heart'){for(i=0;i<=100;i++){t=Math.PI*2*i/100;var x=16*Math.pow(Math.sin(t),3),y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);pts.push({x:cx+x*R/18,y:cy-y*R/18})}dottedPath(pts,true)}else if(id==='line_h'){dottedPath([{x:w*.15,y:cy},{x:w*.85,y:cy}],false)}else if(id==='line_v'){dottedPath([{x:cx,y:h*.18},{x:cx,y:h*.85}],false)}else if(id==='zigzag'){pts=[{x:w*.15,y:cy},{x:w*.3,y:cy-R*.6},{x:w*.45,y:cy+R*.6},{x:w*.6,y:cy-R*.6},{x:w*.75,y:cy+R*.6},{x:w*.88,y:cy}];dottedPath(pts,false)}else if(id==='wave'){for(i=0;i<=90;i++){t=i/90;pts.push({x:w*.12+t*w*.76,y:cy+Math.sin(t*Math.PI*4)*R*.35})}dottedPath(pts,false)}}
+function drawGuide(){gctx.clearRect(0,0,guide.width,guide.height);var c=category.value,v=itemSelect.value;if(c==='letters'||c==='numbers'){guideText(v)}else if(c==='shapes'){shapeGuide(v)}}
+function updateDiag(){if(!showDiag){diag.style.display='none';return}diag.style.display='block';var c=cfg();diag.innerHTML='starts: '+stats.starts+' &nbsp; moves: '+stats.moves+' &nbsp; ends: '+stats.ends+'<br>repaired: '+stats.repaired+' &nbsp; palm: '+stats.palm+' &nbsp; jumps: '+stats.jumps+'<br>gap&lt;='+c.maxGap+'ms &nbsp; dist&lt;='+c.maxDist+'px'}
+canvas.addEventListener('touchstart',function(e){if(!e.touches||!e.touches.length)return;e.preventDefault();if(drawing){stats.palm+=Math.max(1,e.touches.length-1);updateDiag();return}var t=e.changedTouches&&e.changedTouches.length?e.changedTouches[0]:e.touches[0];activeTouchId=t.identifier;begin(posFromTouch(t));if(palm.checked&&e.touches.length>1)stats.palm+=e.touches.length-1},false);
+canvas.addEventListener('touchmove',function(e){if(!drawing)return;e.preventDefault();var t=findTouch(e.touches,activeTouchId);if(!t){if(palm.checked){stats.palm++;updateDiag();return}t=e.touches&&e.touches.length?e.touches[0]:null}if(t)move(posFromTouch(t))},false);
+canvas.addEventListener('touchend',function(e){if(!drawing)return;e.preventDefault();var t=findTouch(e.changedTouches,activeTouchId);if(t){end(posFromTouch(t))}else if(palm.checked){stats.palm++;updateDiag()}},false);
+canvas.addEventListener('touchcancel',function(e){e.preventDefault();if(drawing)end(null)},false);
+canvas.addEventListener('mousedown',function(e){e.preventDefault();begin(posFromMouse(e))},false);
+window.addEventListener('mousemove',function(e){if(drawing&&activeTouchId===null)move(posFromMouse(e))},false);
+window.addEventListener('mouseup',function(e){if(drawing&&activeTouchId===null)end(posFromMouse(e))},false);
+document.getElementById('clearBtn').onclick=clearDraw;document.getElementById('undoBtn').onclick=undo;document.getElementById('prevBtn').onclick=function(){go(-1)};document.getElementById('nextBtn').onclick=function(){go(1)};
+category.onchange=populateItems;itemSelect.onchange=function(){clearDraw();drawGuide()};showAllBtn.onclick=showPicker;document.getElementById('pickerClose').onclick=function(){picker.style.display='none'};repairPower.onchange=updateDiag;width.onchange=redraw;
+diagBtn.onclick=function(){showDiag=!showDiag;diagBtn.className=showDiag?'active':'';diagBtn.innerHTML=showDiag?'إخفاء التشخيص':'التشخيص';updateDiag()};
 window.addEventListener('resize',function(){raf(size)},false);window.addEventListener('orientationchange',function(){setTimeout(size,400)},false);
-size();updateDiag();
+populateItems();size();updateDiag();
 })();
 </script>
 </body>
