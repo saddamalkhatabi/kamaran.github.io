@@ -1,0 +1,12 @@
+{
+  "name": "لوحة نور - تعليم الرسم",
+  "short_name": "لوحة نور",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f8f8a",
+  "orientation": "any",
+  "lang": "ar",
+  "dir": "rtl"
+}
