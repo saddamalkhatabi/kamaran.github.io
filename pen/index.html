@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>لوحة الطفل - اختبار القلم</title>
+<style>
+html,body{margin:0;padding:0;height:100%;background:#f5f5f5;font-family:Tahoma,Arial,sans-serif;overflow:hidden}
+#app{height:100%;display:flex;flex-direction:column}
+#bar{background:#0f8f8a;color:#fff;padding:7px 8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;box-sizing:border-box}
+#bar button,#bar select,#bar input{font-size:14px;height:34px;border:0;border-radius:4px;padding:0 8px;box-sizing:border-box}
+#bar button{background:#fff;color:#222}
+#bar button.active{background:#ffd54f}
+#bar label{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.12);padding:2px 6px;border-radius:4px;height:30px}
+#bar input[type=range]{width:95px;height:28px;padding:0}
+#bar input[type=checkbox]{height:auto}
+#info{background:#fff3cd;color:#5d4a00;padding:5px 8px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:1px solid #e5d38c}
+#wrap{position:relative;flex:1;min-height:0;background:#fff;touch-action:none}
+canvas{position:absolute;left:0;top:0;width:100%;height:100%;touch-action:none;-ms-touch-action:none}
+#guide{pointer-events:none}
+#draw{pointer-events:auto}
+#diag{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.68);color:#fff;padding:5px 7px;border-radius:4px;font-size:11px;direction:ltr;text-align:left;pointer-events:none}
+@media(max-width:700px){#bar{font-size:12px;padding:5px}#bar button,#bar select{font-size:12px;height:30px}#bar label{height:26px}#bar input[type=range]{width:70px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="bar">
+    <button id="clearBtn">مسح</button>
+    <button id="undoBtn">تراجع</button>
+    <label><input id="repair" type="checkbox" checked> إصلاح التقطيع</label>
+    <label>قوة الإصلاح <input id="repairPower" type="range" min="1" max="5" value="3"></label>
+    <label>السماكة <input id="width" type="range" min="2" max="16" value="7"></label>
+    <select id="lesson">
+      <option value="free">رسم حر</option>
+      <option value="line">تتبع خط</option>
+      <option value="circle">تتبع دائرة</option>
+      <option value="alif">تتبع حرف ا</option>
+      <option value="baa">تتبع حرف ب</option>
+      <option value="one">تتبع رقم 1</option>
+      <option value="A">Trace A</option>
+    </select>
+    <button id="diagBtn" class="active">التشخيص: يعمل</button>
+  </div>
+  <div id="info">ارسم بالقلم ببطء ثم بسرعة. عند انقطاع اللمس لحظة قصيرة سيحاول التطبيق وصل المسار تلقائياً.</div>
+  <div id="wrap">
+    <canvas id="guide"></canvas>
+    <canvas id="draw"></canvas>
+    <div id="diag"></div>
+  </div>
+</div>
+<script>
+(function(){
+'use strict';
+var wrap=document.getElementById('wrap'), canvas=document.getElementById('draw'), guide=document.getElementById('guide');
+var ctx=canvas.getContext('2d'), gctx=guide.getContext('2d');
+var repair=document.getElementById('repair'), repairPower=document.getElementById('repairPower'), width=document.getElementById('width');
+var lesson=document.getElementById('lesson'), diag=document.getElementById('diag'), diagBtn=document.getElementById('diagBtn');
+var drawing=false, last=null, prev=null, lastEnd=null, lastEndTime=0, currentStroke=null, strokes=[];
+var stats={starts:0,moves:0,ends:0,repaired:0}; var showDiag=true;
+var raf=window.requestAnimationFrame||window.webkitRequestAnimationFrame||function(fn){return setTimeout(fn,16)};
+function now(){return (new Date()).getTime()}
+function size(){
+  var r=wrap.getBoundingClientRect(), dpr=window.devicePixelRatio||1; if(dpr>2)dpr=2;
+  canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));
+  guide.width=canvas.width;guide.height=canvas.height;
+  ctx.setTransform(dpr,0,0,dpr,0,0);gctx.setTransform(dpr,0,0,dpr,0,0);
+  canvas._dpr=dpr; redraw(); drawGuide();
+}
+function posFromTouch(t){var r=canvas.getBoundingClientRect();return {x:t.clientX-r.left,y:t.clientY-r.top,t:now()}}
+function posFromMouse(e){var r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top,t:now()}}
+function dist(a,b){var dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy)}
+function cfg(){var p=parseInt(repairPower.value,10)||3;return {maxGap:80+p*55,maxDist:18+p*18}}
+function setPen(){ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#111';ctx.lineWidth=parseInt(width.value,10)||7}
+function segment(a,b){setPen();ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
+function smoothTo(p){
+  if(!last){last=p;prev=p;return}
+  setPen();
+  var mx=(last.x+p.x)/2,my=(last.y+p.y)/2;
+  ctx.beginPath();ctx.moveTo(prev.x,prev.y);ctx.quadraticCurveTo(last.x,last.y,mx,my);ctx.stroke();
+  prev={x:mx,y:my,t:p.t};last=p;
+}
+function begin(p){
+  stats.starts++;
+  var c=cfg();
+  if(repair.checked && lastEnd && (p.t-lastEndTime)<=c.maxGap && dist(lastEnd,p)<=c.maxDist){
+    segment(lastEnd,p);stats.repaired++;
+    if(strokes.length){strokes[strokes.length-1].push({x:p.x,y:p.y,bridge:true}); currentStroke=strokes[strokes.length-1];}
+    else{currentStroke=[p];strokes.push(currentStroke)}
+  } else {currentStroke=[p];strokes.push(currentStroke)}
+  drawing=true;last=p;prev=p; updateDiag();
+}
+function move(p){if(!drawing)return;stats.moves++;smoothTo(p);if(currentStroke)currentStroke.push(p);updateDiag()}
+function end(p){if(!drawing)return;stats.ends++; if(p&&last&&dist(last,p)>1){move(p)}; if(last){segment(prev||last,last)};drawing=false;lastEnd=last;lastEndTime=now();last=null;prev=null;updateDiag()}
+function redraw(){ctx.clearRect(0,0,canvas.width,canvas.height);setPen();for(var s=0;s<strokes.length;s++){var st=strokes[s];if(!st||st.length<1)continue;ctx.beginPath();ctx.moveTo(st[0].x,st[0].y);for(var i=1;i<st.length;i++)ctx.lineTo(st[i].x,st[i].y);ctx.stroke()}}
+function clearAll(){strokes=[];ctx.clearRect(0,0,canvas.width,canvas.height);lastEnd=null;stats={starts:0,moves:0,ends:0,repaired:0};updateDiag()}
+function undo(){strokes.pop();redraw()}
+function dottedPath(points){
+  gctx.save();gctx.strokeStyle='#a8a8a8';gctx.fillStyle='#a8a8a8';gctx.lineWidth=2;var step=12,acc=0;
+  for(var i=1;i<points.length;i++){var a=points[i-1],b=points[i],d=dist(a,b),n=Math.max(1,Math.floor(d/step));for(var j=0;j<=n;j++){var q=j/n,x=a.x+(b.x-a.x)*q,y=a.y+(b.y-a.y)*q;gctx.beginPath();gctx.arc(x,y,2.2,0,Math.PI*2);gctx.fill()}}
+  gctx.restore();
+}
+function drawGuide(){
+  var r=wrap.getBoundingClientRect(),w=r.width,h=r.height;gctx.clearRect(0,0,guide.width,guide.height);
+  var v=lesson.value,pts=[],i,t;
+  if(v==='free')return;
+  if(v==='line'){pts=[{x:w*.12,y:h*.5},{x:w*.88,y:h*.5}]}
+  else if(v==='circle'){for(i=0;i<=120;i++){t=Math.PI*2*i/120;pts.push({x:w*.5+Math.min(w,h)*.27*Math.cos(t),y:h*.5+Math.min(w,h)*.27*Math.sin(t)})}}
+  else if(v==='alif'){pts=[{x:w*.58,y:h*.18},{x:w*.58,y:h*.82}]}
+  else if(v==='baa'){for(i=0;i<=60;i++){t=Math.PI*i/60;pts.push({x:w*.72-w*.28*(i/60),y:h*.50+h*.17*Math.sin(t)})} dottedPath(pts);gctx.beginPath();gctx.arc(w*.5,h*.73,4,0,Math.PI*2);gctx.fillStyle='#a8a8a8';gctx.fill();return}
+  else if(v==='one'){pts=[{x:w*.48,y:h*.28},{x:w*.55,y:h*.18},{x:w*.55,y:h*.82}]}
+  else if(v==='A'){pts=[{x:w*.36,y:h*.82},{x:w*.50,y:h*.18},{x:w*.64,y:h*.82}];dottedPath(pts);dottedPath([{x:w*.42,y:h*.55},{x:w*.58,y:h*.55}]);return}
+  dottedPath(pts)
+}
+function updateDiag(){if(!showDiag){diag.style.display='none';return}diag.style.display='block';var c=cfg();diag.innerHTML='starts: '+stats.starts+' &nbsp; moves: '+stats.moves+' &nbsp; ends: '+stats.ends+'<br>repaired: '+stats.repaired+' &nbsp; gap≤'+c.maxGap+'ms &nbsp; dist≤'+c.maxDist+'px'}
+canvas.addEventListener('touchstart',function(e){if(e.touches&&e.touches.length){e.preventDefault();begin(posFromTouch(e.touches[0]))}},false);
+canvas.addEventListener('touchmove',function(e){if(e.touches&&e.touches.length){e.preventDefault();move(posFromTouch(e.touches[0]))}},false);
+canvas.addEventListener('touchend',function(e){e.preventDefault();var t=(e.changedTouches&&e.changedTouches.length)?posFromTouch(e.changedTouches[0]):null;end(t)},false);
+canvas.addEventListener('touchcancel',function(e){e.preventDefault();end(null)},false);
+canvas.addEventListener('mousedown',function(e){e.preventDefault();begin(posFromMouse(e))},false);
+window.addEventListener('mousemove',function(e){if(drawing)move(posFromMouse(e))},false);
+window.addEventListener('mouseup',function(e){if(drawing)end(posFromMouse(e))},false);
+document.getElementById('clearBtn').onclick=clearAll;document.getElementById('undoBtn').onclick=undo;
+lesson.onchange=function(){clearAll();drawGuide()};repairPower.onchange=updateDiag;width.onchange=redraw;
+diagBtn.onclick=function(){showDiag=!showDiag;diagBtn.className=showDiag?'active':'';diagBtn.innerHTML=showDiag?'التشخيص: يعمل':'التشخيص: متوقف';updateDiag()};
+window.addEventListener('resize',function(){raf(size)},false);window.addEventListener('orientationchange',function(){setTimeout(size,400)},false);
+size();updateDiag();
+})();
+</script>
+</body>
+</html>
