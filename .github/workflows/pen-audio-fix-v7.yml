@@ -1,0 +1,35 @@
+name: Pen Audio Fix V7
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pen-audio-fix-v7.yml'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch app
+        run: python3 .github/scripts/pen_audio_fix_v7.py
+      - name: Validate JavaScript
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s = Path('pen/index.html').read_text(encoding='utf-8')
+          m = re.search(r'<script>\s*(.*?)\s*</script>', s, re.S)
+          if not m:
+              raise SystemExit('script block not found')
+          Path('/tmp/pen-v7.js').write_text(m.group(1), encoding='utf-8')
+          PY
+          node --check /tmp/pen-v7.js
+      - name: Commit app update
+        run: |
+          git config user.name "Pen Audio Fix"
+          git config user.email "actions@users.noreply.github.com"
+          git add pen/index.html pen/sw.js
+          git commit -m "Improve Samsung Android Arabic TTS compatibility"
+          git push origin master
