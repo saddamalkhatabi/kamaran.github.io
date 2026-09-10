@@ -1,5 +1,5 @@
-var CACHE='noor-draw-v7';
-var FILES=['./','./index.html','./manifest.json'];
+var CACHE='noor-draw-v8';
+var FILES=['./','./index.html','./manifest.json','./sync-v8.js'];
 self.addEventListener('install',function(e){e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(FILES)}));self.skipWaiting&&self.skipWaiting()});
 self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(keys){return Promise.all(keys.map(function(k){if(k!==CACHE)return caches.delete(k)}))}));self.clients&&self.clients.claim&&self.clients.claim()});
 self.addEventListener('fetch',function(e){var u=e.request.url||'';if(e.request.mode==='navigate'||u.indexOf('/pen/index.html')>=0){e.respondWith(fetch(e.request).then(function(resp){var copy=resp.clone();caches.open(CACHE).then(function(c){c.put(e.request,copy)});return resp}).catch(function(){return caches.match(e.request).then(function(r){return r||caches.match('./index.html')})}));return}e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).then(function(resp){var copy=resp.clone();caches.open(CACHE).then(function(c){c.put(e.request,copy)});return resp})}))});
