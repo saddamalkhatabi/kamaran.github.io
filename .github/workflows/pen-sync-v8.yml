@@ -32,3 +32,5 @@ jobs:
           git add pen/index.html pen/sw.js pen/sync-v8.js
           git commit -m "Add multi-user collaborative drawing sync"
           git push origin master
+
+# retrigger after sync client was added
