@@ -1,4 +1,4 @@
-var CACHE='noor-draw-v5';
+var CACHE='noor-draw-v6';
 var FILES=['./','./index.html','./manifest.json'];
 self.addEventListener('install',function(e){e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(FILES)}));self.skipWaiting&&self.skipWaiting()});
 self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(keys){return Promise.all(keys.map(function(k){if(k!==CACHE)return caches.delete(k)}))}));self.clients&&self.clients.claim&&self.clients.claim()});
