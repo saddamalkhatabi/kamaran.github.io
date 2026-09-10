@@ -1,6 +1,6 @@
 {
-  "name": "لوحة نور - تعليم الرسم",
-  "short_name": "لوحة نور",
+  "name": "لوحة الطفل - تعليم الرسم والكتابة",
+  "short_name": "لوحة الطفل",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
