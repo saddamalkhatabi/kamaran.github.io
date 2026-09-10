@@ -1,0 +1,37 @@
+name: Pen Collaborative V10
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pen-v10-collab.yml'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore compatible audio and patch collaboration v10
+        run: python3 .github/scripts/pen_v10_collab_patch.py
+      - name: Validate JavaScript
+        run: |
+          node --check pen/sync-v10-extra.js
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('pen/index.html').read_text(encoding='utf-8')
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          if not scripts: raise SystemExit('No inline JS found')
+          Path('/tmp/pen-main.js').write_text(scripts[-1],encoding='utf-8')
+          PY
+          node --check /tmp/pen-main.js
+      - name: Commit v10 app update
+        run: |
+          git config user.name "Pen Collaborative V10"
+          git config user.email "actions@users.noreply.github.com"
+          git add pen/index.html pen/sw.js
+          git commit -m "Add shared and individual collaborative drawing with ranking"
+          git push origin master
