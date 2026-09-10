@@ -1,0 +1,89 @@
+name: Pen Audio Fix V6
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pen-audio-fix-v6.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch Android Arabic TTS
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('pen/index.html')
+          s = p.read_text(encoding='utf-8')
+          original = s
+
+          s = s.replace('<title>لوحة الطفل - امسك القلم وارسم</title>', '<title>لوحة الطفل - امسك القلم وارسم v6</title>')
+          s = s.replace('<option value="auto">تلقائي - أفضل صوت عربي</option>', '<option value="auto">تلقائي - صوت النظام العربي (موصى به)</option>')
+          s = s.replace('<button id="testSpeechBtn">اختبار النطق العربي</button>', '<button id="testSystemTtsBtn" class="good">اختبار صوت النظام المباشر</button><button id="testSpeechBtn">اختبار النطق العربي الذكي</button>')
+          s = s.replace("opt.text='تلقائي - أفضل صوت عربي'", "opt.text='تلقائي - صوت النظام العربي (موصى به)'")
+
+          s = re.sub(
+              r"function resolveVoice\(\)\{.*?\}function audioContextSupported\(\)",
+              "function resolveVoice(){var i,v,n;if(selectedVoiceKey!=='auto'){for(i=0;i<voices.length;i++)if(voiceKey(voices[i])===selectedVoiceKey)return voices[i]}if(arabicVoices.length){for(i=0;i<arabicVoices.length;i++){v=arabicVoices[i];n=((v&&v.name)||'').toLowerCase();if(n.indexOf('google')>=0)return v}return arabicVoices[0]}return null}function isAndroid(){return /Android/i.test(navigator.userAgent||'')}function audioContextSupported()",
+              s,
+              count=1,
+              flags=re.S,
+          )
+
+          new_audio = r'''function systemSpeak(text,lang,allowFallback){if(!voiceEnabled)return false;var supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);if(!supported){lastSpeechState='هذا المتصفح لا يدعم SpeechSynthesis';badgeAudio.innerHTML='الصوت: يحتاج بديل';refreshAudioDiag();if(allowFallback!==false)fallbackVoice();return false}try{var u=new SpeechSynthesisUtterance(text),started=false,finished=false,fallbackDone=false;u.lang=lang||'ar';u.rate=speechRate;u.pitch=1;u.volume=1;u.onstart=function(){started=true;lastSpeechState='بدأ صوت النظام مباشرة';badgeAudio.innerHTML='الصوت: يعمل';refreshAudioDiag()};u.onend=function(){finished=true;lastSpeechState='اكتمل النطق';badgeAudio.innerHTML='الصوت: يعمل';refreshAudioDiag()};u.onerror=function(ev){finished=true;lastSpeechState='خطأ TTS: '+((ev&&ev.error)||'غير معروف');badgeAudio.innerHTML='الصوت: تعذر النطق';refreshAudioDiag();if(!fallbackDone&&allowFallback!==false){fallbackDone=true;fallbackVoice()}};try{if(speechSynthesis.paused&&speechSynthesis.resume)speechSynthesis.resume()}catch(e){}lastSpeechState='إرسال مباشر لمحرك النظام: '+text;badgeAudio.innerHTML='الصوت: جارٍ النطق';refreshAudioDiag();speechSynthesis.speak(u);setTimeout(function(){if(!started&&!finished){var busy=false;try{busy=!!(speechSynthesis.speaking||speechSynthesis.pending)}catch(e){}if(busy){lastSpeechState='محرك النظام يعمل أو ينتظر الصوت';badgeAudio.innerHTML='الصوت: المحرك يعمل';refreshAudioDiag();return}lastSpeechState='لم يبدأ صوت النظام';badgeAudio.innerHTML='الصوت: إعادة محاولة';refreshAudioDiag();if(lang!=='ar-SA'){try{var u2=new SpeechSynthesisUtterance(text);u2.lang='ar-SA';u2.rate=speechRate;u2.pitch=1;u2.volume=1;u2.onstart=function(){lastSpeechState='بدأ النطق عبر ar-SA';badgeAudio.innerHTML='الصوت: يعمل';refreshAudioDiag()};u2.onend=function(){lastSpeechState='اكتمل النطق';badgeAudio.innerHTML='الصوت: يعمل';refreshAudioDiag()};u2.onerror=function(){if(allowFallback!==false&&!fallbackDone){fallbackDone=true;fallbackVoice()}};speechSynthesis.speak(u2);return}catch(e){}}if(allowFallback!==false&&!fallbackDone){fallbackDone=true;fallbackVoice()}}},3500);return true}catch(e){lastSpeechState='استثناء TTS مباشر: '+e.message;refreshAudioDiag();if(allowFallback!==false)fallbackVoice();return false}}
+function speakSmart(text,allowFallback){if(!voiceEnabled)return false;var supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);if(!supported){lastSpeechState='هذا المتصفح لا يدعم SpeechSynthesis';badgeAudio.innerHTML='الصوت: يحتاج بديل';refreshAudioDiag();if(allowFallback!==false)fallbackVoice();return false}if(!voices.length)refreshVoices();var v=resolveVoice();if(isAndroid()&&selectedVoiceKey==='auto'&&!v)return systemSpeak(text,'ar',allowFallback);try{var u=new SpeechSynthesisUtterance(text),started=false,finished=false,fallbackDone=false;u.lang=(v&&isArabicVoice(v)&&v.lang)||'ar';if(v)u.voice=v;u.rate=speechRate;u.pitch=1;u.volume=1;u.onstart=function(){started=true;lastSpeechState='بدأ النطق بنجاح';badgeAudio.innerHTML='الصوت: يعمل';refreshAudioDiag()};u.onend=function(){finished=true;lastSpeechState='اكتمل النطق';badgeAudio.innerHTML='الصوت: يعمل';refreshAudioDiag()};u.onerror=function(ev){finished=true;lastSpeechState='خطأ TTS: '+((ev&&ev.error)||'غير معروف');badgeAudio.innerHTML='الصوت: تعذر النطق';refreshAudioDiag();if(!fallbackDone){fallbackDone=true;systemSpeak(text,'ar',allowFallback)}};try{if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel()}catch(e){}try{if(speechSynthesis.paused&&speechSynthesis.resume)speechSynthesis.resume()}catch(e){}lastSpeechState='محاولة النطق: '+text;badgeAudio.innerHTML='الصوت: جارٍ النطق';refreshAudioDiag();speechSynthesis.speak(u);setTimeout(function(){if(!started&&!finished){var busy=false;try{busy=!!(speechSynthesis.speaking||speechSynthesis.pending)}catch(e){}if(busy){lastSpeechState='محرك TTS يعمل أو ينتظر - لم يتم إلغاؤه';badgeAudio.innerHTML='الصوت: المحرك يعمل';refreshAudioDiag();return}if(!fallbackDone){fallbackDone=true;lastSpeechState='إعادة المحاولة بصوت النظام المباشر';refreshAudioDiag();systemSpeak(text,'ar',allowFallback)}}},3500);return true}catch(e){lastSpeechState='استثناء TTS: '+e.message;refreshAudioDiag();return systemSpeak(text,'ar',allowFallback)}}
+'''
+          s = re.sub(r"function speakSmart\(text,allowFallback\)\{.*?\}function genderCheer\(\)", new_audio + "function genderCheer()", s, count=1, flags=re.S)
+
+          s = re.sub(
+              r"function primeAudio\(\)\{.*?\}function updateCustomInfo\(\)",
+              "function primeAudio(){lastToneState='تم طلب تهيئة الصوت';ensureAudioContext();try{if(window.speechSynthesis){if(speechSynthesis.paused&&speechSynthesis.resume)speechSynthesis.resume()}}catch(e){}refreshVoices();systemSpeak('مرحبا يا '+userName,'ar',false);storeSet('pk_audio_unlocked','1');refreshAudioDiag()}function testSystemTts(){try{if(window.speechSynthesis)speechSynthesis.cancel()}catch(e){}systemSpeak('مرحبا يا '+userName+' هذا اختبار مباشر لصوت النظام','ar',true)}function updateCustomInfo()",
+              s,
+              count=1,
+              flags=re.S,
+          )
+
+          diag = r'''function refreshAudioDiag(){var tts=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance),v=resolveVoice(),ls=storeSet('pk_test','1');storeRemove('pk_test');audioDiag.innerHTML='TTS API: '+(tts?'YES':'NO')+'\nAndroid: '+(isAndroid()?'YES':'NO')+'\nVoices exposed by browser: '+voices.length+'\nArabic voices exposed: '+arabicVoices.length+'\nSelected: '+(v?((v.name||'?')+' / '+(v.lang||'?')):selectedVoiceKey)+'\nAudioContext: '+(audioContextSupported()?'YES':'NO')+'\nWAV: '+(audioCan('audio/wav')||'unknown')+'\nMP3: '+(audioCan('audio/mpeg')||'unknown')+'\nStorage: '+(ls?'YES':'NO')+'\nProtocol: '+location.protocol+'\nLast speech: '+lastSpeechState+'\nLast tone: '+lastToneState+'\nCustom clips: '+customAudios.length;var msg='';if(!tts)msg+='هذا المتصفح لا يوفر واجهة النطق، لذلك استخدم الصوت المسجل الاحتياطي. ';else if(isAndroid()&&arabicVoices.length===0)msg+='على Android قد لا يعرض Chrome أصوات Google TTS في القائمة رغم أن العربية تعمل فعلياً. لذلك لن نعتبر هذا خطأ في الإعدادات بعد الآن، والتطبيق سيطلب العربية مباشرة من محرك النظام. جرّب زر «اختبار صوت النظام المباشر». ';else if(arabicVoices.length>0)msg+='يوجد صوت عربي ظاهر ويمكنك اختياره، أو اترك الخيار تلقائياً. ';else msg+='يمكن تجربة صوت النظام المباشر حتى لو لم تعرض قائمة الأصوات صوتاً عربياً. ';msg+='إذا كان Google Text-to-Speech مفعّلاً فلا تغيّر إعداداته قبل تجربة الاختبار المباشر. إذا سمعت النغمة ولم تسمع الكلام فقط، اضغط «تهيئة الصوت لهذا الجهاز» مرة واحدة ثم «اختبار صوت النظام المباشر». الأصوات المسجلة تبقى الحل الاحتياطي للأجهزة القديمة التي لا توفر TTS عربي.';audioAdvice.innerHTML=msg}
+'''
+          s = re.sub(r"function refreshAudioDiag\(\)\{.*?\}function alphaHex\(", diag + "function alphaHex(", s, count=1, flags=re.S)
+
+          s = s.replace("document.getElementById('testToneBtn').onclick=playTone;document.getElementById('testSpeechBtn').onclick=testSpeech;", "document.getElementById('testToneBtn').onclick=playTone;document.getElementById('testSystemTtsBtn').onclick=testSystemTts;document.getElementById('testSpeechBtn').onclick=testSpeech;")
+
+          if s == original:
+              raise SystemExit('No index.html changes were applied')
+          p.write_text(s, encoding='utf-8')
+
+          sw = Path('pen/sw.js')
+          if sw.exists():
+              t = sw.read_text(encoding='utf-8')
+              t = t.replace("noor-draw-v5", "noor-draw-v6")
+              sw.write_text(t, encoding='utf-8')
+          PY
+      - name: Validate JavaScript
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('pen/index.html').read_text(encoding='utf-8')
+          m=re.search(r'<script>\s*(.*?)\s*</script>',s,re.S)
+          Path('/tmp/pen.js').write_text(m.group(1),encoding='utf-8')
+          PY
+          node --check /tmp/pen.js
+      - name: Commit patched app
+        shell: bash
+        run: |
+          git config user.name "OpenAI Pen Fix"
+          git config user.email "actions@users.noreply.github.com"
+          git add pen/index.html pen/sw.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Fix Android Arabic TTS fallback"
+            git push origin master
+          fi
