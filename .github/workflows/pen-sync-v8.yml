@@ -1,0 +1,34 @@
+name: Pen Sync V8
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pen-sync-v8.yml'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch collaborative sync
+        run: python3 .github/scripts/pen_sync_v8_patch.py
+      - name: Validate JavaScript
+        run: |
+          node --check pen/sync-v8.js
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('pen/index.html').read_text(encoding='utf-8')
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          Path('/tmp/pen-main.js').write_text(scripts[-1],encoding='utf-8')
+          PY
+          node --check /tmp/pen-main.js
+      - name: Commit collaborative app update
+        run: |
+          git config user.name "Pen Sync V8"
+          git config user.email "actions@users.noreply.github.com"
+          git add pen/index.html pen/sw.js pen/sync-v8.js
+          git commit -m "Add multi-user collaborative drawing sync"
+          git push origin master
