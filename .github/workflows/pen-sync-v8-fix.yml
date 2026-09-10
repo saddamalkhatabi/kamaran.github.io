@@ -1,0 +1,25 @@
+name: Pen Sync V8 Fix
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pen-sync-v8-fix.yml'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix screen synchronization
+        run: python3 .github/scripts/pen_sync_v8_fix.py
+      - name: Validate sync JavaScript
+        run: node --check pen/sync-v8.js
+      - name: Commit fix
+        run: |
+          git config user.name "Pen Sync V8 Fix"
+          git config user.email "actions@users.noreply.github.com"
+          git add pen/sync-v8.js
+          git commit -m "Fix collaborative screen state synchronization"
+          git push origin master
