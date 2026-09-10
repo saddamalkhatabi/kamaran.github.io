@@ -1,0 +1,27 @@
+name: Pen Audio Fix V6B
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pen-audio-fix-v6b.yml'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch app
+        run: python3 .github/scripts/pen_audio_fix_v6.py
+      - name: Validate JavaScript
+        run: |
+          python3 -c "from pathlib import Path; import re; s=Path('pen/index.html').read_text(encoding='utf-8'); Path('/tmp/pen.js').write_text(re.search(r'<script>\\s*(.*?)\\s*</script>',s,re.S).group(1),encoding='utf-8')"
+          node --check /tmp/pen.js
+      - name: Commit app update
+        run: |
+          git config user.name "Pen Audio Fix"
+          git config user.email "actions@users.noreply.github.com"
+          git add pen/index.html pen/sw.js
+          git commit -m "Fix Android Arabic TTS on Samsung and Chrome"
+          git push origin master
