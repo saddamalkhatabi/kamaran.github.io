@@ -1,0 +1,36 @@
+name: Pen Audio Language V9
+
+on:
+  push:
+    paths:
+      - '.github/workflows/pen-audio-language-v9.yml'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch multilingual audio
+        run: python3 .github/scripts/pen_audio_language_v9.py
+      - name: Validate JavaScript
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('pen/index.html').read_text(encoding='utf-8')
+          scripts=re.findall(r'<script>(.*?)</script>',s,re.S)
+          if not scripts:
+              raise SystemExit('No inline script found')
+          Path('/tmp/pen-main.js').write_text(scripts[-1],encoding='utf-8')
+          PY
+          node --check /tmp/pen-main.js
+          node --check pen/sync-v8.js
+      - name: Commit app update
+        run: |
+          git config user.name "Pen Audio V9"
+          git config user.email "actions@users.noreply.github.com"
+          git add pen/index.html pen/sw.js
+          git commit -m "Add multilingual encouragement audio"
+          git push origin master
