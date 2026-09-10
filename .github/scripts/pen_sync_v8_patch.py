@@ -1,0 +1,29 @@
+from pathlib import Path
+
+p=Path('pen/index.html')
+s=p.read_text(encoding='utf-8')
+
+def rep(old,new,name):
+    global s
+    if old not in s:
+        raise SystemExit('missing marker: '+name)
+    s=s.replace(old,new,1)
+
+rep('<title>لوحة الطفل - امسك القلم وارسم v7</title>','<title>لوحة الطفل - امسك القلم وارسم v8</title>','title')
+css='''#syncPanel{display:none;position:fixed;left:3%;right:3%;top:3%;bottom:3%;background:rgba(255,255,255,.995);border:2px solid #0f8f8a;border-radius:10px;z-index:55;overflow:auto;padding:10px;text-align:center;box-sizing:border-box}#syncPanel button,#syncPanel input,#syncPanel select{font-family:Tahoma,Arial,sans-serif;font-size:13px;min-height:34px;border:1px solid #b8cecc;border-radius:5px;background:#fff;margin:4px;padding:4px 8px;box-sizing:border-box}#syncPanel input{max-width:260px;text-transform:uppercase}#syncClose{position:absolute;left:7px;top:7px}#syncTitle{font-size:20px;font-weight:bold;color:#08716c;margin:4px 60px 10px}.syncBox{max-width:780px;margin:8px auto;padding:10px;border:1px solid #d7e4e4;border-radius:8px;background:#f9fcfc;text-align:right}.syncBox h3{margin:3px 0 8px;color:#08716c;font-size:15px}.syncGood{background:#e5f7e9!important}.syncWarn{background:#fff4c4!important}.syncDanger{background:#fff0f0!important;color:#9b1c1c!important}.syncCode{direction:ltr;font:bold 22px monospace;letter-spacing:2px;color:#0b6f6b}.syncStatus{padding:8px;background:#edf8f7;border-radius:6px;margin:7px 0;line-height:1.7}.syncUsers{line-height:1.8}.syncNote{font-size:11px;color:#607d8b;line-height:1.65}.syncBadge{background:#e8f3ff!important}#syncBtn{background:#e8f3ff!important;border-color:#78aee8!important;font-weight:bold}@media(max-width:700px){#syncPanel{left:2%;right:2%;top:2%;bottom:2%}#syncPanel button,#syncPanel input,#syncPanel select{font-size:12px;max-width:96%}.syncCode{font-size:18px}}\n'''
+rep('</style>',css+'</style>','css')
+rep('<button id="userAudioBtn">👤 الاسم والصوت</button><button id="diagBtn">تشخيص القلم</button>','<button id="userAudioBtn">👤 الاسم والصوت</button><button id="syncBtn">🔄 المزامنة الجماعية</button><button id="diagBtn">تشخيص القلم</button>','button')
+rep('<button id="quickAudioBtn" class="voice">👤 الاسم والصوت</button></div>','<button id="quickAudioBtn" class="voice">👤 الاسم والصوت</button><button id="quickSyncBtn" class="voice">🔄 جماعي</button></div>','quick')
+rep('<span class="badge" id="badgeAudio">الصوت: جاهز للاختبار</span><div id="installHelp"></div>','<span class="badge" id="badgeAudio">الصوت: جاهز للاختبار</span><span class="badge syncBadge" id="badgeSync">المزامنة: غير متصل</span><div id="installHelp"></div>','badge')
+panel='''<div id="syncPanel"><button id="syncClose">إغلاق</button><div id="syncTitle">🔄 المزامنة والعمل الجماعي</div><div class="syncBox"><h3>إنشاء جلسة أو الدخول إليها</h3><label>رمز المشاركة <input id="syncRoomInput" type="text" maxlength="16" placeholder="مثال: NOOR25"></label><button id="syncGenerateBtn">توليد رمز تلقائي</button><br><label>صلاحية التحكم <select id="syncAdminMode"><option value="creator">المنشئ فقط أدمن</option><option value="all">الجميع أدمن</option></select></label><br><button id="syncCreateBtn" class="syncGood">إنشاء جلسة</button><button id="syncJoinBtn" class="syncGood">دخول بالرمز</button><button id="syncLeaveBtn" class="syncDanger">مغادرة</button></div><div class="syncBox"><h3>المشاركة</h3><div>الرمز الحالي: <span id="syncCodeView" class="syncCode">—</span></div><button id="syncCopyCodeBtn">نسخ الرمز</button><button id="syncShareBtn" class="syncWarn">مشاركة الرابط</button><input id="syncLinkInput" type="text" readonly style="width:95%;max-width:650px;direction:ltr;text-transform:none" value=""><div class="syncNote">يمكن للمستخدم الآخر فتح رابط المشاركة مباشرة أو إدخال الرمز يدويًا. لا يحتاج إلى حساب داخل التطبيق.</div></div><div class="syncBox"><h3>الحالة والمشاركون</h3><div id="syncStatus" class="syncStatus">غير متصل</div><div id="syncUsers" class="syncUsers">لا يوجد مشاركون بعد.</div></div><div class="syncBox"><h3>ما الذي تتم مزامنته؟</h3><div class="syncNote">الرسمات تُزامن بين الجميع. إذا كانت صلاحية الأدمن «الجميع»، فتتزامن أيضًا تغييرات النشاط والحرف أو الرقم أو الشكل ومستوى المساعدة والمسح والتراجع. وإذا كانت «المنشئ فقط»، يستطيع الآخرون الرسم والمشاركة لكن التحكم بالشاشة يبقى عند المنشئ.</div><div id="syncCompat" class="syncNote"></div></div></div>\n'''
+rep('</div></div>\n<script>\n(function(){','</div></div>\n'+panel+'<script>\n(function(){','panel')
+core='''\nwindow.PenKidsCore={getBoard:function(){return board},getStrokes:function(){return strokes},redraw:redraw,clear:clearDraw,getUserName:function(){return userName},setStatus:setStatus,getScreen:function(){return{modeIndex:modeIndex,itemIndex:itemSelect.selectedIndex<0?0:itemSelect.selectedIndex,assistLevel:assistLevel}},applyScreen:function(st){if(!st)return;if(typeof st.modeIndex==='number'&&st.modeIndex>=0&&st.modeIndex<modes.length)modeIndex=st.modeIndex;buildTabs();populateItems();if(typeof st.itemIndex==='number'&&st.itemIndex>=0&&st.itemIndex<itemSelect.options.length)itemSelect.selectedIndex=st.itemIndex;if(typeof st.assistLevel==='number')assistLevel=st.assistLevel;if(st.clearDrawing)clearDraw();drawGuide();syncQuickItems();badgeMode.innerHTML=currentMode().name;document.getElementById('assistBtn').innerHTML='المساعدة: '+(assistLevel===1?'خفيفة':assistLevel===2?'متوسطة':'قوية');setStatus(modeStatus())}};\n'''
+rep('})();\n</script>\n</body>',core+'})();\n</script>\n<script src="sync-v8.js"></script>\n</body>','core api')
+p.write_text(s,encoding='utf-8')
+
+sw=Path('pen/sw.js')
+if sw.exists():
+    t=sw.read_text(encoding='utf-8').replace("noor-draw-v7","noor-draw-v8")
+    t=t.replace("var FILES=['./','./index.html','./manifest.json'];","var FILES=['./','./index.html','./manifest.json','./sync-v8.js'];")
+    sw.write_text(t,encoding='utf-8')
+print('patched v8')
