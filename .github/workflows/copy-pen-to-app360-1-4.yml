@@ -1,0 +1,51 @@
+name: Copy Pen App to app360 1-4
+
+on:
+  push:
+    paths:
+      - '.github/workflows/copy-pen-to-app360-1-4.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  copy-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Copy current drawing app
+        shell: bash
+        run: |
+          set -e
+          mkdir -p app360/1-4
+          cp pen/index.html app360/1-4/index.html
+          cp pen/manifest.json app360/1-4/manifest.json
+          cp pen/sw.js app360/1-4/sw.js
+          cp pen/sync-v10-extra.js app360/1-4/sync-v10-extra.js
+          if [ -f pen/sync-v8.js ]; then cp pen/sync-v8.js app360/1-4/sync-v8.js; fi
+
+          # Give the copied PWA its own cache namespace so it does not interfere
+          # with the original /pen/ installation on the same origin.
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app360/1-4/sw.js')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("var CACHE='noor-draw-v10';", "var CACHE='app360-1-4-draw-v10';")
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit copied app
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app360/1-4
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Copy drawing app to app360/1-4"
+            git push
+          fi
