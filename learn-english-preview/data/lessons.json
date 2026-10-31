@@ -1,0 +1,391 @@
+{
+  "schema": 1,
+  "contentStatus": "initial authored demo; needs native-speaker review",
+  "lessons": [
+    {
+      "id": "this",
+      "title": "This is my house",
+      "ar": "هذا منزلي",
+      "category": "demonstratives",
+      "formula": "This is + singular noun",
+      "sourceIds": [
+        1,
+        93,
+        296
+      ],
+      "keywords": [
+        "this",
+        "that",
+        "these",
+        "those",
+        "near",
+        "far",
+        "pointing",
+        "home"
+      ],
+      "related": [
+        "have",
+        "got"
+      ],
+      "description": "أشر إلى شيء قريب؛ ثم ميّز بين القريب والبعيد، المفرد والجمع.",
+      "explanationEn": "Look at the picture. This is my house. We say this when something is near us. Notice: this is for one thing. That is for one thing far away. These are for several things near us. Let's practice with a house, a book, and a family. Now ask: Is this your house? You can answer: Yes, this is my house. Or: No, this isn't my house. Great. You can now use this pattern to point to things around you.",
+      "levels": [
+        {
+          "label": "أساسي",
+          "scenes": [
+            {
+              "en": "This is my house.",
+              "ar": "هذا منزلي.",
+              "context": "أمام منزل قريب",
+              "hint": "This تشير إلى شيء مفرد قريب. بعدها is.",
+              "tile": 0
+            },
+            {
+              "en": "This is my book.",
+              "ar": "هذا كتابي.",
+              "context": "كتاب بين اليدين",
+              "hint": "غيّر الاسم فقط؛ يظل النمط نفسه.",
+              "tile": 1
+            },
+            {
+              "en": "This is my friend.",
+              "ar": "هذا صديقي.",
+              "context": "التعريف بصديق",
+              "hint": "يمكن استعمال النمط لتعريف الأشخاص أيضًا.",
+              "tile": 2
+            },
+            {
+              "en": "Is this your house?",
+              "ar": "هل هذا منزلك؟",
+              "context": "السؤال عن منزل",
+              "hint": "في السؤال يتقدم Is على this.",
+              "tile": 0
+            }
+          ]
+        },
+        {
+          "label": "متوسط",
+          "scenes": [
+            {
+              "en": "That is my house.",
+              "ar": "ذلك منزلي.",
+              "context": "منزل بعيد",
+              "hint": "That للمفرد البعيد، بخلاف This للقريب.",
+              "tile": 3
+            },
+            {
+              "en": "These are my books.",
+              "ar": "هذه كتبي.",
+              "context": "كتب قريبة",
+              "hint": "These are للجمع القريب، وليس This is.",
+              "tile": 1
+            },
+            {
+              "en": "Those are my friends.",
+              "ar": "أولئك أصدقائي.",
+              "context": "أصدقاء بعيدون",
+              "hint": "Those are للجمع البعيد.",
+              "tile": 2
+            },
+            {
+              "en": "No, this isn't my house.",
+              "ar": "لا، هذا ليس منزلي.",
+              "context": "تصحيح معلومة",
+              "hint": "isn't اختصار is not للنفي.",
+              "tile": 0
+            }
+          ]
+        },
+        {
+          "label": "متقدم",
+          "scenes": [
+            {
+              "en": "This is the house I want to buy.",
+              "ar": "هذا المنزل الذي أريد شراءه.",
+              "context": "زيارة عقار",
+              "hint": "ادمج This is مع I want to في جملة واحدة.",
+              "tile": 3
+            },
+            {
+              "en": "Is this the book you were talking about?",
+              "ar": "هل هذا الكتاب الذي كنت تتحدث عنه؟",
+              "context": "مكتبة",
+              "hint": "سؤال ربط مع جملة وصل مختصرة.",
+              "tile": 1
+            },
+            {
+              "en": "This is where I work, and that is where I live.",
+              "ar": "هنا أعمل، وهناك أعيش.",
+              "context": "شرح الأماكن",
+              "hint": "قارن موقعين باستخدام this وthat.",
+              "tile": 4
+            },
+            {
+              "en": "If this is your bag, you can take it.",
+              "ar": "إذا كانت هذه حقيبتك، فيمكنك أخذها.",
+              "context": "حقيبة مفقودة",
+              "hint": "دمج الشرط if مع الإمكانية can.",
+              "tile": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "have",
+      "title": "I have a good job",
+      "ar": "لدي وظيفة جيدة",
+      "category": "possession",
+      "formula": "I / you / we / they + have + noun",
+      "sourceIds": [
+        2,
+        7,
+        19,
+        122
+      ],
+      "keywords": [
+        "have",
+        "has",
+        "job",
+        "possession",
+        "present simple",
+        "do",
+        "does"
+      ],
+      "related": [
+        "got",
+        "this"
+      ],
+      "description": "عبّر عمّا تملكه أو لديك، ثم اسأل وانفِ وقارن مع have to.",
+      "explanationEn": "Imagine someone asking about your work. You say: I have a good job. Here, have means something belongs to you, or is part of your life. You can say: I have a laptop. Or: I have an idea. To ask a question, say: Do you have a job? To make it negative, say: I don't have a car. For he and she, use has. She has a good job. But listen carefully: I have to work means I must work. Have and have to are different patterns.",
+      "levels": [
+        {
+          "label": "أساسي",
+          "scenes": [
+            {
+              "en": "I have a good job.",
+              "ar": "لدي وظيفة جيدة.",
+              "context": "موظف سعيد في المكتب",
+              "hint": "Have تدل على امتلاك أو وجود شيء لديك.",
+              "tile": 4
+            },
+            {
+              "en": "I have a laptop.",
+              "ar": "لدي حاسوب محمول.",
+              "context": "على مكتب العمل",
+              "hint": "يمكن استبدال job بـ laptop.",
+              "tile": 6
+            },
+            {
+              "en": "I have a new idea.",
+              "ar": "لدي فكرة جديدة.",
+              "context": "اجتماع عمل",
+              "hint": "ليس شرطًا أن يكون الشيء ماديًا.",
+              "tile": 7
+            },
+            {
+              "en": "Do you have a job?",
+              "ar": "هل لديك وظيفة؟",
+              "context": "مقابلة تعريفية",
+              "hint": "نبدأ سؤال المضارع البسيط بـ Do.",
+              "tile": 4
+            }
+          ]
+        },
+        {
+          "label": "متوسط",
+          "scenes": [
+            {
+              "en": "I don't have a car.",
+              "ar": "ليس لدي سيارة.",
+              "context": "قبل الخروج",
+              "hint": "Don't have للنفي مع I وyou وwe وthey.",
+              "tile": 5
+            },
+            {
+              "en": "She has a good job.",
+              "ar": "لديها وظيفة جيدة.",
+              "context": "زميلة في العمل",
+              "hint": "He وShe وIt تأخذ has في الإثبات.",
+              "tile": 4
+            },
+            {
+              "en": "Does he have a ticket?",
+              "ar": "هل لديه تذكرة؟",
+              "context": "عند شباك التذاكر",
+              "hint": "بعد Does يرجع الفعل إلى have وليس has.",
+              "tile": 8
+            },
+            {
+              "en": "How many books do you have?",
+              "ar": "كم كتابًا لديك؟",
+              "context": "المكتبة",
+              "hint": "استعمل How many مع الأسماء المعدودة.",
+              "tile": 1
+            }
+          ]
+        },
+        {
+          "label": "متقدم",
+          "scenes": [
+            {
+              "en": "I have a job, but I want a better one.",
+              "ar": "لدي وظيفة، لكنني أريد وظيفة أفضل.",
+              "context": "التخطيط المهني",
+              "hint": "اربط الملكية بالرغبة والمقارنة.",
+              "tile": 4
+            },
+            {
+              "en": "I have to finish my work today.",
+              "ar": "يجب عليّ إنهاء عملي اليوم.",
+              "context": "ضغط العمل",
+              "hint": "have to ليست ملكية؛ بل ضرورة.",
+              "tile": 6
+            },
+            {
+              "en": "If you have time, we can talk.",
+              "ar": "إذا كان لديك وقت، يمكننا التحدث.",
+              "context": "دعوة للحديث",
+              "hint": "اربط if + have مع can.",
+              "tile": 7
+            },
+            {
+              "en": "I've had this job for three years.",
+              "ar": "أشغل هذه الوظيفة منذ ثلاث سنوات.",
+              "context": "سرد الخبرة",
+              "hint": "have had هو المضارع التام؛ ليس بديلًا عشوائيًا لـ have.",
+              "tile": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "got",
+      "title": "I've got a job",
+      "ar": "حصلت على وظيفة / لدي وظيفة",
+      "category": "possession",
+      "formula": "have / has + got + noun",
+      "sourceIds": [
+        3,
+        321,
+        503
+      ],
+      "keywords": [
+        "have got",
+        "I've got",
+        "has got",
+        "got",
+        "possession",
+        "british english"
+      ],
+      "related": [
+        "have",
+        "this"
+      ],
+      "description": "بديل محادثي شائع للتعبير عن الامتلاك، وتعلّم الفرق بين got وgot to.",
+      "explanationEn": "A friend tells you some happy news: I've got a job! In this sentence, I've got means I have. Both can describe possession in the present. Listen: I have a job. I've got a job. In informal conversation, I've got can sound natural. Ask: Have you got a ticket? Answer: Yes, I've got one. For she, say: She's got a ticket. Be careful: I've got to leave now is different. It means I have to leave now.",
+      "levels": [
+        {
+          "label": "أساسي",
+          "scenes": [
+            {
+              "en": "I've got a job!",
+              "ar": "لقد حصلت على وظيفة! / لدي وظيفة!",
+              "context": "إعلان خبر سعيد",
+              "hint": "I've اختصار I have؛ got هنا مع have تعني لدي.",
+              "tile": 4
+            },
+            {
+              "en": "I've got a new phone.",
+              "ar": "لدي هاتف جديد.",
+              "context": "عرض الهاتف",
+              "hint": "نستخدم I've got مع الأشياء التي نمتلكها.",
+              "tile": 9
+            },
+            {
+              "en": "She's got a ticket.",
+              "ar": "لديها تذكرة.",
+              "context": "التذاكر في المحطة",
+              "hint": "She's هنا اختصار She has؛ ليست She is.",
+              "tile": 8
+            },
+            {
+              "en": "Have you got a pen?",
+              "ar": "هل معك قلم؟",
+              "context": "طلب قلم",
+              "hint": "في السؤال يتقدم Have على الفاعل.",
+              "tile": 1
+            }
+          ]
+        },
+        {
+          "label": "متوسط",
+          "scenes": [
+            {
+              "en": "I haven't got a ticket.",
+              "ar": "ليس لدي تذكرة.",
+              "context": "نسيان التذكرة",
+              "hint": "haven't got صيغة النفي.",
+              "tile": 8
+            },
+            {
+              "en": "Has he got a car?",
+              "ar": "هل لديه سيارة؟",
+              "context": "التخطيط للرحلة",
+              "hint": "Has قبل he في سؤال have got.",
+              "tile": 5
+            },
+            {
+              "en": "We've got everything we need.",
+              "ar": "لدينا كل ما نحتاجه.",
+              "context": "الاستعداد للسفر",
+              "hint": "We've اختصار We have.",
+              "tile": 10
+            },
+            {
+              "en": "I have a job. I've got a job.",
+              "ar": "الجملتان تعبّران عن وجود وظيفة لديّ.",
+              "context": "مقارنة صيغتين",
+              "hint": "نقارن المعنى والاستعمال لا نعدهما فعلين مختلفين تمامًا.",
+              "tile": 4
+            }
+          ]
+        },
+        {
+          "label": "متقدم",
+          "scenes": [
+            {
+              "en": "I've got to leave now.",
+              "ar": "يجب عليّ المغادرة الآن.",
+              "context": "تأخر عن القطار",
+              "hint": "have got to + verb تعني ضرورة، لا ملكية.",
+              "tile": 8
+            },
+            {
+              "en": "I've got a job, but I'm looking for a better one.",
+              "ar": "لدي وظيفة، لكنني أبحث عن أفضل منها.",
+              "context": "مقابلة مهنية",
+              "hint": "ادمج have got مع be looking for.",
+              "tile": 7
+            },
+            {
+              "en": "If you've got a minute, I'd like to ask something.",
+              "ar": "إذا كان لديك دقيقة، أود أن أسأل شيئًا.",
+              "context": "طلب مهذب",
+              "hint": "ادمج الشرط مع I'd like to.",
+              "tile": 7
+            },
+            {
+              "en": "She's got the book that I was looking for.",
+              "ar": "لديها الكتاب الذي كنت أبحث عنه.",
+              "context": "إعارة كتاب",
+              "hint": "ادمج الملكية مع جملة وصل وماضٍ مستمر.",
+              "tile": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
