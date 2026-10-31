@@ -30,8 +30,13 @@ async function getAlignment(path,text){
  if(!data.words.every((w,i)=>Number.isFinite(w.start)&&Number.isFinite(w.end)&&w.start>=0&&w.end>=w.start&&w.text===tokens[i]))return null;
  return data.words;
 }
+function resolvePreviewAudio(path){
+ const match=/^assets\\/audio\\/(this|have|got)\\/([^/]+\\.mp3)$/.exec(path||"");
+ const recorded=match&&window.LE_ENGLISH_AUDIO&&window.LE_ENGLISH_AUDIO[match[1]]&&window.LE_ENGLISH_AUDIO[match[1]][match[2]];
+ return recorded?"data:audio/mpeg;base64,"+recorded:path;
+}
 function playAudio(path,text,slow=false,onDone=null,target=null){stopAudio();const seq=state.playSeq;let done=false;const fallback=()=>{if(seq!==state.playSeq||done)return;done=true;statusAudio("صوت المتصفح الإنجليزي (بديل مؤقت)");utter(text,slow,onDone,seq,target)};
- if(!path){fallback();return}const audio=new Audio(path);state.playing=audio;audio.preload="auto";audio.playbackRate=slow?.78:1;
+ if(!path){fallback();return}const audio=new Audio(resolvePreviewAudio(path));state.playing=audio;audio.preload="auto";audio.playbackRate=slow?.78:1;
  let measuredWords=null;if(target)getAlignment(path,text).then(words=>{if(seq===state.playSeq)measuredWords=words});
  audio.addEventListener("playing",()=>{if(seq===state.playSeq)statusAudio("تسجيل Kokoro جاهز بصيغة MP3")},{once:true});if(target)audio.addEventListener("timeupdate",()=>{if(!audio.duration||!isFinite(audio.duration))return;if(measuredWords){const t=audio.currentTime;let i=measuredWords.findIndex(w=>t>=w.start&&t<w.end);if(i<0)i=Math.max(0,measuredWords.findIndex(w=>w.start>t)-1);if(i<0)i=measuredWords.length-1;markWord(target,text,i);return}const words=text.trim().split(/\s+/);const weights=words.map(w=>Math.max(2,w.length));let passed=(audio.currentTime/audio.duration)*weights.reduce((a,b)=>a+b,0),i=0;while(i<weights.length-1&&passed>weights[i]){passed-=weights[i];i++}markWord(target,text,i)});
  audio.addEventListener("ended",()=>{if(seq===state.playSeq&&onDone)onDone()},{once:true});
@@ -100,7 +105,7 @@ function renderStory(){
  $("storyHeading").textContent="📖 "+lesson.title;
  $("storySummary").textContent=lesson.ar+" · خمسة مواقف مترابطة في كل مستوى، وحوار قابل للاستماع";
  $("storyChapter").textContent=isDialogue?"🎭 حوار بين شخصين":("الفصل "+(state.depth+1)+" · "+part.title+" — "+part.ar);
- $("introDownload").href="assets/audio/"+activeLesson().id+"/intro.mp3";
+ $("introDownload").href=resolvePreviewAudio("assets/audio/"+activeLesson().id+"/intro.mp3");
  $("storyAudioState").textContent="استمع للنطق الطبيعي المسجل عند توفره؛ البديل صوت الجهاز. تلوين MP3 تقريبي، وتلوين صوت المتصفح يعتمد على حدود الكلمات إذا توفرت.";
  $("storyList").innerHTML=items.map((x,i)=>{
  const pos=(x.tile%4)*100/3+"% "+Math.floor(x.tile/4)*50+"%";
