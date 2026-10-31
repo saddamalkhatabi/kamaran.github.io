@@ -1,0 +1,11 @@
+{
+  "name": "Learn English — عالم الأنماط",
+  "short_name": "Learn English",
+  "description": "تعلم الإنجليزية بالمواقف والأنماط",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f6fc",
+  "theme_color": "#121d43"
+}
