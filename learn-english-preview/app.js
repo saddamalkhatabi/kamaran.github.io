@@ -6,29 +6,35 @@ const deepNames={basic:"أساسي",intermediate:"متوسط",advanced:"متقد
 let LIB=[], CORPUS={patterns:[],categories:[]};
 const state={view:"learn",lesson:0,depth:0,scene:0,search:"",category:"",depthFilter:"",visible:28,answer:[],auto:false,playing:null,playSeq:0,modal:null,complete:new Set()};
 try{state.complete=new Set(JSON.parse(localStorage.getItem("pattern-universe-complete")||"[]"))}catch(e){}
-const conf={autoTimer:null,toastTimer:null};
+const conf={autoTimer:null,toastTimer:null,highlightFrame:null};
 const sceneKey=()=>[LIB[state.lesson].id,state.depth,state.scene].join(":");
 const activeLesson=()=>LIB[state.lesson];
 const activeLevel=()=>activeLesson().levels[state.depth];
 const activeScene=()=>activeLevel().scenes[state.scene];
 function toast(message){let el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(conf.toastTimer);conf.toastTimer=setTimeout(()=>el.classList.remove("show"),3300)}
-function stopAudio(){state.playSeq++;clearTimeout(conf.autoTimer);if(state.playing){state.playing.pause();state.playing.currentTime=0;state.playing=null}if("speechSynthesis" in window)speechSynthesis.cancel()}
+function stopAudio(){state.playSeq++;clearTimeout(conf.autoTimer);if(conf.highlightFrame){cancelAnimationFrame(conf.highlightFrame);conf.highlightFrame=null}if(state.audioHighlightTarget){markWord(state.audioHighlightTarget,state.audioHighlightText,-1);state.audioHighlightTarget=null}if(state.playing){state.playing.pause();state.playing.currentTime=0;state.playing=null}if("speechSynthesis" in window)speechSynthesis.cancel()}
 function statusAudio(kind){$("audioStatus").textContent="مصدر الصوت الحالي: "+kind}
-function utter(text,slow,onDone,seq,target=null){if(!("speechSynthesis" in window)){toast("لا يتوفر صوت اصطناعي في هذا المتصفح.");return}const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=slow?.78:.94;u.pitch=1.02;let vs=speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith("en"));let choice=vs.find(v=>/natural|samantha|jenny|google us english|aria|emma/i.test(v.name));if(choice)u.voice=choice;u.onend=()=>{if(seq===state.playSeq&&onDone)onDone()};u.onerror=()=>{};if(target){u.onboundary=e=>{const hits=[...text.matchAll(/\S+/g)];const idx=hits.findIndex((m,i)=>e.charIndex>=m.index&&(i===hits.length-1||e.charIndex<hits[i+1].index));if(idx>=0)markWord(target,text,idx)}}speechSynthesis.speak(u)}
-// Prefer measured word timestamps when a matching audio alignment file is available.
-// Schema: {"text":"exact spoken text","words":[{"start":0.1,"end":0.3,"text":"word"}]}.
-const alignmentCache=new Map();
+function utter(text,slow,onDone,seq,target=null){if(!("speechSynthesis" in window)){toast("لا يتوفر صوت اصطناعي في هذا المتصفح.");return}const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=slow?.78:.94;u.pitch=1.02;let vs=speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith("en"));let choice=vs.find(v=>/natural|samantha|jenny|google us english|aria|emma/i.test(v.name));if(choice)u.voice=choice;u.onend=()=>{if(seq===state.playSeq){if(target)markWord(target,text,-1);if(onDone)onDone()}};u.onerror=()=>{};if(target){u.onboundary=e=>{const hits=[...text.matchAll(/\S+/g)];const idx=hits.findIndex((m,i)=>e.charIndex>=m.index&&(i===hits.length-1||e.charIndex<hits[i+1].index));if(idx>=0)markWord(target,text,idx)}}speechSynthesis.speak(u)}
+// Match word highlighting to actual decoded MP3 time, as in app360 Read Along.
+// Never distribute the duration by word length: that produces misleading highlights.
+let acousticCuesPromise=null;
+function loadAcousticCues(){
+ if(!acousticCuesPromise)acousticCuesPromise=fetch("data/audio-word-cues.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null);
+ return acousticCuesPromise;
+}
 async function getAlignment(path,text){
  if(!path)return null;
- const url=path.replace(/\.mp3(?:\?.*)?$/i,".alignment.json");
- if(!alignmentCache.has(url)){
-  alignmentCache.set(url,fetch(url).then(r=>r.ok?r.json():null).catch(()=>null));
- }
- const data=await alignmentCache.get(url);
+ const store=await loadAcousticCues();
+ const entry=store?.items?.[path];
  const tokens=text.trim().split(/\s+/);
- if(!data||data.text!==text||!Array.isArray(data.words)||data.words.length!==tokens.length)return null;
- if(!data.words.every((w,i)=>Number.isFinite(w.start)&&Number.isFinite(w.end)&&w.start>=0&&w.end>=w.start&&w.text===tokens[i]))return null;
- return data.words;
+ if(!entry||entry.text!==text||entry.language!=="en"||!Array.isArray(entry.cues)||entry.cues.length!==tokens.length||!entry.audio_sha256)return null;
+ if(!entry.cues.every((c,i)=>Array.isArray(c)&&c.length===3&&c[0]===i&&Number.isFinite(c[1])&&Number.isFinite(c[2])&&c[1]>=0&&c[2]>c[1]&&c[2]<=entry.duration_ms+30&&(!i||entry.cues[i-1][2]<=c[1])))return null;
+ return entry;
+}
+function findSpokenWord(cues,timeMs){
+ let low=0,high=cues.length-1,hit=-1;
+ while(low<=high){let mid=(low+high)>>1;if(cues[mid][1]<=timeMs){hit=mid;low=mid+1}else high=mid-1}
+ return hit>=0&&timeMs<cues[hit][2]?cues[hit][0]:-1;
 }
 function resolvePreviewAudio(path){
  const parts=String(path||"").split("/");
@@ -36,13 +42,43 @@ function resolvePreviewAudio(path){
    window.LE_ENGLISH_AUDIO && window.LE_ENGLISH_AUDIO[parts[2]] && window.LE_ENGLISH_AUDIO[parts[2]][parts[3]];
  return recorded?"data:audio/mpeg;base64,"+recorded:path;
 }
-function playAudio(path,text,slow=false,onDone=null,target=null){stopAudio();const seq=state.playSeq;let done=false;const fallback=()=>{if(seq!==state.playSeq||done)return;done=true;statusAudio("صوت المتصفح الإنجليزي (بديل مؤقت)");utter(text,slow,onDone,seq,target)};
- if(!path){fallback();return}const audio=new Audio(resolvePreviewAudio(path));state.playing=audio;audio.preload="auto";audio.playbackRate=slow?.78:1;
- let measuredWords=null;if(target)getAlignment(path,text).then(words=>{if(seq===state.playSeq)measuredWords=words});
- audio.addEventListener("playing",()=>{if(seq===state.playSeq)statusAudio("تسجيل Kokoro جاهز بصيغة MP3")},{once:true});if(target)audio.addEventListener("timeupdate",()=>{if(!audio.duration||!isFinite(audio.duration))return;if(measuredWords){const t=audio.currentTime;let i=measuredWords.findIndex(w=>t>=w.start&&t<w.end);if(i<0)i=Math.max(0,measuredWords.findIndex(w=>w.start>t)-1);if(i<0)i=measuredWords.length-1;markWord(target,text,i);return}const words=text.trim().split(/\s+/);const weights=words.map(w=>Math.max(2,w.length));let passed=(audio.currentTime/audio.duration)*weights.reduce((a,b)=>a+b,0),i=0;while(i<weights.length-1&&passed>weights[i]){passed-=weights[i];i++}markWord(target,text,i)});
- audio.addEventListener("ended",()=>{if(seq===state.playSeq&&onDone)onDone()},{once:true});
- audio.addEventListener("error",()=>fallback(),{once:true});
- audio.play().catch(()=>fallback());
+function playAudio(path,text,slow=false,onDone=null,target=null){
+ stopAudio();const seq=state.playSeq;let finished=false;
+ if(target){state.audioHighlightTarget=target;state.audioHighlightText=text;markWord(target,text,-1)}
+ const fallback=()=>{
+  if(seq!==state.playSeq||finished)return;finished=true;
+  statusAudio("نطق المتصفح الإنجليزي — الإشارة للكلمة تعتمد على حدود النطق التي يدعمها المتصفح");
+  utter(text,slow,onDone,seq,target);
+ };
+ if(!path){fallback();return}
+ const playbackUrl=typeof resolvePreviewAudio==="function"?resolvePreviewAudio(path):path;
+ const audio=new Audio(playbackUrl);state.playing=audio;audio.preload="auto";audio.playbackRate=slow?.78:1;
+ let measured=null,lastMarked=-2,frame=null;
+ function tick(){
+  if(seq!==state.playSeq||audio.paused||audio.ended)return;
+  if(measured&&target){const index=findSpokenWord(measured.cues,audio.currentTime*1000);
+   if(index!==lastMarked){markWord(target,text,index);lastMarked=index}}
+  frame=requestAnimationFrame(tick);conf.highlightFrame=frame;
+ }
+ if(target)getAlignment(path,text).then(entry=>{
+  if(seq!==state.playSeq||!entry)return;
+  if(Number.isFinite(audio.duration)&&Math.abs(audio.duration*1000-entry.duration_ms)>650)return;
+  measured=entry;
+  statusAudio("Kokoro MP3 + توقيت الكلمات المقاس من التسجيل الأصلي");
+ });
+ audio.addEventListener("playing",()=>{
+  if(seq!==state.playSeq)return;
+  statusAudio(measured?"Kokoro MP3 + توقيت صوتي مقاس":"Kokoro MP3 — توقيت الكلمات الدقيق غير متوفر بعد؛ أوقفنا التلوين التخميني");
+  if(target&&frame===null)tick();
+ },{once:true});
+ audio.addEventListener("ended",()=>{
+  if(seq!==state.playSeq)return;
+  if(conf.highlightFrame){cancelAnimationFrame(conf.highlightFrame);conf.highlightFrame=null}
+  if(target)markWord(target,text,-1);
+  if(onDone)onDone();
+ },{once:true});
+ audio.addEventListener("error",fallback,{once:true});
+ audio.play().catch(fallback);
 }
 function audioFile(kind){const l=activeLesson();return "assets/audio/"+l.id+"/"+(kind==="intro"?"intro.mp3":"scene-"+(state.depth+1)+"-"+(state.scene+1)+".mp3")}
 function markComplete(){state.complete.add(sceneKey());try{localStorage.setItem("pattern-universe-complete",JSON.stringify([...state.complete]))}catch(e){};renderStats()}
@@ -107,7 +143,7 @@ function renderStory(){
  $("storySummary").textContent=lesson.ar+" · خمسة مواقف مترابطة في كل مستوى، وحوار قابل للاستماع";
  $("storyChapter").textContent=isDialogue?"🎭 حوار بين شخصين":("الفصل "+(state.depth+1)+" · "+part.title+" — "+part.ar);
  $("introDownload").href=resolvePreviewAudio("assets/audio/"+activeLesson().id+"/intro.mp3");
- $("storyAudioState").textContent="استمع للنطق الطبيعي المسجل عند توفره؛ البديل صوت الجهاز. تلوين MP3 تقريبي، وتلوين صوت المتصفح يعتمد على حدود الكلمات إذا توفرت.";
+ $("storyAudioState").textContent="استمع للنطق الطبيعي المسجل عند توفره؛ البديل صوت الجهاز. تلوين MP3 يعمل فقط عندما تتوفر توقيتات صوتية مقاسة للتسجيل نفسه؛ وإلا لا نعرض تلوينًا تخمينيًا.";
  $("storyList").innerHTML=items.map((x,i)=>{
  const pos=(x.tile%4)*100/3+"% "+Math.floor(x.tile/4)*50+"%";
  const speaker=isDialogue?'<span class="storySpeaker">'+(i%2?"المتحدث B":"المتحدث A")+"</span>":"";
@@ -122,7 +158,7 @@ function playStoryLine(i,all=false,session=storyPlayToken){
  const target=$('storyList').querySelector('[data-story-index="'+i+'"] .storyEnglish');
  const isDialogue=$("storyMode").value==="dialogue";
  const file="assets/audio/"+activeLesson().id+"/"+(isDialogue?"dialogue-"+(i+1):"story-"+(state.depth+1)+"-"+(i+1))+".mp3";
- $("storyAudioState").textContent="يتم تشغيل تسجيل Kokoro إن كان موجودًا، وإلا يُستخدم صوت المتصفح الإنجليزي؛ مع إبراز الكلمات أثناء التشغيل.";
+ $("storyAudioState").textContent="يتم تشغيل تسجيل Kokoro إن كان موجودًا، وإلا يُستخدم صوت المتصفح الإنجليزي؛ وإبراز الكلمات فقط عند توفر حدود الكلمات المتحقّق منها.";
  playAudio(file,x.en,false,()=>{if(session!==storyPlayToken)return;markWord(target,x.en,-1);if(all&&i+1<list.length){setTimeout(()=>{if(session===storyPlayToken)playStoryLine(i+1,true,session)},450)}else document.querySelectorAll(".storyLine").forEach(b=>b.classList.remove("playing"))},target);
 }
 
