@@ -14,7 +14,7 @@ All URLs correspond to free-license Pexels photo pages reviewed while authoring 
 | 5 | A car and keys | https://www.pexels.com/photo/7144195/ |
 | 6 | Laptop at work | https://www.pexels.com/photo/8154167/ |
 | 7 | Colleagues planning | https://www.pexels.com/photo/8154228/ |
-| 8 | Buying a train ticket | https://www.pexels.com/photo/14344455/ |
+| 8 | Buying a train ticket | https://www.pexels.com/photo/8554845/ |
 | 9 | A phone conversation | https://www.pexels.com/photo/3783527/ |
 | 10 | Packing a travel suitcase | https://www.pexels.com/photo/9186152/ |
 | 11 | Writing at work | https://www.pexels.com/photo/19747866/ |
