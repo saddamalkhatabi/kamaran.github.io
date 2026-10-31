@@ -31,8 +31,9 @@ async function getAlignment(path,text){
  return data.words;
 }
 function resolvePreviewAudio(path){
- const match=/^assets\\/audio\\/(this|have|got)\\/([^/]+\\.mp3)$/.exec(path||"");
- const recorded=match&&window.LE_ENGLISH_AUDIO&&window.LE_ENGLISH_AUDIO[match[1]]&&window.LE_ENGLISH_AUDIO[match[1]][match[2]];
+ const parts=String(path||"").split("/");
+ const recorded=parts.length===4 && parts[0]==="assets" && parts[1]==="audio" &&
+   window.LE_ENGLISH_AUDIO && window.LE_ENGLISH_AUDIO[parts[2]] && window.LE_ENGLISH_AUDIO[parts[2]][parts[3]];
  return recorded?"data:audio/mpeg;base64,"+recorded:path;
 }
 function playAudio(path,text,slow=false,onDone=null,target=null){stopAudio();const seq=state.playSeq;let done=false;const fallback=()=>{if(seq!==state.playSeq||done)return;done=true;statusAudio("صوت المتصفح الإنجليزي (بديل مؤقت)");utter(text,slow,onDone,seq,target)};
