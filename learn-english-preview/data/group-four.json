@@ -1,0 +1,482 @@
+{
+  "schema": 1,
+  "group": "asking-questions-finding-information",
+  "title": "المجموعة الرابعة: تكوين الأسئلة وفهم الإجابات",
+  "status": "draft 6/18",
+  "items": [
+    {
+      "id": 1,
+      "key": "what-is",
+      "title": "What is",
+      "meaning": "ما هو / ما هي",
+      "formula": "What is + singular noun / this / that?",
+      "explanation": "للسؤال عن تعريف شيء واحد. يمكن اختصار What is إلى What's.",
+      "explanationEn": "What is asks for the identity or meaning of a single thing.",
+      "contrast": "What is this? مفرد، What are these? جمع.",
+      "sourceIds": [
+        518,
+        506
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "What is this word?",
+          "ar": "ما معنى هذه الكلمة؟",
+          "context": "كلمة جديدة",
+          "icon": "🔤",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "What is your favorite color?",
+          "ar": "ما لونك المفضل؟",
+          "context": "اختيار لون",
+          "icon": "🎨",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "What is in the box?",
+          "ar": "ما الذي في الصندوق؟",
+          "context": "صندوق مغلق",
+          "icon": "📦",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "What is today's lesson?",
+          "ar": "ما درس اليوم؟",
+          "context": "بداية الحصة",
+          "icon": "📚",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Maya finds a new word.",
+          "ar": "تعثر مايا على كلمة جديدة."
+        },
+        {
+          "id": 2,
+          "en": "She asks, 'What is this word?'",
+          "ar": "تسأل: ما معنى هذه الكلمة؟"
+        },
+        {
+          "id": 3,
+          "en": "Her teacher explains it with a picture.",
+          "ar": "تشرح معلمتها باستخدام صورة."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "What is in your bag?",
+          "ar": "ماذا في حقيبتك؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "It is my English book.",
+          "ar": "إنه كتاب الإنجليزية الخاص بي."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "key": "where-is",
+      "title": "Where is",
+      "meaning": "أين يوجد / أين هي",
+      "formula": "Where is + singular person / thing?",
+      "explanation": "لمعرفة مكان شخص أو شيء مفرد، نضع is قبل الفاعل.",
+      "explanationEn": "Where is asks for the location of one person or thing.",
+      "contrast": "Where is my bag? مفرد؛ Where are my bags? جمع.",
+      "sourceIds": [
+        589
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "Where is my phone?",
+          "ar": "أين هاتفي؟",
+          "context": "البحث عن الهاتف",
+          "icon": "📱",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "Where is the library?",
+          "ar": "أين المكتبة؟",
+          "context": "البحث عن المكتبة",
+          "icon": "📚",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "Where is the bus stop?",
+          "ar": "أين موقف الحافلة؟",
+          "context": "الموقف القريب",
+          "icon": "🚌",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "Where is your classroom?",
+          "ar": "أين صفك؟",
+          "context": "ممر المدرسة",
+          "icon": "🏫",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Omar cannot find his phone.",
+          "ar": "لا يجد عمر هاتفه."
+        },
+        {
+          "id": 2,
+          "en": "He asks, 'Where is my phone?'",
+          "ar": "يسأل: أين هاتفي؟"
+        },
+        {
+          "id": 3,
+          "en": "His sister points to the desk.",
+          "ar": "تشير أخته إلى المكتب."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "Where is the library?",
+          "ar": "أين المكتبة؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "It is next to the school.",
+          "ar": "إنها بجوار المدرسة."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "key": "who-is",
+      "title": "Who is",
+      "meaning": "من هو / من هي",
+      "formula": "Who is + person?",
+      "explanation": "نسأل عن هوية شخص باستخدام Who is، وليس What is عندما نريد التعرف إلى شخص.",
+      "explanationEn": "Who is asks us to identify a person.",
+      "contrast": "Who is that? شخص؛ What is that? شيء.",
+      "sourceIds": [
+        511,
+        545
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "Who is that teacher?",
+          "ar": "من ذلك المعلم؟",
+          "context": "معلم جديد",
+          "icon": "👩‍🏫",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "Who is at the door?",
+          "ar": "من عند الباب؟",
+          "context": "جرس الباب",
+          "icon": "🚪",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "Who is your best friend?",
+          "ar": "من أفضل أصدقائك؟",
+          "context": "صديق مقرّب",
+          "icon": "🤝",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "Who is in this picture?",
+          "ar": "من في هذه الصورة؟",
+          "context": "مشاهدة صورة",
+          "icon": "🖼️",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "A new teacher enters the classroom.",
+          "ar": "يدخل معلم جديد إلى الصف."
+        },
+        {
+          "id": 2,
+          "en": "Nour asks, 'Who is that teacher?'",
+          "ar": "تسأل نور: من ذلك المعلم؟"
+        },
+        {
+          "id": 3,
+          "en": "Her friend says, 'He is Mr. Adam.'",
+          "ar": "تخبرها صديقتها: إنه الأستاذ آدم."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "Who is at the door?",
+          "ar": "من عند الباب؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "It is my brother.",
+          "ar": "إنه أخي."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "key": "when-is",
+      "title": "When is",
+      "meaning": "متى يكون / متى موعد",
+      "formula": "When is + event / singular subject?",
+      "explanation": "لمعرفة موعد حدث أو وقت شيء، ونستخدم at للساعة وon لليوم.",
+      "explanationEn": "When is asks for the date or time of an event.",
+      "contrast": "When is the test? الوقت؛ Where is the test? المكان.",
+      "sourceIds": [
+        557,
+        528
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "When is the English test?",
+          "ar": "متى اختبار الإنجليزية؟",
+          "context": "موعد الاختبار",
+          "icon": "📝",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "When is your birthday?",
+          "ar": "متى عيد ميلادك؟",
+          "context": "تاريخ الميلاد",
+          "icon": "🎂",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "When is the next bus?",
+          "ar": "متى الحافلة القادمة؟",
+          "context": "وقت الحافلة",
+          "icon": "🚌",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "When is the meeting?",
+          "ar": "متى الاجتماع؟",
+          "context": "تحديد موعد",
+          "icon": "📅",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Ali checks the timetable.",
+          "ar": "يتفقد علي الجدول."
+        },
+        {
+          "id": 2,
+          "en": "He asks, 'When is the English test?'",
+          "ar": "يسأل: متى اختبار الإنجليزية؟"
+        },
+        {
+          "id": 3,
+          "en": "The teacher says it is on Monday.",
+          "ar": "تقول المعلمة إنه يوم الاثنين."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "When is the meeting?",
+          "ar": "متى الاجتماع؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "It is at ten o'clock.",
+          "ar": "إنه الساعة العاشرة."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "key": "why-is",
+      "title": "Why is",
+      "meaning": "لماذا يكون / لماذا هو",
+      "formula": "Why is + singular subject + adjective?",
+      "explanation": "للسؤال عن سبب حالة أو وضع، وغالبًا نجيب باستخدام Because.",
+      "explanationEn": "Why is asks for the reason behind a situation.",
+      "contrast": "Why is the bus late? سبب؛ When is the bus here? توقيت.",
+      "sourceIds": [
+        517,
+        566
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "Why is the door open?",
+          "ar": "لماذا الباب مفتوح؟",
+          "context": "باب مفتوح",
+          "icon": "🚪",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "Why is the room so cold?",
+          "ar": "لماذا الغرفة باردة؟",
+          "context": "برد الغرفة",
+          "icon": "❄️",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "Why is the bus late?",
+          "ar": "لماذا الحافلة متأخرة؟",
+          "context": "الانتظار",
+          "icon": "🚌",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "Why is the sky dark?",
+          "ar": "لماذا السماء مظلمة؟",
+          "context": "غيوم في السماء",
+          "icon": "☁️",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "The bus does not arrive on time.",
+          "ar": "لا تصل الحافلة في موعدها."
+        },
+        {
+          "id": 2,
+          "en": "Sara asks, 'Why is the bus late?'",
+          "ar": "تسأل سارة: لماذا تأخرت الحافلة؟"
+        },
+        {
+          "id": 3,
+          "en": "The driver says the road is busy.",
+          "ar": "يوضح السائق أن الطريق مزدحم."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "Why is the room cold?",
+          "ar": "لماذا الغرفة باردة؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "Because the window is open.",
+          "ar": "لأن النافذة مفتوحة."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "key": "how-is",
+      "title": "How is",
+      "meaning": "كيف حال / كيف يكون",
+      "formula": "How is + person / thing?",
+      "explanation": "للسؤال عن حالة شخص أو أمر، وليس عن هويته.",
+      "explanationEn": "How is asks about a person's condition or how something is going.",
+      "contrast": "How is she? الحال؛ Who is she? الهوية.",
+      "sourceIds": [
+        516,
+        567
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "How is your mother?",
+          "ar": "كيف حال والدتك؟",
+          "context": "السؤال عن الأسرة",
+          "icon": "👩",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "How is your new school?",
+          "ar": "كيف مدرستك الجديدة؟",
+          "context": "مدرسة جديدة",
+          "icon": "🏫",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "How is the weather today?",
+          "ar": "كيف الطقس اليوم؟",
+          "context": "حالة الطقس",
+          "icon": "🌤️",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "How is your English class?",
+          "ar": "كيف صف الإنجليزية؟",
+          "context": "تجربة الدرس",
+          "icon": "📚",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Maya visits her grandmother.",
+          "ar": "تزور مايا جدتها."
+        },
+        {
+          "id": 2,
+          "en": "She asks, 'How is your health today?'",
+          "ar": "تسأل: كيف صحتك اليوم؟"
+        },
+        {
+          "id": 3,
+          "en": "Her grandmother says she feels well.",
+          "ar": "تقول جدتها إنها بخير."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "How is your new school?",
+          "ar": "كيف مدرستك الجديدة؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "It is great, thank you.",
+          "ar": "إنها رائعة، شكرًا لك."
+        }
+      ]
+    }
+  ],
+  "chapters": []
+}
