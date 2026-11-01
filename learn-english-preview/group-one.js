@@ -41,6 +41,19 @@ function audioRow(text,clip){
  if(!cues.every((c,i)=>Array.isArray(c)&&c.length===3&&c[0]===i&&c[1]>=0&&c[2]>c[1]&&c[2]<=row.duration_ms+45&&(!i||cues[i-1][2]<=c[1])))return null;
  return row;
 }
+const publicAudioPacks=new Map();
+function preloadGroupOneAudio(id){
+ const key="p"+String(id).padStart(2,"0");
+ if(publicAudioPacks.has(key))return publicAudioPacks.get(key);
+ const promise=new Promise(resolve=>{
+   const script=document.createElement("script");
+   script.src="assets/group-one-audio-bundles/"+key+".js";
+   script.onload=()=>resolve(true);script.onerror=()=>resolve(false);
+   document.head.appendChild(script);
+ });
+ publicAudioPacks.set(key,promise);
+ return promise;
+}
 function showStatus(text){$("g1AudioStatus").textContent=text}
 function speakBrowser(text,slow,done,token,target){
  if(!("speechSynthesis" in window)){showStatus("الصوت غير متاح في هذا المتصفح؛ يمكنك قراءة النص");return}
@@ -58,7 +71,11 @@ function play(text,clip,target=null,slow=false,done=null){
  if(target){paintWord(target,text,-1);window.PATTERN_READ_ALONG?.begin(target,text)}
  const row=audioRow(text,clip);
  if(!row){speakBrowser(text,slow,done,token,target);return}
- let completed=false;const parts=String(row.path).split("/");const bundle=parts.length===4 && parts[0]==="assets" && parts[1]==="audio" && window.LE_ENGLISH_AUDIO?.[parts[2]]?.[parts[3]];const player=new Audio(bundle?"data:audio/mpeg;base64,"+bundle:row.path);audio=player;player.preload="auto";player.playbackRate=slow?.78:1;
+ let completed=false;const parts=String(row.path).split("/");
+ const oldBundle=parts.length===4 && parts[0]==="assets" && parts[1]==="audio" && window.LE_ENGLISH_AUDIO?.[parts[2]]?.[parts[3]];
+ const newBundle=window.LE_GROUP_ONE_AUDIO?.[clip];
+ const player=new Audio(oldBundle?"data:audio/mpeg;base64,"+oldBundle:newBundle?"data:audio/mpeg;base64,"+newBundle:row.path);
+ audio=player;player.preload="auto";player.playbackRate=slow?.78:1;
  const fallback=()=>{if(completed||token!==seq)return;completed=true;player.pause();speakBrowser(text,slow,done,token,target)};
  let last=-2;
  const tick=()=>{
@@ -91,7 +108,7 @@ function renderList(){
 }
 function renderStudy(){
  const p=current(),s=example();if(!p||!s)return;
- quizResult=!!answers[key()]?.quiz;builderResult=!!answers[key()]?.builder;answer=[];auto=false;
+ quizResult=!!answers[key()]?.quiz;builderResult=!!answers[key()]?.builder;answer=[];auto=false;preloadGroupOneAudio(p.id);
  $("g1Title").textContent=p.title;$("g1Meaning").textContent=p.meaning;$("g1Formula").textContent=p.formula;
  $("g1Explanation").textContent=p.explanation;$("g1ExplanationEn").textContent=p.explanationEn;
  $("g1Contrast").textContent=p.contrast;$("g1Number").textContent="النمط "+p.id+" / "+data.items.length;
