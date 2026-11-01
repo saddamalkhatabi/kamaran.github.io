@@ -1,0 +1,76 @@
+name: Record verified English Group Three public audio bundles
+on:
+  push:
+    branches: [master]
+    paths:
+      - learn-english-preview/data/group-three.json
+      - learn-english-preview/scripts/render_group_three_public_audio.py
+      - learn-english-preview/scripts/render_pattern_audio.py
+      - .github/workflows/group-three-public-audio.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: english-group-three-voices-public-master
+  cancel-in-progress: false
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Edge Neural TTS and FFprobe
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install --disable-pip-version-check 'edge-tts>=7,<8'
+      - name: Synthesize authentic English and build lazy base64 MP3 packs
+        run: |
+          cd learn-english-preview
+          python scripts/render_group_three_public_audio.py --concurrency 3 --retries 4
+      - name: Validate all recorded transcripts and precise word timing
+        run: |
+          python - <<'PY'
+          import json,pathlib,hashlib
+          root=pathlib.Path("learn-english-preview")
+          group=json.loads((root/"data/group-three.json").read_text())
+          data=json.loads((root/"data/group-three-audio-index.json").read_text())
+          assert len(group["items"])==18 and len(group["chapters"])==3
+          expected={}
+          for p in group["items"]:
+              key=f"p{p['id']:02d}"
+              expected[key+"/intro"]=p["explanationEn"]
+              for type_,rows in [("scene",p["scenes"]),("story",p["story"]),("dialogue",p["dialogue"])]:
+                  for s in rows: expected[f"{key}/{type_}-{s['id']}"]=s["en"]
+          for chapter in group["chapters"]:
+              for s in chapter["lines"]: expected[f"chapters/c{chapter['id']:02d}/line-{s['id']}"]=s["en"]
+          assert len(expected)==198
+          # The full library may reuse verified source files; public bundles must contain all actual new recordings.
+          assert set(data["items"])==set(expected)
+          for key,item in data["items"].items():
+              assert item["text"]==expected[key]
+              f=root/item["path"]
+              assert f.is_file() and hashlib.sha256(f.read_bytes()).hexdigest()==item["audio_sha256"]
+              cues=item["cues"]
+              assert len(cues)==len(item["text"].split())
+              assert all(c[0]==i and 0<=c[1]<c[2]<=item["duration_ms"]+45 for i,c in enumerate(cues))
+              assert all(cues[i-1][2]<=cues[i][1] for i in range(1,len(cues)))
+          bundle=root/"assets/group-three-audio-bundles"
+          assert len(list(bundle.glob("p*.js")))==18 and (bundle/"chapters.js").exists()
+          print("198 verified real MP3s, word cues, 19 lazy packs")
+          PY
+      - name: Publish static verified voices without bulky source MP3s
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add learn-english-preview/data/group-three-audio-index.json learn-english-preview/assets/group-three-audio-bundles/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified Group Three static speech bundles with real word cues [skip ci]'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
