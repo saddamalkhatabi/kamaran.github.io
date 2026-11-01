@@ -32,7 +32,7 @@ jobs:
       - name: Synthesize authentic English and build lazy base64 MP3 packs
         run: |
           cd learn-english-preview
-          python scripts/render_group_three_public_audio.py --concurrency 3 --retries 4 2>&1 | tee /tmp/g3-public-voices.log
+          python scripts/render_group_three_public_audio.py --concurrency 3 --retries 6 2>&1 | tee /tmp/g3-public-voices.log
       - name: Validate all recorded transcripts and precise word timing
         run: |
           python - <<'PY'
