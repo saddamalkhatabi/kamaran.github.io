@@ -46,7 +46,7 @@ function audioRow(text,clip){
  return row;
 }
 const publicAudioPacks=new Map();
-function preloadGroupOneAudio(id){
+function preloadGroupTwoAudio(id){
  const key=id==="chapters"?"chapters":"p"+String(id).padStart(2,"0");
  if(publicAudioPacks.has(key))return publicAudioPacks.get(key);
  const promise=new Promise(resolve=>{
@@ -75,7 +75,7 @@ function play(text,clip,target=null,slow=false,done=null){
  if(target){paintWord(target,text,-1);window.PATTERN_READ_ALONG?.begin(target,text)}
  const row=audioRow(text,clip);
  if(!row){speakBrowser(text,slow,done,token,target);return}
- if(!window.LE_GROUP_TWO_AUDIO?.[clip]&&/^((p[0-9]{2})|chapters)\//.test(clip)){
+ if(voices?.items?.[clip]&&!window.LE_GROUP_TWO_AUDIO?.[clip]&&/^((p[0-9]{2})|chapters)\//.test(clip)){
   const bundle=clip.startsWith("chapters")?"chapters":Number(clip.slice(1,3));
   preloadGroupTwoAudio(bundle).then(ok=>{
    if(token!==seq)return;
@@ -117,7 +117,7 @@ function renderList(){
 }
 function renderStudy(){
  const p=current(),s=example();if(!p||!s)return;
- quizResult=!!answers[key()]?.quiz;builderResult=!!answers[key()]?.builder;answer=[];auto=false;preloadGroupOneAudio(p.id);
+ quizResult=!!answers[key()]?.quiz;builderResult=!!answers[key()]?.builder;answer=[];auto=false;if(Object.keys(voices?.items||{}).some(k=>k.startsWith("p"+String(p.id).padStart(2,"0")+"/")))preloadGroupTwoAudio(p.id);
  $("g2Title").textContent=p.title;$("g2Meaning").textContent=p.meaning;$("g2Formula").textContent=p.formula;
  $("g2Explanation").textContent=p.explanation;$("g2ExplanationEn").textContent=p.explanationEn;
  $("g2Contrast").textContent=p.contrast;$("g2Number").textContent="النمط "+p.id+" / "+data.items.length;
