@@ -40,6 +40,10 @@
           "photo": [
             "this",
             0
+          ],
+          "atlas": [
+            "atlas-01",
+            0
           ]
         },
         {
@@ -50,6 +54,10 @@
           "icon": "📘",
           "photo": [
             "this",
+            1
+          ],
+          "atlas": [
+            "atlas-01",
             1
           ]
         },
@@ -62,6 +70,10 @@
           "photo": [
             "this",
             2
+          ],
+          "atlas": [
+            "atlas-01",
+            2
           ]
         },
         {
@@ -70,7 +82,11 @@
           "ar": "هذا حاسوبي المحمول.",
           "context": "الإشارة إلى الحاسوب",
           "icon": "💻",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            3
+          ]
         }
       ],
       "story": [
@@ -127,6 +143,10 @@
           "photo": [
             "this",
             4
+          ],
+          "atlas": [
+            "atlas-01",
+            4
           ]
         },
         {
@@ -135,7 +155,11 @@
           "ar": "تلك مدرستنا.",
           "context": "مدرسة على الجانب الآخر",
           "icon": "🏫",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            5
+          ]
         },
         {
           "id": 3,
@@ -143,7 +167,11 @@
           "ar": "تلك سيارتي.",
           "context": "سيارة في موقف بعيد",
           "icon": "🚗",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            6
+          ]
         },
         {
           "id": 4,
@@ -151,7 +179,11 @@
           "ar": "تلك شجرة كبيرة.",
           "context": "شجرة في نهاية الحديقة",
           "icon": "🌳",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            7
+          ]
         }
       ],
       "story": [
@@ -205,7 +237,11 @@
           "ar": "أنا طالب.",
           "context": "طالب يحمل كتبه",
           "icon": "🎒",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            8
+          ]
         },
         {
           "id": 2,
@@ -213,7 +249,11 @@
           "ar": "أنا سعيد.",
           "context": "لحظة فرح",
           "icon": "😊",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            9
+          ]
         },
         {
           "id": 3,
@@ -221,7 +261,11 @@
           "ar": "أنا في المنزل.",
           "context": "داخل غرفة المعيشة",
           "icon": "🏡",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            10
+          ]
         },
         {
           "id": 4,
@@ -229,7 +273,11 @@
           "ar": "أنا مستعد.",
           "context": "الاستعداد للانطلاق",
           "icon": "✅",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-01",
+            11
+          ]
         }
       ],
       "story": [
@@ -283,7 +331,11 @@
           "ar": "إنه يوم جميل.",
           "context": "سماء صافية",
           "icon": "☀️",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-02",
+            0
+          ]
         },
         {
           "id": 2,
@@ -291,7 +343,11 @@
           "ar": "الجو بارد.",
           "context": "يوم شتوي",
           "icon": "❄️",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-02",
+            1
+          ]
         },
         {
           "id": 3,
@@ -299,7 +355,11 @@
           "ar": "إنه هاتفي.",
           "context": "الهاتف على الطاولة",
           "icon": "📱",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-02",
+            2
+          ]
         },
         {
           "id": 4,
@@ -307,7 +367,11 @@
           "ar": "إنها مجرد لعبة.",
           "context": "لعبة على الطاولة",
           "icon": "🎲",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-02",
+            3
+          ]
         }
       ],
       "story": [
@@ -364,6 +428,10 @@
           "photo": [
             "have",
             0
+          ],
+          "atlas": [
+            "atlas-02",
+            4
           ]
         },
         {
@@ -375,6 +443,10 @@
           "photo": [
             "have",
             1
+          ],
+          "atlas": [
+            "atlas-02",
+            5
           ]
         },
         {
@@ -386,6 +458,10 @@
           "photo": [
             "have",
             2
+          ],
+          "atlas": [
+            "atlas-02",
+            6
           ]
         },
         {
@@ -394,7 +470,11 @@
           "ar": "لدي كتابان.",
           "context": "كتابان في حقيبة",
           "icon": "📚",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-02",
+            7
+          ]
         }
       ],
       "story": [
@@ -451,6 +531,10 @@
           "photo": [
             "got",
             0
+          ],
+          "atlas": [
+            "atlas-02",
+            8
           ]
         },
         {
@@ -462,6 +546,10 @@
           "photo": [
             "got",
             1
+          ],
+          "atlas": [
+            "atlas-02",
+            9
           ]
         },
         {
@@ -470,7 +558,11 @@
           "ar": "لدي تذكرة.",
           "context": "في محطة سفر",
           "icon": "🎫",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-02",
+            10
+          ]
         },
         {
           "id": 4,
@@ -478,7 +570,11 @@
           "ar": "لدي كتاب.",
           "context": "إظهار الكتاب",
           "icon": "📗",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-02",
+            11
+          ]
         }
       ],
       "story": [
@@ -532,7 +628,11 @@
           "ar": "أريد كلبًا.",
           "context": "التعرف إلى كلب لطيف",
           "icon": "🐶",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            0
+          ]
         },
         {
           "id": 2,
@@ -540,7 +640,11 @@
           "ar": "أريد بعض الماء.",
           "context": "كأس ماء",
           "icon": "💧",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            1
+          ]
         },
         {
           "id": 3,
@@ -548,7 +652,11 @@
           "ar": "أريد كتابًا جديدًا.",
           "context": "في المكتبة",
           "icon": "📘",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            2
+          ]
         },
         {
           "id": 4,
@@ -556,7 +664,11 @@
           "ar": "أريد تفاحة.",
           "context": "عند بائع الفاكهة",
           "icon": "🍎",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            3
+          ]
         }
       ],
       "story": [
@@ -610,7 +722,11 @@
           "ar": "أريد أن أتعلم الإنجليزية.",
           "context": "أمام كتب اللغة",
           "icon": "📖",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            4
+          ]
         },
         {
           "id": 2,
@@ -618,7 +734,11 @@
           "ar": "أريد أن ألعب.",
           "context": "وقت اللعب",
           "icon": "⚽",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            5
+          ]
         },
         {
           "id": 3,
@@ -626,7 +746,11 @@
           "ar": "أريد الذهاب إلى المنزل.",
           "context": "بعد انتهاء اليوم",
           "icon": "🏡",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            6
+          ]
         },
         {
           "id": 4,
@@ -634,7 +758,11 @@
           "ar": "أريد أن أعتذر.",
           "context": "الحديث مع صديق",
           "icon": "🤝",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            7
+          ]
         }
       ],
       "story": [
@@ -688,7 +816,11 @@
           "ar": "أود بعض الماء.",
           "context": "طلب الماء بأدب",
           "icon": "🥤",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            8
+          ]
         },
         {
           "id": 2,
@@ -696,7 +828,11 @@
           "ar": "أود كوب شاي.",
           "context": "جلسة مع ضيف",
           "icon": "🍵",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            9
+          ]
         },
         {
           "id": 3,
@@ -704,7 +840,11 @@
           "ar": "أود شطيرة.",
           "context": "في مقهى",
           "icon": "🥪",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            10
+          ]
         },
         {
           "id": 4,
@@ -712,7 +852,11 @@
           "ar": "أود تذكرة.",
           "context": "شباك تذاكر",
           "icon": "🎟️",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-03",
+            11
+          ]
         }
       ],
       "story": [
@@ -766,7 +910,11 @@
           "ar": "أود العيش في نيويورك.",
           "context": "حلم بمدينة جديدة",
           "icon": "🌆",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            0
+          ]
         },
         {
           "id": 2,
@@ -774,7 +922,11 @@
           "ar": "أود تعلم الإنجليزية.",
           "context": "القراءة والتعلم",
           "icon": "📚",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            1
+          ]
         },
         {
           "id": 3,
@@ -782,7 +934,11 @@
           "ar": "أود زيارة صديقي.",
           "context": "زيارة منزل صديق",
           "icon": "🏠",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            2
+          ]
         },
         {
           "id": 4,
@@ -790,7 +946,11 @@
           "ar": "أود طرح سؤال.",
           "context": "رفع اليد في الصف",
           "icon": "🙋",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            3
+          ]
         }
       ],
       "story": [
@@ -844,7 +1004,11 @@
           "ar": "أحب الإنجليزية.",
           "context": "الاستمتاع بالدرس",
           "icon": "🔤",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            4
+          ]
         },
         {
           "id": 2,
@@ -852,7 +1016,11 @@
           "ar": "أحب القراءة.",
           "context": "كتاب في يد القارئ",
           "icon": "📖",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            5
+          ]
         },
         {
           "id": 3,
@@ -860,7 +1028,11 @@
           "ar": "أحب التفاح.",
           "context": "طبق تفاح",
           "icon": "🍎",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            6
+          ]
         },
         {
           "id": 4,
@@ -868,7 +1040,11 @@
           "ar": "تعجبني إنجلترا.",
           "context": "الحديث عن بلد",
           "icon": "🌍",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            7
+          ]
         }
       ],
       "story": [
@@ -922,7 +1098,11 @@
           "ar": "لا أحب الموسيقى الصاخبة.",
           "context": "الضوضاء تزعج الشخص",
           "icon": "🔊",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            8
+          ]
         },
         {
           "id": 2,
@@ -930,7 +1110,11 @@
           "ar": "لا أحب الطقس البارد.",
           "context": "برد الشتاء",
           "icon": "🥶",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            9
+          ]
         },
         {
           "id": 3,
@@ -938,7 +1122,11 @@
           "ar": "لا أحب الانتظار.",
           "context": "الوقوف في طابور",
           "icon": "⏳",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            10
+          ]
         },
         {
           "id": 4,
@@ -946,7 +1134,11 @@
           "ar": "لا يعجبني هذا اللون.",
           "context": "اختيار الألوان",
           "icon": "🎨",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-04",
+            11
+          ]
         }
       ],
       "story": [
@@ -1000,7 +1192,11 @@
           "ar": "اسمي علي.",
           "context": "تقديم النفس في الصف",
           "icon": "👋",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            0
+          ]
         },
         {
           "id": 2,
@@ -1008,7 +1204,11 @@
           "ar": "اسمي سارة.",
           "context": "الترحيب بزميلة",
           "icon": "🙋",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            1
+          ]
         },
         {
           "id": 3,
@@ -1016,7 +1216,11 @@
           "ar": "اسمي عمر.",
           "context": "تقديم النفس في اجتماع",
           "icon": "🧑",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            2
+          ]
         },
         {
           "id": 4,
@@ -1024,7 +1228,11 @@
           "ar": "اسمي نور.",
           "context": "تقديم النفس في نشاط",
           "icon": "🌟",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            3
+          ]
         }
       ],
       "story": [
@@ -1078,7 +1286,11 @@
           "ar": "ما اسمك؟",
           "context": "تعارف شخصين",
           "icon": "🤝",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            4
+          ]
         },
         {
           "id": 2,
@@ -1086,7 +1298,11 @@
           "ar": "ما اسمك الأول؟",
           "context": "استمارة تعارف",
           "icon": "🪪",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            5
+          ]
         },
         {
           "id": 3,
@@ -1094,7 +1310,11 @@
           "ar": "ما اسم صديقك؟",
           "context": "التعريف بصديق",
           "icon": "🧑‍🤝‍🧑",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            6
+          ]
         },
         {
           "id": 4,
@@ -1102,7 +1322,11 @@
           "ar": "ما اسم معلمك؟",
           "context": "في الصف",
           "icon": "🏫",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            7
+          ]
         }
       ],
       "story": [
@@ -1156,7 +1380,11 @@
           "ar": "هذه حقيبتي.",
           "context": "حقيبة قريبة",
           "icon": "👜",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            8
+          ]
         },
         {
           "id": 2,
@@ -1164,7 +1392,11 @@
           "ar": "هذه أمي.",
           "context": "التعريف بأحد أفراد الأسرة",
           "icon": "👩",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            9
+          ]
         },
         {
           "id": 3,
@@ -1172,7 +1404,11 @@
           "ar": "هذه غرفتي.",
           "context": "عند باب الغرفة",
           "icon": "🚪",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-05",
+            10
+          ]
         },
         {
           "id": 4,
@@ -1183,6 +1419,10 @@
           "photo": [
             "this",
             1
+          ],
+          "atlas": [
+            "atlas-05",
+            11
           ]
         }
       ],
@@ -1240,6 +1480,10 @@
           "photo": [
             "this",
             5
+          ],
+          "atlas": [
+            "atlas-06",
+            0
           ]
         },
         {
@@ -1248,7 +1492,11 @@
           "ar": "هذا حذائي (زوج الأحذية).",
           "context": "حذاء على الأرض",
           "icon": "👟",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            1
+          ]
         },
         {
           "id": 3,
@@ -1256,7 +1504,11 @@
           "ar": "هؤلاء أصدقائي.",
           "context": "مجموعة أصدقاء",
           "icon": "👫",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            2
+          ]
         },
         {
           "id": 4,
@@ -1264,7 +1516,11 @@
           "ar": "هذه تفاحات.",
           "context": "طبق فاكهة",
           "icon": "🍎",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            3
+          ]
         }
       ],
       "story": [
@@ -1318,7 +1574,11 @@
           "ar": "يوجد كتاب على الطاولة.",
           "context": "كتاب على طاولة",
           "icon": "📕",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            4
+          ]
         },
         {
           "id": 2,
@@ -1326,7 +1586,11 @@
           "ar": "يوجد بنك أمام الفندق.",
           "context": "شارع ومبانٍ",
           "icon": "🏦",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            5
+          ]
         },
         {
           "id": 3,
@@ -1334,7 +1598,11 @@
           "ar": "يوجد بعض الماء.",
           "context": "إبريق ماء",
           "icon": "💧",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            6
+          ]
         },
         {
           "id": 4,
@@ -1342,7 +1610,11 @@
           "ar": "توجد قطة في الحديقة.",
           "context": "قطة قرب الأشجار",
           "icon": "🐈",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            7
+          ]
         }
       ],
       "story": [
@@ -1397,7 +1669,11 @@
           "ar": "يوجد كتابان على المكتب.",
           "context": "كتابان فوق مكتب",
           "icon": "📚",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            8
+          ]
         },
         {
           "id": 2,
@@ -1405,7 +1681,11 @@
           "ar": "توجد أشجار كثيرة في الحديقة.",
           "context": "حديقة مليئة بالأشجار",
           "icon": "🌳",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            9
+          ]
         },
         {
           "id": 3,
@@ -1413,7 +1693,11 @@
           "ar": "توجد ثلاثة كراسٍ هنا.",
           "context": "ثلاثة كراسٍ",
           "icon": "🪑",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            10
+          ]
         },
         {
           "id": 4,
@@ -1421,7 +1705,11 @@
           "ar": "توجد كتب كثيرة في المكتبة.",
           "context": "رفوف مكتبة",
           "icon": "📚",
-          "photo": null
+          "photo": null,
+          "atlas": [
+            "atlas-06",
+            11
+          ]
         }
       ],
       "story": [
@@ -1456,5 +1744,14 @@
         }
       ]
     }
-  ]
+  ],
+  "visualMedia": {
+    "status": "assets-not-yet-committed",
+    "kind": "webp-atlas",
+    "columns": 4,
+    "rows": 3,
+    "atlases": 6,
+    "scenes": 72,
+    "assetDirectory": "assets/group-one/"
+  }
 }
