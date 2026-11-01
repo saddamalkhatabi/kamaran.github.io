@@ -156,3 +156,13 @@
 .g3RoutineCard{background:radial-gradient(circle at 22% 14%,#effffa,#dceff8 55%,#e2e8fa)}
 .g3LineEnglish{font-weight:500}
 .g3Focus{font-weight:900;color:#245e9d;text-decoration:underline;text-decoration-color:#a5cbdc;text-decoration-thickness:2px;text-underline-offset:4px}
+
+/* Keep the horizontally scrollable lesson navigation in its own mobile grid row.
+   The status text must never sit over lesson-tab buttons when the header is sticky. */
+@media (max-width:680px){
+  .topinner{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:8px;row-gap:5px}
+  .topinner .logo{grid-column:1;grid-row:1;min-width:0}
+  .topinner .headerStats{grid-column:2;grid-row:1;margin:0;max-width:126px;pointer-events:none}
+  .topinner .nav{grid-column:1/-1;grid-row:2;order:initial;display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;width:100%;min-width:0;position:relative;z-index:2;overscroll-behavior-x:contain}
+  .topinner .nav button{flex:0 0 auto;white-space:nowrap}
+}
