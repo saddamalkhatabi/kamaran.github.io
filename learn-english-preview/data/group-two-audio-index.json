@@ -5,7 +5,7 @@
     "p01/intro": {
       "text": "Wake up means to stop sleeping. Use at before a clock time.",
       "path": "assets/group-two-audio/p01/intro.mp3",
-      "audio_sha256": "c89260bf6ecef51810d82c9b8249235f00b73d57c37c2183add81454135b066f",
+      "audio_sha256": "4ec998d40449cb4f135b04a5acc1f8f4ee2676e89e78564dc5799df98f5a453d",
       "duration_ms": 5544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -77,7 +77,7 @@
     "p01/scene-1": {
       "text": "I wake up at six.",
       "path": "assets/group-two-audio/p01/scene-1.mp3",
-      "audio_sha256": "f6e01c71f9f9ba29e97fa23fd399fb11e7a19fb73a74d700c8f8b0fe99020807",
+      "audio_sha256": "d14aff687c97d8a091eae9eb8de9ab7715e85ec06dace145f2fcd2573498ba10",
       "duration_ms": 2424,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -114,7 +114,7 @@
     "p01/scene-2": {
       "text": "I wake up early.",
       "path": "assets/group-two-audio/p01/scene-2.mp3",
-      "audio_sha256": "a66cba64fc7bee202be52968eac599caad69e001e756abb2447b32bb00de089c",
+      "audio_sha256": "fcc0428c421e36b07c7bef9303f946d22a9737a602dbda3f5a7533859b5deb51",
       "duration_ms": 2184,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -146,7 +146,7 @@
     "p01/scene-3": {
       "text": "I wake up at seven on Sunday.",
       "path": "assets/group-two-audio/p01/scene-3.mp3",
-      "audio_sha256": "eee27cbcf8663e3e3f1e8d872fec6e2451119656ee9c18b1de6b56562d6c5955",
+      "audio_sha256": "153910de6759872f5a1655798fe0444c7cacbe0330746644b977b6f59392f612",
       "duration_ms": 2880,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -193,7 +193,7 @@
     "p01/scene-4": {
       "text": "I wake up when my alarm rings.",
       "path": "assets/group-two-audio/p01/scene-4.mp3",
-      "audio_sha256": "c536f843ffc2f8780b9146f9d328bc68742fa833f3f8143d1c24197a47c60402",
+      "audio_sha256": "2973bf94ad8ee166a952f5d14fe193ccc0ed29b13ffe81bbf9136c0d483f1b78",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -240,7 +240,7 @@
     "p01/story-1": {
       "text": "Maya wakes up at six.",
       "path": "assets/group-two-audio/p01/story-1.mp3",
-      "audio_sha256": "1667563ebb23320c1b42ab734cf16663ff4117fcb499a49959c4609db12b597e",
+      "audio_sha256": "5e800132d49e11951684eb88ae13d83a5ff78f950259ebc23dd39fc467f7ab87",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -277,7 +277,7 @@
     "p01/story-2": {
       "text": "She opens her eyes and smiles.",
       "path": "assets/group-two-audio/p01/story-2.mp3",
-      "audio_sha256": "d3c5a2d41453fe849667b9592ce5ddc424aad9e38cd9f1ff089abe886ce771d7",
+      "audio_sha256": "032cd465bab36fd73a8a1cda216d1a6e9c17fde05cb61b8a5b0d19f7f830dd21",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -319,7 +319,7 @@
     "p01/story-3": {
       "text": "She says, 'I wake up early on school days.'",
       "path": "assets/group-two-audio/p01/story-3.mp3",
-      "audio_sha256": "fe82164a98c02f56d29b450670a739059ab32827a5c392add8f3e3b9fe8630a4",
+      "audio_sha256": "9cffe5cc51a91ac09a6559f9b21e709c35bc18c5e3df0b9b35a289ecd225d89e",
       "duration_ms": 3792,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -376,7 +376,7 @@
     "p01/dialogue-1": {
       "text": "What time do you wake up?",
       "path": "assets/group-two-audio/p01/dialogue-1.mp3",
-      "audio_sha256": "b186cb2aee55c27909c2c07ce6d29421fb156ea38a7754033b3de287125233df",
+      "audio_sha256": "991e287d8aef1e88d4b8b6da3e13a3d72ee1c41e1be9fbf8beb6186f9d518070",
       "duration_ms": 2376,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -418,7 +418,7 @@
     "p01/dialogue-2": {
       "text": "I wake up at six.",
       "path": "assets/group-two-audio/p01/dialogue-2.mp3",
-      "audio_sha256": "d0d244e69d04bca01a040f20cf9a758dcc705bba76c40bebc735f706b470d770",
+      "audio_sha256": "bf57f5637890d79974bf868cc0fd7b074b8fc8ae4225c0f1c97b8192413e8853",
       "duration_ms": 2424,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -455,7 +455,7 @@
     "p02/intro": {
       "text": "Get up means to leave your bed. You can wake up before you get up.",
       "path": "assets/group-two-audio/p02/intro.mp3",
-      "audio_sha256": "0956b61f0e78f1cdf5a62b558149a874caf0c57cc1197c7ad0123326e1a6f8c1",
+      "audio_sha256": "37366d77ee1f867fb08198e024fefa94ef14d03829214e6fbe71c56eda9f5843",
       "duration_ms": 5448,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -542,7 +542,7 @@
     "p02/scene-1": {
       "text": "I get up at six thirty.",
       "path": "assets/group-two-audio/p02/scene-1.mp3",
-      "audio_sha256": "873c22a7174926dbfe52746c90e423f844e264df84b6c644cab6486fb6b976e9",
+      "audio_sha256": "a8ef7e022758a8b1bc3539a17e32a1a49268b559215334ee5e492001201bbf5d",
       "duration_ms": 2496,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -584,7 +584,7 @@
     "p02/scene-2": {
       "text": "I get up and open the window.",
       "path": "assets/group-two-audio/p02/scene-2.mp3",
-      "audio_sha256": "8ec48990d6068c308ac3e2528a6843e291afb54f42285448ea7ce2e50e339ce3",
+      "audio_sha256": "12237e9c829cef141f7850469dca17c999cda2fdbf4de32dd9fc319bf721a4c7",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -631,7 +631,7 @@
     "p02/scene-3": {
       "text": "I get up early for school.",
       "path": "assets/group-two-audio/p02/scene-3.mp3",
-      "audio_sha256": "692fe9105cc3fec71c55da9a6aa3cade049cb029760e0cc840c10ba8fe1d0dc9",
+      "audio_sha256": "001e93f696464fe25115639405a6e6d161500a88fbaa3dbea19978017fc5e147",
       "duration_ms": 2592,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -673,7 +673,7 @@
     "p02/scene-4": {
       "text": "I get up slowly on weekends.",
       "path": "assets/group-two-audio/p02/scene-4.mp3",
-      "audio_sha256": "28f519e36ea590d0a9592cfdb8ba7443d13276226452fde8ff51bad40213a90b",
+      "audio_sha256": "f475c66dc966ca593baed49151c505191f815cac365a553ec3d45cf0c2277e29",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -715,7 +715,7 @@
     "p02/story-1": {
       "text": "Omar wakes up at six.",
       "path": "assets/group-two-audio/p02/story-1.mp3",
-      "audio_sha256": "72ff85ae4d98992f328e55f7b2c22840d74f4dfc4d3ad094267014769b642186",
+      "audio_sha256": "ef59f81a75663f004ad7cf1d93382014b7b9a684e945a85e9cb7ac035a79e6d3",
       "duration_ms": 2688,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -752,7 +752,7 @@
     "p02/story-2": {
       "text": "He stays in bed for five minutes.",
       "path": "assets/group-two-audio/p02/story-2.mp3",
-      "audio_sha256": "ce202ba853d2a3bc9accac51433b2949e6f5b61b92f44794287d087ddb9252f1",
+      "audio_sha256": "9ff0e7ff627194ec87816f81d36226bf4e5d41081106ac99dce6a85844ca0b1a",
       "duration_ms": 3168,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -799,7 +799,7 @@
     "p02/story-3": {
       "text": "Then he gets up and starts his day.",
       "path": "assets/group-two-audio/p02/story-3.mp3",
-      "audio_sha256": "3d11824a7c33df942547cd18a9a9250966d911a32f6d6456ac33f40416e63ef1",
+      "audio_sha256": "74bdf848e83a5d9795eabc2139787d52302a497bac38ed732b978071b1ce33ac",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -851,7 +851,7 @@
     "p02/dialogue-1": {
       "text": "Do you get up right away?",
       "path": "assets/group-two-audio/p02/dialogue-1.mp3",
-      "audio_sha256": "6ffc6148eb4832dbb9ea6e89e3e718e614bdd1b46ac7845c5117fd395242de64",
+      "audio_sha256": "368a41ea5d637ba3eabf7321d87aa82ecd392f179b6b26eec6c729c0cfb1e7f1",
       "duration_ms": 2304,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -893,7 +893,7 @@
     "p02/dialogue-2": {
       "text": "No, I get up after a few minutes.",
       "path": "assets/group-two-audio/p02/dialogue-2.mp3",
-      "audio_sha256": "7b04186f6cd6354abbf463aec02f586aed616162d866eb105382bc0420130711",
+      "audio_sha256": "d559b11c04a583d52c30d6dd63c4f1c76d316a1c17cd548d1cfb2a9b1adc06b5",
       "duration_ms": 3360,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -945,7 +945,7 @@
     "p03/intro": {
       "text": "In the morning names a part of the day, not one exact clock time.",
       "path": "assets/group-two-audio/p03/intro.mp3",
-      "audio_sha256": "4668dd1a94d2b9f8f1e955da581143f6e78d11ef964dac800ee5c72aadd33b89",
+      "audio_sha256": "cc2bbf24a365ee8339841e43212c5475043b29c77da900472634c216fb6f2d45",
       "duration_ms": 4872,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1027,7 +1027,7 @@
     "p03/scene-1": {
       "text": "In the morning, I drink water.",
       "path": "assets/group-two-audio/p03/scene-1.mp3",
-      "audio_sha256": "507f2a91a4b06d86bb8281a967053f1757064827c90a9b4e5d7d5ce3c7002058",
+      "audio_sha256": "377d344b0a3af8fdd3ddb7ae887a88c19068f36c7e173d081565e442379e4c67",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1069,7 +1069,7 @@
     "p03/scene-2": {
       "text": "I study English in the morning.",
       "path": "assets/group-two-audio/p03/scene-2.mp3",
-      "audio_sha256": "acb4629c59b498508af8d0601e2a03c96cc42b05e655a11b4ec961564fba9e6a",
+      "audio_sha256": "68c1530205e8cce47e01f101921ba7f1bf530e4a627ba105cac052ed79c0af42",
       "duration_ms": 2736,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1111,7 +1111,7 @@
     "p03/scene-3": {
       "text": "In the morning, the streets are quiet.",
       "path": "assets/group-two-audio/p03/scene-3.mp3",
-      "audio_sha256": "0ab3bac02d5f1ada50d9599b88cdfbac75a00ea31ea1f004d9671c590bf277cc",
+      "audio_sha256": "fd6e45ca5519bae0a221975f7cf682d12639ab2e8706d0b1c2bcad7efe842b92",
       "duration_ms": 3264,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1158,7 +1158,7 @@
     "p03/scene-4": {
       "text": "I take a short walk in the morning.",
       "path": "assets/group-two-audio/p03/scene-4.mp3",
-      "audio_sha256": "da4db47b4ac3fc59f201418d3f0d9eb17e2988a4c5de51d56f0378ff37b6b7ce",
+      "audio_sha256": "5e2f018241f45ba8068a4a0eee008ef6986d366a7b6e17acb071fbcf8bd954ac",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1210,7 +1210,7 @@
     "p03/story-1": {
       "text": "Sara loves the quiet morning.",
       "path": "assets/group-two-audio/p03/story-1.mp3",
-      "audio_sha256": "8db2ce9d230acfd9f3a6f4d23fa15a0a3634e6114235f54448780c938af0fffe",
+      "audio_sha256": "05a432a9af7d226b7368f3005d9d0bf8e883a4805a53cdf160a92ee2093a13b9",
       "duration_ms": 2808,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1247,7 +1247,7 @@
     "p03/story-2": {
       "text": "In the morning, she drinks water.",
       "path": "assets/group-two-audio/p03/story-2.mp3",
-      "audio_sha256": "2e19fba084551fefa1adc729af4773f1c0d8f7d6b1ba20b40ee662f4b7fce37a",
+      "audio_sha256": "6ae85973bb9f0f9b72bf4245323756267082593699e0dbefdb39f46752ddd02f",
       "duration_ms": 3096,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1289,7 +1289,7 @@
     "p03/story-3": {
       "text": "Then she reads for ten minutes.",
       "path": "assets/group-two-audio/p03/story-3.mp3",
-      "audio_sha256": "59ef1df86c339d5e9ec0ea721cbecc6a9b20c5f2c45e04cc85b6e72ac35ca829",
+      "audio_sha256": "64934cbda967939d7fd4e9decfa62c6dc0809fc881f98771d739281da9ca95ab",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1331,7 +1331,7 @@
     "p03/dialogue-1": {
       "text": "When do you study?",
       "path": "assets/group-two-audio/p03/dialogue-1.mp3",
-      "audio_sha256": "7e6f5811e0b67be0978ee878cdd12484b5101d40d3aaadb8860eb610a45f23d1",
+      "audio_sha256": "a43a0b6cef18c6916bd63c41a083b7d929d12cb4072fd7695e066e00ef5fe135",
       "duration_ms": 2040,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1363,7 +1363,7 @@
     "p03/dialogue-2": {
       "text": "I study in the morning.",
       "path": "assets/group-two-audio/p03/dialogue-2.mp3",
-      "audio_sha256": "1046ccfb28d4c27d7613e12882d4c6add0371e8f7c0b29e03e0aec8d1c027e0d",
+      "audio_sha256": "a4fe05e6dc137f9cc44abd0ba46d851e755fb8e603a82b6bfb4c6e830ef7a4d7",
       "duration_ms": 2400,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1400,7 +1400,7 @@
     "p04/intro": {
       "text": "Say brush my teeth for cleaning teeth with a toothbrush.",
       "path": "assets/group-two-audio/p04/intro.mp3",
-      "audio_sha256": "1529a8b07ce2477c3430c75ebd9d562d6965e029f29b61e204ce00f7e5af4395",
+      "audio_sha256": "6aa5a89f586219d9914358c13237a4c9980ec0a40530fa1c21d38d7e30e54552",
       "duration_ms": 4176,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1462,7 +1462,7 @@
     "p04/scene-1": {
       "text": "I brush my teeth every morning.",
       "path": "assets/group-two-audio/p04/scene-1.mp3",
-      "audio_sha256": "ba3275b3f3b540bb2e845fa09e822d04a1acd1ef4ce387dee7dcd6ad996c7da0",
+      "audio_sha256": "e3cff44b5b2899c79b1b45c3c289cd75e2eb8e6d717a29a72d33678c0871e589",
       "duration_ms": 2832,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1504,7 +1504,7 @@
     "p04/scene-2": {
       "text": "I brush my teeth after breakfast.",
       "path": "assets/group-two-audio/p04/scene-2.mp3",
-      "audio_sha256": "68c32b15d54101b23f429732e1745b6aa34e19d656deeefc4b79f8f1c5ac4d60",
+      "audio_sha256": "43a91bf82be2d1ae7bf4d2a8fe46a6f1ae056a4f5ecf3c1b35870b6c206ceeab",
       "duration_ms": 3168,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1546,7 +1546,7 @@
     "p04/scene-3": {
       "text": "I brush my teeth before bed.",
       "path": "assets/group-two-audio/p04/scene-3.mp3",
-      "audio_sha256": "d4911139e284e722c698285cc0ecf3499f27d16db56aafdc8d516026da17a4de",
+      "audio_sha256": "44b41e2f06bc38bd8e9885fe5b2518ee9a4f2062760504517901abf99869d1ab",
       "duration_ms": 2880,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1588,7 +1588,7 @@
     "p04/scene-4": {
       "text": "I brush my teeth for two minutes.",
       "path": "assets/group-two-audio/p04/scene-4.mp3",
-      "audio_sha256": "c50e8193942c6296d6c5b6eeed0ceffbedd94a17886bfa1068f869d494f5ce9d",
+      "audio_sha256": "bd9b2951cba3e9b0af1165bac7cc8ce0ef1ba1abefdbfb0e59a9ef0b4578c66e",
       "duration_ms": 3024,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1635,7 +1635,7 @@
     "p04/story-1": {
       "text": "Ali finishes breakfast.",
       "path": "assets/group-two-audio/p04/story-1.mp3",
-      "audio_sha256": "8e425d46db47d363d6f7af4f0abd74ce6ca23ebaf03612966c60a36754d5c4d2",
+      "audio_sha256": "d0c2295cc677a5ffcfd8a4ecd245f08023361f6f9f625b2447f56ab6b1aaec94",
       "duration_ms": 2712,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1662,7 +1662,7 @@
     "p04/story-2": {
       "text": "He brushes his teeth carefully.",
       "path": "assets/group-two-audio/p04/story-2.mp3",
-      "audio_sha256": "81183f99cacbd4cd79e8863fbd79d35641dbf856579bdfff0919b7c3fe9d8b3d",
+      "audio_sha256": "a7ff83b37242dc80bd188a178c922f05f04350fd1d4a2397613139c562134883",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1699,7 +1699,7 @@
     "p04/story-3": {
       "text": "He smiles before leaving home.",
       "path": "assets/group-two-audio/p04/story-3.mp3",
-      "audio_sha256": "c81511a05a4b6a26b69b2e0141048e245df8fae5154eb8cf3f4ff16ed7725c0b",
+      "audio_sha256": "b9e17572514e65cf86692672a7bfc5930be2721bc35ee3e14b41c0dfc4db54de",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1736,7 +1736,7 @@
     "p04/dialogue-1": {
       "text": "Do you brush your teeth before bed?",
       "path": "assets/group-two-audio/p04/dialogue-1.mp3",
-      "audio_sha256": "ccd5817903b6a423d5c6373616c8f55a04b86e1116899e1ac9cbeca248b89ee1",
+      "audio_sha256": "bd5d660387fb061dbfdfe3dea3e0ae6c5dc611c8c2ba310ff452ab1dc951a080",
       "duration_ms": 2856,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1783,7 +1783,7 @@
     "p04/dialogue-2": {
       "text": "Yes, I brush my teeth every night.",
       "path": "assets/group-two-audio/p04/dialogue-2.mp3",
-      "audio_sha256": "3748083c3fc99dbb82e5d7d8246f2dd80cb8e92b75722ab2ee44b04163ab0373",
+      "audio_sha256": "a8b489ac83e21d78b201d4b87807516311e491544d8cd1bf89655b1d9298c5ce",
       "duration_ms": 3384,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1830,7 +1830,7 @@
     "p05/intro": {
       "text": "Have breakfast means eat your morning meal. Usually do not add a before breakfast.",
       "path": "assets/group-two-audio/p05/intro.mp3",
-      "audio_sha256": "7c80bf1c50b841da69124da728d4e9297c92ff2d9a6b07a857dae2855dbca129",
+      "audio_sha256": "a605a2b70b6fb22baafbcaa2b1f6a6c217b1fec9c74380d35f1ee29998fc1e2c",
       "duration_ms": 6552,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1912,7 +1912,7 @@
     "p05/scene-1": {
       "text": "I have breakfast at seven.",
       "path": "assets/group-two-audio/p05/scene-1.mp3",
-      "audio_sha256": "8e7109f5b8d6145aee0bc89fbf8467baf3b9837ace0031f9dcccc893c38a6faa",
+      "audio_sha256": "907b613d029f02cae79ca490ed73893b9e32690a4ab0fea9268157986795a2f4",
       "duration_ms": 2616,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1949,7 +1949,7 @@
     "p05/scene-2": {
       "text": "I have breakfast with my family.",
       "path": "assets/group-two-audio/p05/scene-2.mp3",
-      "audio_sha256": "c2f9052d6f7339210ef455404fbcf185596982b97dd787c6931871561dca8685",
+      "audio_sha256": "5da23bd48d928940cff29cf9d5410b9e47ae1e6a53b4a523f6609b99f6bcca0c",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -1991,7 +1991,7 @@
     "p05/scene-3": {
       "text": "I have breakfast before school.",
       "path": "assets/group-two-audio/p05/scene-3.mp3",
-      "audio_sha256": "bbc8f8c6c674a49c1ce572a5408892ad453067c12686630cf1c4f3e1d1b65f29",
+      "audio_sha256": "3c24ae90d725fcb744bef45ebf3891b2b7639243b942a4cc605953bdfd1dd109",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2028,7 +2028,7 @@
     "p05/scene-4": {
       "text": "I have breakfast at home.",
       "path": "assets/group-two-audio/p05/scene-4.mp3",
-      "audio_sha256": "a23a200e3d5e3317736b16b7ac4d7abb2758ac584ddc4b68bb537d7cba3a51c5",
+      "audio_sha256": "ce63c06b418086fe54a0b51bb9ec42e8a6859947ebd20fff61886da346fc0c4f",
       "duration_ms": 2544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2065,7 +2065,7 @@
     "p05/story-1": {
       "text": "The family sits at the table.",
       "path": "assets/group-two-audio/p05/story-1.mp3",
-      "audio_sha256": "644b762b1501b2921b5cc6f5ea3f55f393d4f7ddcc844265789151e50a27a910",
+      "audio_sha256": "2b72584b5e622977aa44c8efd10bab6307f8695f973d98a29a37102f7da7df10",
       "duration_ms": 2760,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2107,7 +2107,7 @@
     "p05/story-2": {
       "text": "They have breakfast together.",
       "path": "assets/group-two-audio/p05/story-2.mp3",
-      "audio_sha256": "0c6feae1cf711baca8b8187ce1fa56b982cefabe99e41368d0b5acded3faa593",
+      "audio_sha256": "c5b88d4f85503aeda0c790269f2c7949d9f12528cb7367adafb35ef7c197283e",
       "duration_ms": 2568,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2139,7 +2139,7 @@
     "p05/story-3": {
       "text": "Nour says, 'I have breakfast at home.'",
       "path": "assets/group-two-audio/p05/story-3.mp3",
-      "audio_sha256": "ecf83713a23e826a8cc94256b9c0ac8135503f684207eedec68dc30aa8f8f3ae",
+      "audio_sha256": "738d668b08dd34c0e15e82e240daea7eff7a9510403ad33fb8f68fc3263c15ad",
       "duration_ms": 3504,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2186,7 +2186,7 @@
     "p05/dialogue-1": {
       "text": "Where do you have breakfast?",
       "path": "assets/group-two-audio/p05/dialogue-1.mp3",
-      "audio_sha256": "ac5b9e3b5441c6e36f2daf62883d63a7d4bf5e2e0f24e5cb69097dde3f740ef3",
+      "audio_sha256": "1d6575a513443b596923fca5f78d9a5d8a08c0bb883228d37692ac11e14111e4",
       "duration_ms": 2472,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2223,7 +2223,7 @@
     "p05/dialogue-2": {
       "text": "I have breakfast at home.",
       "path": "assets/group-two-audio/p05/dialogue-2.mp3",
-      "audio_sha256": "7f98b12e29df65df7728876ebaf9bf675042ade8361d8ea00e63ff5cf4a7b3a9",
+      "audio_sha256": "28e7d1facb4a82d705fda899e26b1aa09f3b634bf5f09846a69a39aa5e62e896",
       "duration_ms": 2544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2260,7 +2260,7 @@
     "p06/intro": {
       "text": "Use go to for regular destinations, but say go home without to.",
       "path": "assets/group-two-audio/p06/intro.mp3",
-      "audio_sha256": "82f29cdd833dd065162bff99705b745e44e4a287011b40164b62a71c67c48421",
+      "audio_sha256": "7c8e99f839f10974380470ac9304864b81f990a6b57dc79c0d57ceb3c37712fd",
       "duration_ms": 5064,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2332,7 +2332,7 @@
     "p06/scene-1": {
       "text": "I go to school five days a week.",
       "path": "assets/group-two-audio/p06/scene-1.mp3",
-      "audio_sha256": "a65497a5caf3db89fe58e87cceeeaa3389526101bcb712bf5218408fe5e06783",
+      "audio_sha256": "88a634c13c65ef6b0ca36b7859e733b3115bcd40c1b9a27ac5447b83fd0300af",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2384,7 +2384,7 @@
     "p06/scene-2": {
       "text": "I go to work by bus.",
       "path": "assets/group-two-audio/p06/scene-2.mp3",
-      "audio_sha256": "8cf563da0f63b586e763c12f6af6011cdfbff9c0eacb05952b8f3be6dbc8a80d",
+      "audio_sha256": "ecad3229fc5f9553bfe64ca984b6114ce4e6f0b1c622c6b3dd6a77df8ed25d86",
       "duration_ms": 2544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2426,7 +2426,7 @@
     "p06/scene-3": {
       "text": "I go to the park after school.",
       "path": "assets/group-two-audio/p06/scene-3.mp3",
-      "audio_sha256": "4b87a1223143e829e957d8e27ed4a9c2dc5eeaa2499ed254fe8e25fe8a38177c",
+      "audio_sha256": "a647645afa4207b6a8ba191ce10e65c97d5a0331b1aac53144367a3f73ab101e",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2473,7 +2473,7 @@
     "p06/scene-4": {
       "text": "I go to the library on Thursday.",
       "path": "assets/group-two-audio/p06/scene-4.mp3",
-      "audio_sha256": "ea4faed6bc173c0992145548335e18e0fbb2404b51ff51de10b381e2df51b10e",
+      "audio_sha256": "83bc346b744df43fea4fbfbe52f5e6088607de4fb8c84e8c88e1d393da486451",
       "duration_ms": 3048,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2520,7 +2520,7 @@
     "p06/story-1": {
       "text": "Maya puts on her backpack.",
       "path": "assets/group-two-audio/p06/story-1.mp3",
-      "audio_sha256": "50ca1bf53eb71b9299b8e4d9b56fa09f9ee81486dd6bd709099a62fcdb07e9e8",
+      "audio_sha256": "3c62fdd4ea623d308231c3c551553c55d8314613f62819fd363a82a774e6a9aa",
       "duration_ms": 2784,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2557,7 +2557,7 @@
     "p06/story-2": {
       "text": "She goes to school with her friend.",
       "path": "assets/group-two-audio/p06/story-2.mp3",
-      "audio_sha256": "25ba5fa2e779977868262339bee61e935472d4db40adc4464a5cb9d149479b3f",
+      "audio_sha256": "4770876537efcea2af0049faa54e3cc0e29218f13b244e96a5a4dfe871accfe0",
       "duration_ms": 2856,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2604,7 +2604,7 @@
     "p06/story-3": {
       "text": "She says, 'I go to school every weekday.'",
       "path": "assets/group-two-audio/p06/story-3.mp3",
-      "audio_sha256": "1d88a0c68f2403dc6dc963461e5a17a2bb84137ec3f3a242244b4a8e86eb8afc",
+      "audio_sha256": "faf3551f628327f69494e8e3fe8838f7b5f653d5e12fca568f292c38bd96dc4f",
       "duration_ms": 3720,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2656,7 +2656,7 @@
     "p06/dialogue-1": {
       "text": "How do you go to school?",
       "path": "assets/group-two-audio/p06/dialogue-1.mp3",
-      "audio_sha256": "6c649f4ee5dbc335c534106d5032d88d6983ba0e42825c65c50bd71a8684d559",
+      "audio_sha256": "6804015e1a470f091023f514f187379d4d4f647144f514be2591fe3c03484b58",
       "duration_ms": 2352,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2698,7 +2698,7 @@
     "p06/dialogue-2": {
       "text": "I go to school by bus.",
       "path": "assets/group-two-audio/p06/dialogue-2.mp3",
-      "audio_sha256": "42dff5850e38f27dd8d795b0b79d0536cf81040180f7437f6fbf9ec75a6f52f3",
+      "audio_sha256": "f2feb8c7475363e32ad886c3e99b2d72ee4cfd23d8b55c517a558db9a7b3a6ec",
       "duration_ms": 2520,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2740,7 +2740,7 @@
     "p07/intro": {
       "text": "Usually describes something that happens most of the time, but not always.",
       "path": "assets/group-two-audio/p07/intro.mp3",
-      "audio_sha256": "026e62821feb4a3cf9b197daf34f6ef7b30e803d8e7a2b412fe1e4d1afa6f4bc",
+      "audio_sha256": "f801a66354df0277ae5294aa449c39cfb9080f32414303c18befb93f01adc4e5",
       "duration_ms": 5448,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2812,7 +2812,7 @@
     "p07/scene-1": {
       "text": "I usually wake up at six.",
       "path": "assets/group-two-audio/p07/scene-1.mp3",
-      "audio_sha256": "5476e54eda4153ec7d580b9e34577f886c787dce9c7f65a3e9cceb6a219650ff",
+      "audio_sha256": "bdbcda88b9bb2d873dd375f6f727f1e88ce2ef251ce3e698ef5669fca4ebab74",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2854,7 +2854,7 @@
     "p07/scene-2": {
       "text": "I usually walk to school.",
       "path": "assets/group-two-audio/p07/scene-2.mp3",
-      "audio_sha256": "91afbb6ba5af84d00516778b0fba165ca185f8b206baaced16fcddbd0298e10a",
+      "audio_sha256": "0d874deb3f13f25912ff5e7e88f4c6337c35e9755726ef56c05b7bfc4de60118",
       "duration_ms": 2688,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2891,7 +2891,7 @@
     "p07/scene-3": {
       "text": "I usually eat rice for lunch.",
       "path": "assets/group-two-audio/p07/scene-3.mp3",
-      "audio_sha256": "38f04a4f00b6e898c3513d2055b5f347c2dfe7a7b405554db24986a35d10c042",
+      "audio_sha256": "6be6aae1db17da304976ef8084fc860c69bb2045c9972bf203729ff72e770bd2",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2933,7 +2933,7 @@
     "p07/scene-4": {
       "text": "I usually read before bed.",
       "path": "assets/group-two-audio/p07/scene-4.mp3",
-      "audio_sha256": "4f4c21fcfa4f91b2f53f2e95808c5b476feeeb72cc322d688cd82571ce79c38b",
+      "audio_sha256": "b9f78506c5f09bbde3a42eb9418c19b2f045b0267215f048730381a67de5ee05",
       "duration_ms": 2784,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -2970,7 +2970,7 @@
     "p07/story-1": {
       "text": "Omar has a simple routine.",
       "path": "assets/group-two-audio/p07/story-1.mp3",
-      "audio_sha256": "f9278bbef1ec26a719a43bfdf9deda1e5bfa1be2882d93829b94efb5b0a07bc5",
+      "audio_sha256": "79a154ba82dc1c7c77f822236124f77fa3bd5bd70180a3b2ef0644f4ae3d5f9e",
       "duration_ms": 2760,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3007,7 +3007,7 @@
     "p07/story-2": {
       "text": "He usually walks to school.",
       "path": "assets/group-two-audio/p07/story-2.mp3",
-      "audio_sha256": "b07183c7a854db0b5b1a1decd1721ed26d702e3d26f8557bab14f7b4d7e0e567",
+      "audio_sha256": "6f0250de99b61284c40020fca26c2cf3d18e17880d26b52cd16e15994fd0f380",
       "duration_ms": 2808,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3044,7 +3044,7 @@
     "p07/story-3": {
       "text": "On rainy days, he takes the bus.",
       "path": "assets/group-two-audio/p07/story-3.mp3",
-      "audio_sha256": "897de4256a7f582fe28f5b2573522d1b29cc850c7f8582530e9558b47995119d",
+      "audio_sha256": "0d877bfabb3806f8692efaab4108d73a9859e15fb35d321f0fd536c52e70b14d",
       "duration_ms": 3384,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3091,7 +3091,7 @@
     "p07/dialogue-1": {
       "text": "Do you usually walk to school?",
       "path": "assets/group-two-audio/p07/dialogue-1.mp3",
-      "audio_sha256": "6eb108bb1f0cb566b9bd9fc73fdca8b670f60843cf25f215281b5804ebdeb93b",
+      "audio_sha256": "b104677dbcb6a284a079f965626cfe56419185c3970d63076c9d494212723299",
       "duration_ms": 2688,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3133,7 +3133,7 @@
     "p07/dialogue-2": {
       "text": "Yes, I usually walk.",
       "path": "assets/group-two-audio/p07/dialogue-2.mp3",
-      "audio_sha256": "224cddd3b8202f7e6c3c8ec8b70aec1043c8f666e601a1d9bcd279df87519352",
+      "audio_sha256": "05e30bd4d8d13f25864025cd1564d43ecde5cde8b853d5127e3709402ad91621",
       "duration_ms": 2880,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3165,7 +3165,7 @@
     "p08/intro": {
       "text": "Always means every time. Put it before most main verbs.",
       "path": "assets/group-two-audio/p08/intro.mp3",
-      "audio_sha256": "857523a152b009ceea7680b60b7cf6f84690e062275b5c9a1103fc658f037110",
+      "audio_sha256": "4c7c465985d5f7ade3d84f2349e03e2b02c0a5d9af9f3d043d34cdfd2c0b6460",
       "duration_ms": 5448,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3227,7 +3227,7 @@
     "p08/scene-1": {
       "text": "I always wash my hands before eating.",
       "path": "assets/group-two-audio/p08/scene-1.mp3",
-      "audio_sha256": "64c0dcc58ec6608b781b28e67f6d13c772c765138ef06c28f0ef6d344de1a387",
+      "audio_sha256": "0ff21fb2e7dfb0a99d527231326477b4ac6b827de72ad03a83c4bb96a13f79a7",
       "duration_ms": 3312,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3274,7 +3274,7 @@
     "p08/scene-2": {
       "text": "I always brush my teeth at night.",
       "path": "assets/group-two-audio/p08/scene-2.mp3",
-      "audio_sha256": "bbd77ef28c64cff12addbd0405594bdb9ae8e2d6899d84831715fcd42bc446f5",
+      "audio_sha256": "da999465c6c4c2a25987a52bc118d4f7811a142622685bb5b54a2a2efa900aa5",
       "duration_ms": 3024,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3321,7 +3321,7 @@
     "p08/scene-3": {
       "text": "I always carry my keys.",
       "path": "assets/group-two-audio/p08/scene-3.mp3",
-      "audio_sha256": "96644a4254659bb2d6b96cbe68f6385420df69dc6baf99f1994604628827a4dc",
+      "audio_sha256": "e385f676c30ef72c61632a98bf3a41fc0d10c1556cc7ea023b64f74eef8c85bc",
       "duration_ms": 2808,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3358,7 +3358,7 @@
     "p08/scene-4": {
       "text": "I always say good morning.",
       "path": "assets/group-two-audio/p08/scene-4.mp3",
-      "audio_sha256": "1bd440870a40a39b84321d5c0f9555d078702a0d887e97409e4e47f17d5475c5",
+      "audio_sha256": "c2eb5290521bbe3aab6dac1c15f700587af5b701a40a5140f700f2cdffd5c5a6",
       "duration_ms": 2544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3395,7 +3395,7 @@
     "p08/story-1": {
       "text": "Lina always checks her bag.",
       "path": "assets/group-two-audio/p08/story-1.mp3",
-      "audio_sha256": "0e66dad998a7d90db78cb5680dd52d113cf6c38e6b170cbf054a30d78c7e6755",
+      "audio_sha256": "55ae54790f3367342407f1123350b0be31db2746a56fc0412dfaa510f8aaf90a",
       "duration_ms": 2808,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3432,7 +3432,7 @@
     "p08/story-2": {
       "text": "She always carries her notebook.",
       "path": "assets/group-two-audio/p08/story-2.mp3",
-      "audio_sha256": "91b45ae73a1b32eddd0cba66654c544a6646786b6c6f0cead33ccf047d25e6b9",
+      "audio_sha256": "8d66888c96b69a139647bb3710f2f28f53e76894ff57ec865477ec241628c2f9",
       "duration_ms": 2880,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3469,7 +3469,7 @@
     "p08/story-3": {
       "text": "Then she leaves for school.",
       "path": "assets/group-two-audio/p08/story-3.mp3",
-      "audio_sha256": "8d3f48d39a191308623d83ee96a15d8b9d5806ff48832c00d9eb9493f614736f",
+      "audio_sha256": "e6b702fa1e0a5da406d70428982477b758cae0574ec773b7c2f0a68b02db9715",
       "duration_ms": 2544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3506,7 +3506,7 @@
     "p08/dialogue-1": {
       "text": "Do you always bring your notebook?",
       "path": "assets/group-two-audio/p08/dialogue-1.mp3",
-      "audio_sha256": "4d81018a64a0e6ad0199779ae0efb4b52104d5f4e2021bb4ced2c41b1a7f0e56",
+      "audio_sha256": "f9c0c8f2fe6c2c2c264ff0c09e790292c9ec6cdfe4e29447ed0ffd73f613c8c3",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3548,7 +3548,7 @@
     "p08/dialogue-2": {
       "text": "Yes, I always bring it.",
       "path": "assets/group-two-audio/p08/dialogue-2.mp3",
-      "audio_sha256": "139e8bca9f3ce348686d472c0249d3dc6fabbf58ee661d5e6936ece0f8e2768b",
+      "audio_sha256": "78479127c3475171c2a4d9f315b0d1265b6ae458e462f2f004adab1ed5b213b9",
       "duration_ms": 2856,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3585,7 +3585,7 @@
     "p09/intro": {
       "text": "Often means many times, though not every time.",
       "path": "assets/group-two-audio/p09/intro.mp3",
-      "audio_sha256": "66dbebb054041a7ef6bf0f76839d7527043331975132bd847f76e184623fe257",
+      "audio_sha256": "7d66ee0f6a732b7d1d53e212c8436bf0a3ef8e329292c3182ff2dfd8e5994449",
       "duration_ms": 3984,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3637,7 +3637,7 @@
     "p09/scene-1": {
       "text": "I often visit my grandparents.",
       "path": "assets/group-two-audio/p09/scene-1.mp3",
-      "audio_sha256": "1fbc3c96ed96ae3d12a8a46f2fdd0b79ca8e21d52b0c7a1a6a6c4bd630d04cf3",
+      "audio_sha256": "19583efcc37e13c81324a01abb949baa87b5b96487b9142dee11b412be39c190",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3674,7 +3674,7 @@
     "p09/scene-2": {
       "text": "I often play football after school.",
       "path": "assets/group-two-audio/p09/scene-2.mp3",
-      "audio_sha256": "76c16f1655e020632b9d21e0f29672c0833dad09c4df1a80e864f6c80c77eee0",
+      "audio_sha256": "e4a1bad40801e369b65d341efb2c28cabdc018584d2fb5ffb589155fef247e25",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3716,7 +3716,7 @@
     "p09/scene-3": {
       "text": "I often go to the library.",
       "path": "assets/group-two-audio/p09/scene-3.mp3",
-      "audio_sha256": "80b75d8387503a64191daa4b1de92bb227ede32b857b8fb0be7849a4df0474fb",
+      "audio_sha256": "6db85d280599737753e9961570d30e895094840ec01dc1108a7fa42fc6cf5c65",
       "duration_ms": 2712,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3758,7 +3758,7 @@
     "p09/scene-4": {
       "text": "I often help my mother.",
       "path": "assets/group-two-audio/p09/scene-4.mp3",
-      "audio_sha256": "17fbfcbf54626f58a835840afbd911a818d4a68ef0512c56831c3a90f74b334b",
+      "audio_sha256": "40d617385e3a323e0e6eda084830cd13fdb29c4b298db3ae53c2fc5e3f612344",
       "duration_ms": 2496,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3795,7 +3795,7 @@
     "p09/story-1": {
       "text": "Nour likes spending time outside.",
       "path": "assets/group-two-audio/p09/story-1.mp3",
-      "audio_sha256": "63b1c0609596c1229743276571433ca8602c5895ec701e8bd1ae35c56387dbdc",
+      "audio_sha256": "323cbb808aac0f885936ab49d08e1dee55815fbf80952f292fcf5a2b11404a3c",
       "duration_ms": 2976,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3832,7 +3832,7 @@
     "p09/story-2": {
       "text": "She often plays with her friends.",
       "path": "assets/group-two-audio/p09/story-2.mp3",
-      "audio_sha256": "97bdc120f7649573c19078ba0c2a07027925fccb99ea30ed0c284c02284442ed",
+      "audio_sha256": "868133e9f7a97db7bf72f4d647f7581406fbe5d5ae7210683219b3c8d13dddf7",
       "duration_ms": 3024,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3874,7 +3874,7 @@
     "p09/story-3": {
       "text": "After playing, she helps at home.",
       "path": "assets/group-two-audio/p09/story-3.mp3",
-      "audio_sha256": "7661c1e16432a7658002ca204d525c9ced214c48dbc4391f8b4324c13ea60a51",
+      "audio_sha256": "52a0594146ed4b10cd55dc4f05d46117cebff8120e5064ed91e4a5b286dec296",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3916,7 +3916,7 @@
     "p09/dialogue-1": {
       "text": "Do you often visit the library?",
       "path": "assets/group-two-audio/p09/dialogue-1.mp3",
-      "audio_sha256": "42a663b7adcc0e5f4e32290b3a837e666d26b44029a1950809fff68bdc21e944",
+      "audio_sha256": "5c33e4dbb716168b7813e4bf4f08aa18117cdb1ad89ca79f67df7e78ad869d51",
       "duration_ms": 2712,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -3958,7 +3958,7 @@
     "p09/dialogue-2": {
       "text": "Yes, I often visit it on Thursdays.",
       "path": "assets/group-two-audio/p09/dialogue-2.mp3",
-      "audio_sha256": "c1030541c443d8972287e61e1627ccaf9186363b83553acb02edf233c2ea9cff",
+      "audio_sha256": "9e7bb5d8447e387b3c3f90420066a5e914a6304133cbeade44cb8623ad66a9a9",
       "duration_ms": 3672,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4005,7 +4005,7 @@
     "p10/intro": {
       "text": "Sometimes describes an action that happens now and then.",
       "path": "assets/group-two-audio/p10/intro.mp3",
-      "audio_sha256": "2f777c148c5708632c688df5d91d83fcd2e50114a73e070371ff7392588cdefb",
+      "audio_sha256": "c0c24568a17f03841ca30cb5f8aa6c7eb430887fbbc01252846ad724f994cc61",
       "duration_ms": 4176,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4062,7 +4062,7 @@
     "p10/scene-1": {
       "text": "I sometimes watch TV after dinner.",
       "path": "assets/group-two-audio/p10/scene-1.mp3",
-      "audio_sha256": "7213cf7e1bf9a6001863ad7d72cebd6978e18549e8b5aa018a4216ec83547909",
+      "audio_sha256": "15cb023cd90f284c8db281f21989e3fe9883f8f9a2bac28746e64d60a87afac4",
       "duration_ms": 3264,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4104,7 +4104,7 @@
     "p10/scene-2": {
       "text": "I sometimes walk to work.",
       "path": "assets/group-two-audio/p10/scene-2.mp3",
-      "audio_sha256": "b42ec53c027436686c4cc4ac44f9010c444208b14fa93ab4cc95c49631d4fbe7",
+      "audio_sha256": "9d25bdd8020da7493baf9ec77bbc44159e28f510c72931a9be5a2fe52aedd603",
       "duration_ms": 2592,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4141,7 +4141,7 @@
     "p10/scene-3": {
       "text": "I sometimes eat fruit for breakfast.",
       "path": "assets/group-two-audio/p10/scene-3.mp3",
-      "audio_sha256": "06afdb279b2cafd632a575ebaf269aafefe6b9479823b78830376f6f1a7f4430",
+      "audio_sha256": "575272dbee3413c68a71404f3db7f37532ba68f29a88d97089092852f4ff40df",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4183,7 +4183,7 @@
     "p10/scene-4": {
       "text": "I sometimes study with my friends.",
       "path": "assets/group-two-audio/p10/scene-4.mp3",
-      "audio_sha256": "683ecd722548014fc2cf5489da0112be17c0352790739aaa9cdced2b8ab2d0ec",
+      "audio_sha256": "d9118581664a6260c29d0b740ee37e252cdf9b810929f05fffe2adda8ffa0974",
       "duration_ms": 3048,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4225,7 +4225,7 @@
     "p10/story-1": {
       "text": "Ali usually studies alone.",
       "path": "assets/group-two-audio/p10/story-1.mp3",
-      "audio_sha256": "4cb0accbe2c5e045862bfb7c1545db811eb1540be8c465b5612202a922bb5f29",
+      "audio_sha256": "6d32619bacbb698fdbca2a0eebe166edcf906fbb59770f6de6e01e8afc342872",
       "duration_ms": 2856,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4257,7 +4257,7 @@
     "p10/story-2": {
       "text": "Sometimes, his friends join him.",
       "path": "assets/group-two-audio/p10/story-2.mp3",
-      "audio_sha256": "0d5ebb15019d9d3143e06c18e09cd90b6a33059000a60fbe8143d4f51c529eb9",
+      "audio_sha256": "d777ca5a08c7679e3587663fca908fb30fc560c1025f64443c1fc2115c42c2f5",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4294,7 +4294,7 @@
     "p10/story-3": {
       "text": "They learn new words together.",
       "path": "assets/group-two-audio/p10/story-3.mp3",
-      "audio_sha256": "55ec9dba057d91dc847a014feeb91061e762ffc6af4d62806051eb778d89bd79",
+      "audio_sha256": "d0b4d53f3290733df4dff272271abef02638f66f21c7c589e28aa17816b72834",
       "duration_ms": 2688,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4331,7 +4331,7 @@
     "p10/dialogue-1": {
       "text": "Do you always study alone?",
       "path": "assets/group-two-audio/p10/dialogue-1.mp3",
-      "audio_sha256": "9ca2676891a221aa2f9a4657f60c6193b9b4e98b4ce7729d3ac5a12a539b017e",
+      "audio_sha256": "5b1dbf021a5f704cd3d81d1249d76e364fb457aa12dc21e71585cfb66d9baf11",
       "duration_ms": 2520,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4368,7 +4368,7 @@
     "p10/dialogue-2": {
       "text": "No, I sometimes study with friends.",
       "path": "assets/group-two-audio/p10/dialogue-2.mp3",
-      "audio_sha256": "fec331891757498f0a33443471ad5140f8e81e241805dc151630cc912070e5df",
+      "audio_sha256": "040e9adc077fc87086cc3d25ac4b89ee2a6f96bb177d0eb13f4f5620e9e64ada",
       "duration_ms": 3432,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4410,7 +4410,7 @@
     "p11/intro": {
       "text": "Never already makes the sentence negative. Do not add don't before never.",
       "path": "assets/group-two-audio/p11/intro.mp3",
-      "audio_sha256": "59b6243d87c6c1569e02de118be4868d701618567a02abc21b2b3e687afa82d5",
+      "audio_sha256": "83f7e4ab4e9b3f98064cee9f99fa2948d1cc14f2cc97369842a058e571f15171",
       "duration_ms": 6024,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4482,7 +4482,7 @@
     "p11/scene-1": {
       "text": "I never skip breakfast.",
       "path": "assets/group-two-audio/p11/scene-1.mp3",
-      "audio_sha256": "ee516137e41205a2e7c2fbb905b84bc95500fb756d9d7622bb6873c26181619a",
+      "audio_sha256": "4b36aac1a9bfb9f20a4e16c01361e6e11057a869215fb2869c79ab7760bea6c5",
       "duration_ms": 2568,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4514,7 +4514,7 @@
     "p11/scene-2": {
       "text": "I never forget my school bag.",
       "path": "assets/group-two-audio/p11/scene-2.mp3",
-      "audio_sha256": "f4cab9cdd9999ea4a532fa1b75a3ef3ddbca59af9f42842f47264a7c381bb0a1",
+      "audio_sha256": "ec6a671f856c3477c6ab2b226f937814bf288403d5297adda535b5d3e68c3ad8",
       "duration_ms": 2784,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4556,7 +4556,7 @@
     "p11/scene-3": {
       "text": "I never drink coffee at night.",
       "path": "assets/group-two-audio/p11/scene-3.mp3",
-      "audio_sha256": "a74769237b4f45c9b5a3c662fe23b9a3d2bf8b46216f588c42977ff44d40f02c",
+      "audio_sha256": "c92df40f73f44b690b235671d3dd2665a7a1be0c098ce2d682156e7447d292a0",
       "duration_ms": 2832,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4598,7 +4598,7 @@
     "p11/scene-4": {
       "text": "I never go to bed very late.",
       "path": "assets/group-two-audio/p11/scene-4.mp3",
-      "audio_sha256": "6290e21a9e950d6ef3b16eb4e47f6e347314986b5d588b74e6b5f4981e014fca",
+      "audio_sha256": "786d7fb663e6ff68cec2f88917848895b4c29d43bc3b9725404e2e5ac16337cd",
       "duration_ms": 2880,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4645,7 +4645,7 @@
     "p11/story-1": {
       "text": "Sara plans her school day.",
       "path": "assets/group-two-audio/p11/story-1.mp3",
-      "audio_sha256": "66edcf5ea9c21bc07034cb0eeb6353118dee788355fa907f05bd50a907945902",
+      "audio_sha256": "b2b634b1041b95d86e12a95397619caead979b62355935537c0b959e3121ddc6",
       "duration_ms": 2760,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4682,7 +4682,7 @@
     "p11/story-2": {
       "text": "She never forgets her lunch box.",
       "path": "assets/group-two-audio/p11/story-2.mp3",
-      "audio_sha256": "8fc18a60d5887b478b910e026739c358dea9afcb12049ab34b7f18e7e2b27c44",
+      "audio_sha256": "23c685fdbda0694a883a95e77cc40f7eb0b2b2b2601d973c9527df67812105fe",
       "duration_ms": 3024,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4724,7 +4724,7 @@
     "p11/story-3": {
       "text": "She checks her bag before leaving.",
       "path": "assets/group-two-audio/p11/story-3.mp3",
-      "audio_sha256": "0cdf48c4ba0ad4e33d5789e83f4af70e5cc38647fb4799528524b6b7a82115ee",
+      "audio_sha256": "91f75891d1ad8a37a7225e0189657076bec2607ce7b1f6d3b0382d4d8fa6f81b",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4766,7 +4766,7 @@
     "p11/dialogue-1": {
       "text": "Do you ever skip breakfast?",
       "path": "assets/group-two-audio/p11/dialogue-1.mp3",
-      "audio_sha256": "44be7575ab179c3f099bb5356cf4feb81cc375c10b21b448e67ef23a5a027ce5",
+      "audio_sha256": "9b779e64d573352c68b6ad676eec0dcd40ab928dfe5365f02861cab23733ad2d",
       "duration_ms": 2568,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4803,7 +4803,7 @@
     "p11/dialogue-2": {
       "text": "No, I never skip breakfast.",
       "path": "assets/group-two-audio/p11/dialogue-2.mp3",
-      "audio_sha256": "1277af5b3066e7e347bcbc32d1260d01ebc517faabcead29179d4efbebc80632",
+      "audio_sha256": "7b9486e3d413642cac7a636d7edcf62d776907336347627fd1614cc34da738ed",
       "duration_ms": 3144,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4840,7 +4840,7 @@
     "p12/intro": {
       "text": "Use eat with food, and drink with water, milk, or other beverages.",
       "path": "assets/group-two-audio/p12/intro.mp3",
-      "audio_sha256": "9d280393994454c1df3c4d4ec372489823939ee611c8ec5717762b06d5bc9f45",
+      "audio_sha256": "10b29057b2676474abd4428999c64289bfd07fcf0a5a65d8d939102869af42ce",
       "duration_ms": 5520,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4912,7 +4912,7 @@
     "p12/scene-1": {
       "text": "I eat lunch at one.",
       "path": "assets/group-two-audio/p12/scene-1.mp3",
-      "audio_sha256": "4aafa737dffb73b2b4e18b9954b7c898a7ac9f84970277b78fe5f3480f9ec4c0",
+      "audio_sha256": "b0d2f83ad6e941d1b5f72df7cef977c694673b4a0d40024e4205265d613441a9",
       "duration_ms": 2328,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4949,7 +4949,7 @@
     "p12/scene-2": {
       "text": "I eat an apple after school.",
       "path": "assets/group-two-audio/p12/scene-2.mp3",
-      "audio_sha256": "e61713ddbb358a708d36a123dfc67f4c018c1be2316d36f65213e51f75346f3c",
+      "audio_sha256": "264b4d069449d79f45a910779ad39f65a854f9c0450f362d5c719d7fee800074",
       "duration_ms": 2808,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -4991,7 +4991,7 @@
     "p12/scene-3": {
       "text": "I eat vegetables every day.",
       "path": "assets/group-two-audio/p12/scene-3.mp3",
-      "audio_sha256": "b690203ac6541c76255e287abfd1bf53cd23909977506b82620db1f0c091b6bb",
+      "audio_sha256": "8e4f83f2351ff442ea75e6ebf40ba28fc5a471a4c627af92c042ff187eb9a7b8",
       "duration_ms": 2880,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5028,7 +5028,7 @@
     "p12/scene-4": {
       "text": "I eat dinner with my family.",
       "path": "assets/group-two-audio/p12/scene-4.mp3",
-      "audio_sha256": "ed144a375ca7a2ab161aea3ec89d0aae3e7c1f1d403afdb39984056df390a344",
+      "audio_sha256": "5f3b708ba576ceaac758b6ae7e5b49c12d962d5fc8b8f4103dabfd261e50d2a9",
       "duration_ms": 2760,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5070,7 +5070,7 @@
     "p12/story-1": {
       "text": "Omar comes home after school.",
       "path": "assets/group-two-audio/p12/story-1.mp3",
-      "audio_sha256": "4253fd3049520d6bd48aec025ad93fd85970055a3b269d6457378e2b63855239",
+      "audio_sha256": "538f3365be3d1096b01e2ac6760e48835df1f527612c3407f2455140002158ca",
       "duration_ms": 2784,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5107,7 +5107,7 @@
     "p12/story-2": {
       "text": "He eats lunch with his family.",
       "path": "assets/group-two-audio/p12/story-2.mp3",
-      "audio_sha256": "b3b7f8a04e3293d49fcf4e26156dec042bf566180b5b5ba53c345f1657d5bebb",
+      "audio_sha256": "688de78df8d6fdebc9152a6636a2cd8a75abeb231e322dd2df5c7fd0e4102059",
       "duration_ms": 2808,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5149,7 +5149,7 @@
     "p12/story-3": {
       "text": "Then he rests for a short time.",
       "path": "assets/group-two-audio/p12/story-3.mp3",
-      "audio_sha256": "e61bda029704acde81ffb5a461131e27fd07225fc406b92cc28ffff84bbc2bb5",
+      "audio_sha256": "ae05dd1dec5df560b1093caa52ec12e3b81d994db8f7413cdd46101bcc14ff59",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5196,7 +5196,7 @@
     "p12/dialogue-1": {
       "text": "What do you eat for lunch?",
       "path": "assets/group-two-audio/p12/dialogue-1.mp3",
-      "audio_sha256": "108fa4ad9767b29686ce25be619c19da2ee59a5918476fbe4746c6e866ddaf97",
+      "audio_sha256": "05a296ff5443ae88416e12561c74154eab409734fac9b3215ffe3bfdc04fbee7",
       "duration_ms": 2496,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5238,7 +5238,7 @@
     "p12/dialogue-2": {
       "text": "I eat rice and vegetables.",
       "path": "assets/group-two-audio/p12/dialogue-2.mp3",
-      "audio_sha256": "201253c1ef7b7178b43960df13d6c489667e163568c4f9defdf887baf3e266c9",
+      "audio_sha256": "ec6068f6fec58409f50018505d9a68f84872ed6309413c8de95152a6a08c12be",
       "duration_ms": 2784,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5275,7 +5275,7 @@
     "p13/intro": {
       "text": "Before I links two actions and tells what happens first.",
       "path": "assets/group-two-audio/p13/intro.mp3",
-      "audio_sha256": "62bde18dd229e64517a36f00c1cfb9524dccb3ca63a8b2c70d43fc4eb01cb1e7",
+      "audio_sha256": "2e04833f4d54b3b5c5be3064b354945a2902e76eba1fe2adb4f8fbd688f34418",
       "duration_ms": 4416,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5337,7 +5337,7 @@
     "p13/scene-1": {
       "text": "Before I leave, I check my bag.",
       "path": "assets/group-two-audio/p13/scene-1.mp3",
-      "audio_sha256": "bc33ddef7c9f06bda4fa7ab87e4ac9a22e8841f200dd18755689cce60c2179ba",
+      "audio_sha256": "f296549add01816829bab1ecec308462aab0f0915a0e22ff90f73d9e1c155c5a",
       "duration_ms": 3216,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5384,7 +5384,7 @@
     "p13/scene-2": {
       "text": "Before I eat, I wash my hands.",
       "path": "assets/group-two-audio/p13/scene-2.mp3",
-      "audio_sha256": "3f63109d0c59a1fdac5001713fcd50d3d74c0741f1eaf51163adfeef137c8b2e",
+      "audio_sha256": "4746c21af976e105e86d64d72a9c3f3d45da29e5eb9773ffa0f34dfa3751ca12",
       "duration_ms": 3312,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5431,7 +5431,7 @@
     "p13/scene-3": {
       "text": "Before I sleep, I read a book.",
       "path": "assets/group-two-audio/p13/scene-3.mp3",
-      "audio_sha256": "6ed44c78f299c56a8aa3b01a51e9cad1a981a93b2761877eeda98f1d2c350961",
+      "audio_sha256": "c2c06a56d07db458473fa072081bba80ba832a89bc28745f3b30ca3c45238890",
       "duration_ms": 3048,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5478,7 +5478,7 @@
     "p13/scene-4": {
       "text": "Before I study, I clean my desk.",
       "path": "assets/group-two-audio/p13/scene-4.mp3",
-      "audio_sha256": "43c2576456c783a2d412535c612fb7c196d91869fedb889844b5bec57fca76b1",
+      "audio_sha256": "035a6bb256dd1c17148af7461c9b587dafa1164454388d6235fe0f50da2026cd",
       "duration_ms": 3480,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5525,7 +5525,7 @@
     "p13/story-1": {
       "text": "Maya gets ready for school.",
       "path": "assets/group-two-audio/p13/story-1.mp3",
-      "audio_sha256": "efdf0a46bb03c97ebe8ff876052d213c34100b79abe2a5b3233f66ad2d490ce2",
+      "audio_sha256": "62822b41e36cd190ea1203697110a441a452cdb2891694d098e4a966196da19e",
       "duration_ms": 2712,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5562,7 +5562,7 @@
     "p13/story-2": {
       "text": "Before she leaves, she checks her bag.",
       "path": "assets/group-two-audio/p13/story-2.mp3",
-      "audio_sha256": "12998314f727ada13fb1284f3a3fe5f40903702ff7736f2791b3cb877e654ed1",
+      "audio_sha256": "65881dc8606bd32ad449e19561217069819e4f4d9cf9bc93a25edd3324a501f5",
       "duration_ms": 3480,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5609,7 +5609,7 @@
     "p13/story-3": {
       "text": "Then she walks to the bus stop.",
       "path": "assets/group-two-audio/p13/story-3.mp3",
-      "audio_sha256": "f78e4c12f7365aa2a65fb63a243f067b842732409f543cc4f7800beb9a848fcf",
+      "audio_sha256": "053f26202dc2527796c9d4494b81b00361dc74a0d05937e51d409331eac33922",
       "duration_ms": 2832,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5656,7 +5656,7 @@
     "p13/dialogue-1": {
       "text": "What do you do before you eat?",
       "path": "assets/group-two-audio/p13/dialogue-1.mp3",
-      "audio_sha256": "10b2aeac6b8a1fff89fbfcafb1811367ca4ef187dbf9f09fae9bd855648148c8",
+      "audio_sha256": "5f7ee22bbfcdbb82e636d244f5c41e5947970115f208cc222e26ceb1468d5569",
       "duration_ms": 2760,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5703,7 +5703,7 @@
     "p13/dialogue-2": {
       "text": "Before I eat, I wash my hands.",
       "path": "assets/group-two-audio/p13/dialogue-2.mp3",
-      "audio_sha256": "0478d8bc062dbe9511188759db2a901625aa61a83e7abcd924b7fcafb9c71b40",
+      "audio_sha256": "8f9a036a534ffdb1315ace5b82b94522c0ad5128f12441bd207ee0f54988569c",
       "duration_ms": 3312,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5750,7 +5750,7 @@
     "p14/intro": {
       "text": "After I introduces an action that happens before the main action.",
       "path": "assets/group-two-audio/p14/intro.mp3",
-      "audio_sha256": "8c8167e404ac59437361cb6af5cc6e4d8fc8ecb070f2bf1f9824749c2bb96ee4",
+      "audio_sha256": "2e1939ebd222966080a035327bd41b5216d013c2032df7411b1e6959f28ae9fc",
       "duration_ms": 4824,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5817,7 +5817,7 @@
     "p14/scene-1": {
       "text": "After I wake up, I drink water.",
       "path": "assets/group-two-audio/p14/scene-1.mp3",
-      "audio_sha256": "7a263a9f604c9492cf6521431130a6a235d8e60a75205898cb2a777cbe5e07e1",
+      "audio_sha256": "d02c2d107754f269cf60b4dca6a3d0b10650fe7ac155ba42d18fa163d031aa31",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5864,7 +5864,7 @@
     "p14/scene-2": {
       "text": "After I study, I take a break.",
       "path": "assets/group-two-audio/p14/scene-2.mp3",
-      "audio_sha256": "58d7b664e35b57757ca9e6ffdc86cd92f80141d6e31381561a097ddf4f60bba6",
+      "audio_sha256": "be0e8542dadf47fa6725df76d5e2e1d85d217bb66431d9b1e097b938ea7cfd05",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5911,7 +5911,7 @@
     "p14/scene-3": {
       "text": "After I eat lunch, I rest.",
       "path": "assets/group-two-audio/p14/scene-3.mp3",
-      "audio_sha256": "4e16154a34635e2ffb0e6bc1eb3ea6c92f5e08b918065c703e761cff3b0b0437",
+      "audio_sha256": "52aaac2115721f14da165841a10fd27ce9aa24ec8b156b02fd94239e659f7b3b",
       "duration_ms": 3048,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -5953,7 +5953,7 @@
     "p14/scene-4": {
       "text": "After I brush my teeth, I go to bed.",
       "path": "assets/group-two-audio/p14/scene-4.mp3",
-      "audio_sha256": "7b7314977f4a118fbde6ab85023c82eb5c4450cbffa0520ca101b864b735d1df",
+      "audio_sha256": "15a593521cb52b2e098db166e7bdde353ca4f3a0faa2ddc1d1a8a6948168e74f",
       "duration_ms": 3504,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6010,7 +6010,7 @@
     "p14/story-1": {
       "text": "Ali finishes his homework.",
       "path": "assets/group-two-audio/p14/story-1.mp3",
-      "audio_sha256": "9c68347fd8482a42429c3f8a1b249538162acca3cc7ddd5369a0871908c18b8c",
+      "audio_sha256": "db54fc84d805fb1d21149ce10e8f752f1adbea2c07e129c3952d81b0ba37c4b3",
       "duration_ms": 2808,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6042,7 +6042,7 @@
     "p14/story-2": {
       "text": "After he studies, he takes a short break.",
       "path": "assets/group-two-audio/p14/story-2.mp3",
-      "audio_sha256": "dceb262695ad184354ead6c55427b44aeab2cb086a747465afeaf397e600e002",
+      "audio_sha256": "251743026b3619b226ee93cd5137d31a3d72172e9415995110033ddda5a8bee4",
       "duration_ms": 3696,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6094,7 +6094,7 @@
     "p14/story-3": {
       "text": "Then he plays with his brother.",
       "path": "assets/group-two-audio/p14/story-3.mp3",
-      "audio_sha256": "20873668b190c7b0c914a6fc2c3279bf04cc17897cd5338944ee7cbbd8a2bacf",
+      "audio_sha256": "c528ed9533ef73687e4a815ac67aa663733b58e1c267b17cd00ca9f05177e93f",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6136,7 +6136,7 @@
     "p14/dialogue-1": {
       "text": "What do you do after school?",
       "path": "assets/group-two-audio/p14/dialogue-1.mp3",
-      "audio_sha256": "9e95b754c659fd07cd4adace8a7dcbb7dd23d8184ef8620a4662f631c448e070",
+      "audio_sha256": "1a01613fa1e4ad4e28610c84a40e99a4eb9fc585862312cd4e4aae004de74bcd",
       "duration_ms": 2592,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6178,7 +6178,7 @@
     "p14/dialogue-2": {
       "text": "After I get home, I eat lunch.",
       "path": "assets/group-two-audio/p14/dialogue-2.mp3",
-      "audio_sha256": "3d15c7843f57583047e141524de17e999784f56012134cbc736bc847156a78a7",
+      "audio_sha256": "b4626250ca1cb1688b4649d63a1e4671768d3777235e530e4bb12e49dfb93df3",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6225,7 +6225,7 @@
     "p15/intro": {
       "text": "Every day means each day. Everyday is an adjective, as in everyday routine.",
       "path": "assets/group-two-audio/p15/intro.mp3",
-      "audio_sha256": "a0a21b333237c832b2990b1674761521386f545fee3b088e6ee113e6f1f4a35f",
+      "audio_sha256": "a325929c2d6b5d3181cb4096881dbd826985306225b224c237aef988a9f6a52a",
       "duration_ms": 6720,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6302,7 +6302,7 @@
     "p15/scene-1": {
       "text": "I practice English every day.",
       "path": "assets/group-two-audio/p15/scene-1.mp3",
-      "audio_sha256": "b5dbdb7137ad8557ed1deec9a9e8cb60c749e3a6c06cba2b30eb8ea721d4782b",
+      "audio_sha256": "20746f5444d5c95feef20effd28dea609c29041a15173cb939cc5849f9df9bbb",
       "duration_ms": 2856,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6339,7 +6339,7 @@
     "p15/scene-2": {
       "text": "I drink water every day.",
       "path": "assets/group-two-audio/p15/scene-2.mp3",
-      "audio_sha256": "0fda969532979e1f8f3a9c45b2537e6dc935cba414434b22eab6e6dd8bc0af18",
+      "audio_sha256": "a3737cf5a1766b9f18f22f6326a8653ddf5bc89e6a6cfd5645cb172d9836f96c",
       "duration_ms": 2640,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6376,7 +6376,7 @@
     "p15/scene-3": {
       "text": "I walk for twenty minutes every day.",
       "path": "assets/group-two-audio/p15/scene-3.mp3",
-      "audio_sha256": "1b37817bccf4aae90fdeb5384495f382f33bc36c9b48fcd9d47941da34fd2afc",
+      "audio_sha256": "a66e033377eec50e718bc2a1382dabaa642828c5838c84414293e051bb149f6a",
       "duration_ms": 3096,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6423,7 +6423,7 @@
     "p15/scene-4": {
       "text": "I write three sentences every day.",
       "path": "assets/group-two-audio/p15/scene-4.mp3",
-      "audio_sha256": "421a2aff816a972ce0d49e065ced1ddab6b45190ddbea30e2a523787698b942e",
+      "audio_sha256": "c3ac843b2a656bfa7e20fb7d6dc6edcd47042c6dcb9bfdc1bb6ef7ed54db47ef",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6465,7 +6465,7 @@
     "p15/story-1": {
       "text": "Nour wants to improve her English.",
       "path": "assets/group-two-audio/p15/story-1.mp3",
-      "audio_sha256": "75c4b932e2a7b6115f581db1daebd0cf97a9bbfdabb5def81a6de1907ce60a47",
+      "audio_sha256": "6b50f8c55a74994cd9689520ca186a4f0502c9382bf766f0c5d9609f319c51f6",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6507,7 +6507,7 @@
     "p15/story-2": {
       "text": "She learns a few words every day.",
       "path": "assets/group-two-audio/p15/story-2.mp3",
-      "audio_sha256": "99502b2a792a38bf1eb51e80a4d8322518d4d214ea143e7d26d55982db1345cc",
+      "audio_sha256": "9b461506afe2056f82c4f80178d3e73d8d350491498ac17f80149979605b7517",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6554,7 +6554,7 @@
     "p15/story-3": {
       "text": "After a week, she sees progress.",
       "path": "assets/group-two-audio/p15/story-3.mp3",
-      "audio_sha256": "9f0f1eccce023eafc2995849c9109b978b379cfeed3e7ed4acc4f38bf595858e",
+      "audio_sha256": "8220dce97163061d9c7b8743a1a3a3decae072ea004f46f4dad4f75f68332275",
       "duration_ms": 3408,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6596,7 +6596,7 @@
     "p15/dialogue-1": {
       "text": "How often do you practice English?",
       "path": "assets/group-two-audio/p15/dialogue-1.mp3",
-      "audio_sha256": "cc9f5685033ea1b73961bfc69101b50fd0fd055f51fe327a24f69c6616cfbbfb",
+      "audio_sha256": "626327396f33cf02e767c61ec07185c06d2e758e5eae1d90083ef088fc1c9334",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6638,7 +6638,7 @@
     "p15/dialogue-2": {
       "text": "I practice English every day.",
       "path": "assets/group-two-audio/p15/dialogue-2.mp3",
-      "audio_sha256": "ca38d1098944bb4ff771e16bf7d20195c519186536737e8c2039c1d8531289b9",
+      "audio_sha256": "eba9dd52d826cc868c73f78cdc46121f1e996c4e83731cd6195463bd18a2959d",
       "duration_ms": 2856,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6675,7 +6675,7 @@
     "p16/intro": {
       "text": "Use at night for regular nighttime activities.",
       "path": "assets/group-two-audio/p16/intro.mp3",
-      "audio_sha256": "cb79a07e0274fdd8873df9e76c18854c5aada2337fab36f6e8fe8e0c796518b7",
+      "audio_sha256": "342cdede1711e68fe6c8ea86b219cab601b169189f81935d80ff470d85e5ff3d",
       "duration_ms": 3864,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6722,7 +6722,7 @@
     "p16/scene-1": {
       "text": "At night, I read a short story.",
       "path": "assets/group-two-audio/p16/scene-1.mp3",
-      "audio_sha256": "bfc5bbc3afcf3e22632a6f5532f3ff842a11798f2eb7ff06ae863bd01570f10a",
+      "audio_sha256": "ff25f6b546ebb43c0016a16273dcd49a9b904d7a2497b417da9c564fa383842d",
       "duration_ms": 3144,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6769,7 +6769,7 @@
     "p16/scene-2": {
       "text": "I brush my teeth at night.",
       "path": "assets/group-two-audio/p16/scene-2.mp3",
-      "audio_sha256": "b3d846bab39eb1ebaefa0e48902b2785a34c40da65eebdd28a534a06ec9e73c3",
+      "audio_sha256": "a997cdeef40593391915d1ae3f9ac3ced6c3fe90d63d31412962f12b1eb641fe",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6811,7 +6811,7 @@
     "p16/scene-3": {
       "text": "At night, the street is quiet.",
       "path": "assets/group-two-audio/p16/scene-3.mp3",
-      "audio_sha256": "c0fdbdf00063a75c25f190ddd4eab64cf533c48bb567621a0f8fb4424289a76b",
+      "audio_sha256": "5e053462707c6437bc08a1defe4343b9f754ba8cfc86d0bf8a59a121ddc33a88",
       "duration_ms": 3096,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6853,7 +6853,7 @@
     "p16/scene-4": {
       "text": "I turn off my phone at night.",
       "path": "assets/group-two-audio/p16/scene-4.mp3",
-      "audio_sha256": "802a5aa93fe92d31c37c481711693f6bcfae02edb683233abb8161422b1fa86a",
+      "audio_sha256": "0cb6cb529c66fc851c33157f4fafed32967c7c6947804b6e9ea745367f0ea414",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6900,7 +6900,7 @@
     "p16/story-1": {
       "text": "The day is almost over.",
       "path": "assets/group-two-audio/p16/story-1.mp3",
-      "audio_sha256": "073e4a041aa73902df874178eaf850ad46bcc7db2a7ccd64b8e938799c68f1e5",
+      "audio_sha256": "812a0120a2a5276056e3eb773c1ee8a1e216949a2583efad6849822ff25477fe",
       "duration_ms": 2472,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6937,7 +6937,7 @@
     "p16/story-2": {
       "text": "At night, Omar reads a short story.",
       "path": "assets/group-two-audio/p16/story-2.mp3",
-      "audio_sha256": "2392156f5beba991190ad17bf9645f3df5c09d21fcc5905ee73a1e3807b2c2f6",
+      "audio_sha256": "98c33b0d889fcfadf5d78c7af8d93027e3f4967f77e98fc11de9c33c5739de6b",
       "duration_ms": 3336,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -6984,7 +6984,7 @@
     "p16/story-3": {
       "text": "Then he turns off the light.",
       "path": "assets/group-two-audio/p16/story-3.mp3",
-      "audio_sha256": "118d059b5449cb5e54a2e4004b953314d30840e0e96da86e917391f3a93d2f52",
+      "audio_sha256": "b1eda5d4b4fa3579ee6473a96a6f228319c11372a3468eedfa40f4e4850aba74",
       "duration_ms": 2592,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7026,7 +7026,7 @@
     "p16/dialogue-1": {
       "text": "What do you do at night?",
       "path": "assets/group-two-audio/p16/dialogue-1.mp3",
-      "audio_sha256": "c6450932da4616b8580c29e25dd0e580d6eb306072fe3ce26a61ab21339b90ce",
+      "audio_sha256": "1b4637f55cfa54b6ac0697273162cbf6dcb344dfd8bc73817ce1dfc1452b4c58",
       "duration_ms": 2352,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7068,7 +7068,7 @@
     "p16/dialogue-2": {
       "text": "At night, I read and rest.",
       "path": "assets/group-two-audio/p16/dialogue-2.mp3",
-      "audio_sha256": "ee5950e8f438d7ee23527a868fa55852d7161f3f6c4c4fd80b7a29c1ab721d82",
+      "audio_sha256": "bb6d062f2a59943c09fafaebf5fb8a31b9d006b0e32f2c11030b4c590303f7df",
       "duration_ms": 2976,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7110,7 +7110,7 @@
     "p17/intro": {
       "text": "Go to bed means prepare to sleep; fall asleep means begin sleeping.",
       "path": "assets/group-two-audio/p17/intro.mp3",
-      "audio_sha256": "1d61b7fe0a6279953f837d154afa86d54d95a0d077e500436c5484a7a446349a",
+      "audio_sha256": "327d94b7debd425ad1da9a3f35d0fb1a22bbc9ea304c08818e89a042c7f86d3a",
       "duration_ms": 5160,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7182,7 +7182,7 @@
     "p17/scene-1": {
       "text": "I go to bed at nine.",
       "path": "assets/group-two-audio/p17/scene-1.mp3",
-      "audio_sha256": "081e001eede56ab64d6f03dc9958823886549c19c3dd7ef9b302b1dcf5c60507",
+      "audio_sha256": "2b9b71c6b5b58ccbe47e1412833120c5efce3a370000a15c9a16c80ab2fe6fc8",
       "duration_ms": 2376,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7224,7 +7224,7 @@
     "p17/scene-2": {
       "text": "I go to bed after reading.",
       "path": "assets/group-two-audio/p17/scene-2.mp3",
-      "audio_sha256": "0002294167562ff2566cd4a4bc8168fc2f99d6b8dffa22c11ac4e5b3056d97c5",
+      "audio_sha256": "1a40d7c89fa1402e00c613408f224252f0078ad6b0ac3b64a327d75ccdd9e0ee",
       "duration_ms": 2640,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7266,7 +7266,7 @@
     "p17/scene-3": {
       "text": "I go to bed early on school nights.",
       "path": "assets/group-two-audio/p17/scene-3.mp3",
-      "audio_sha256": "c2e8cea31674d5e5524ff9d68f7ab319976cc656f88b556955a7d694c9fd0ded",
+      "audio_sha256": "c1dbfa5d5490d9157a7440ab92780235a1123977a8b4a64ad22330b947f08271",
       "duration_ms": 3168,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7318,7 +7318,7 @@
     "p17/scene-4": {
       "text": "I go to bed when I feel sleepy.",
       "path": "assets/group-two-audio/p17/scene-4.mp3",
-      "audio_sha256": "fde0e131d129ee377f0d014394f7772a281b6fab8cba0b212380daa468716fd6",
+      "audio_sha256": "90608ffdb0e8dd0999c1629b6b149b28ff189e6760f5e0f50e0d3e266bf01520",
       "duration_ms": 2928,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7370,7 +7370,7 @@
     "p17/story-1": {
       "text": "Sara finishes her evening routine.",
       "path": "assets/group-two-audio/p17/story-1.mp3",
-      "audio_sha256": "7d014508af48283aa120eb74bfe2194caf9b956d0e949b85647a67f5b591c247",
+      "audio_sha256": "f78b7629721c9def17a5c8c0857b7ddfb401e5923f6e313b7582d27fec820e4a",
       "duration_ms": 3120,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7407,7 +7407,7 @@
     "p17/story-2": {
       "text": "She says good night to her family.",
       "path": "assets/group-two-audio/p17/story-2.mp3",
-      "audio_sha256": "c6c64d1e72328b5698823fabbafe8d5a774169d3c58e4d591358ab9cbf3d1793",
+      "audio_sha256": "dc23743b505da40f059c645a78da8c68c05ad7f4fe5ea8fbea1c9308efeb37a5",
       "duration_ms": 2976,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7454,7 +7454,7 @@
     "p17/story-3": {
       "text": "She goes to bed at nine.",
       "path": "assets/group-two-audio/p17/story-3.mp3",
-      "audio_sha256": "c609c44554b41797bc1f49091231dc502fd0ddd9f00e48dd0f068a4f6c52e4a0",
+      "audio_sha256": "6fc4dfc9924146e6773098845a7bca5b3ad5580b83797e8226b48fc3b02f81bd",
       "duration_ms": 2496,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7496,7 +7496,7 @@
     "p17/dialogue-1": {
       "text": "What time do you go to bed?",
       "path": "assets/group-two-audio/p17/dialogue-1.mp3",
-      "audio_sha256": "a1420a86e01ced54c396223b355b7bad4b430730ce5a1d79ae28bb3f5e7209c1",
+      "audio_sha256": "298c046b414a39edc59b1b7c07ab113912278207967b8308f535c762fee83e33",
       "duration_ms": 2472,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7543,7 +7543,7 @@
     "p17/dialogue-2": {
       "text": "I go to bed at nine.",
       "path": "assets/group-two-audio/p17/dialogue-2.mp3",
-      "audio_sha256": "c62b2f3e43e59bc23b7586a49f7282e7dff9676b56deaccb1d952c4e050e8f61",
+      "audio_sha256": "adc9a4de2bf0b10443db9f2590c87ab9de4ca74b63c3d606cac38dcac27f105e",
       "duration_ms": 2376,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7585,7 +7585,7 @@
     "p18/intro": {
       "text": "On weekends describes regular weekend habits in American English.",
       "path": "assets/group-two-audio/p18/intro.mp3",
-      "audio_sha256": "5da2bca313ba9ad74fce00c4b5790a292e3e1636d0ea8df56f5ef8dee45fe6f5",
+      "audio_sha256": "fa12d46c347255f737954c674e51a7ae57c078edcd1c651d8caf6e3de5cf1da6",
       "duration_ms": 4968,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7642,7 +7642,7 @@
     "p18/scene-1": {
       "text": "On weekends, I visit my grandparents.",
       "path": "assets/group-two-audio/p18/scene-1.mp3",
-      "audio_sha256": "2d1e176d6631598af018ac5c3cf75ddcf6a53ac7a964dbc70794ffb2f6e7f933",
+      "audio_sha256": "fb09bd673e0fb1f373b0379b3263230cb177eb6c6ec8054c092a3d2bcc327da6",
       "duration_ms": 3480,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7684,7 +7684,7 @@
     "p18/scene-2": {
       "text": "I play football on weekends.",
       "path": "assets/group-two-audio/p18/scene-2.mp3",
-      "audio_sha256": "6e6c33f08b623b7346ca0480dcc28bfac81c8c408a3af9b83546c9ec0693b8db",
+      "audio_sha256": "9d67c8fdde70104a1b1e7f6cc35c674233825bb7bfe4652e657f98beb13db5ec",
       "duration_ms": 2832,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7721,7 +7721,7 @@
     "p18/scene-3": {
       "text": "On weekends, I wake up later.",
       "path": "assets/group-two-audio/p18/scene-3.mp3",
-      "audio_sha256": "d54798b50ce443d5927c93c732488588c41152ce53c2edf4611d539e11385dc0",
+      "audio_sha256": "d3059ca9bbf98021577f8d95bd0c0f55cff67c0cef18a73e430b619946b12ee6",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7763,7 +7763,7 @@
     "p18/scene-4": {
       "text": "I spend time with my family on weekends.",
       "path": "assets/group-two-audio/p18/scene-4.mp3",
-      "audio_sha256": "f08bc4f23cd6f5286beda4e3d03ad54bc51dd4dea0497bd64707336db18d23b2",
+      "audio_sha256": "79dc3d12beaaee571712e9f72f2e6c0b59d635ecf0cdb341c6c41479c3920485",
       "duration_ms": 3504,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7815,7 +7815,7 @@
     "p18/story-1": {
       "text": "The school week is over.",
       "path": "assets/group-two-audio/p18/story-1.mp3",
-      "audio_sha256": "ac420fbf9c1dd7287d938f4ea76252f85e041f697b2e09cfd0e61d49855a62f1",
+      "audio_sha256": "d3baccdc9d95bde4c13c4f7dc98626bc8fdb215d3a5b3baaab581c5ecd6a9be7",
       "duration_ms": 2448,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7852,7 +7852,7 @@
     "p18/story-2": {
       "text": "On weekends, Maya visits her grandparents.",
       "path": "assets/group-two-audio/p18/story-2.mp3",
-      "audio_sha256": "72d8aaeb9304bcb901d6c39e5351d9751540d7e6232e9d97e16a81598f996ca2",
+      "audio_sha256": "6faa5705940bb7738e16793ee9566c10f85089f8e0a3e728191eb38bac21853c",
       "duration_ms": 3744,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7894,7 +7894,7 @@
     "p18/story-3": {
       "text": "She feels happy with her family.",
       "path": "assets/group-two-audio/p18/story-3.mp3",
-      "audio_sha256": "88765565b213f5f08338ab0217f3915571308504b9a9d9824b59e7df82cd9c99",
+      "audio_sha256": "3c7085c94af950e86a3f80637ca09b890f220efaf079e17110e1e698b64148a7",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7936,7 +7936,7 @@
     "p18/dialogue-1": {
       "text": "What do you do on weekends?",
       "path": "assets/group-two-audio/p18/dialogue-1.mp3",
-      "audio_sha256": "2676aa8ec0fdec984cc461533450c3c4ef57af6d92d44616af538ecdec612f96",
+      "audio_sha256": "a9224cd9553cb612e89741bfbd3f1c89095eac48fab16ca1c48bf40ed0ff7a09",
       "duration_ms": 2544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -7978,7 +7978,7 @@
     "p18/dialogue-2": {
       "text": "I visit my grandparents on weekends.",
       "path": "assets/group-two-audio/p18/dialogue-2.mp3",
-      "audio_sha256": "47f295702a96807e816480f3ee91ef20f2d69335d6a25514fbf426bca4047ac2",
+      "audio_sha256": "d4168135719383e5eb35e1713a3a8c137bf888713040115eb864b2a242430c2c",
       "duration_ms": 3240,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8020,7 +8020,7 @@
     "chapters/c01/line-1": {
       "text": "I usually wake up at six.",
       "path": "assets/group-two-audio/chapters/c01/line-1.mp3",
-      "audio_sha256": "ce945ce48546b431b6fde5d22f2882659d60d7388b1c2747e459ab6b20e0682d",
+      "audio_sha256": "5d1dc5c3a307a8fc547f5d3e0414176fbcea93e6b847f50e9e95bcc80e949e67",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8062,7 +8062,7 @@
     "chapters/c01/line-2": {
       "text": "I get up and open the window.",
       "path": "assets/group-two-audio/chapters/c01/line-2.mp3",
-      "audio_sha256": "c881d3c67f8e1f12e7aa3ff538f99f1989252dbc82ff87db160d43cf02c09a78",
+      "audio_sha256": "0e2e600d96a3870c14920c98dcd7e016fa1b6d9cf6aecc752ab20a549e129845",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8109,7 +8109,7 @@
     "chapters/c01/line-3": {
       "text": "In the morning, I drink water.",
       "path": "assets/group-two-audio/chapters/c01/line-3.mp3",
-      "audio_sha256": "97be8bd091380f8ff84065a3e1aef006be122876d6d809ecadce060d932b6e0e",
+      "audio_sha256": "00b1b095f10f4462212963c202d66f12b710c0d4b95b8ccbe25c10190da234f0",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8151,7 +8151,7 @@
     "chapters/c01/line-4": {
       "text": "I always brush my teeth.",
       "path": "assets/group-two-audio/chapters/c01/line-4.mp3",
-      "audio_sha256": "4a9e7707b98f92d7f83ca9e84e3990f84ebb1b33ac08d4bbbb043afb71224321",
+      "audio_sha256": "c46eec511854965eea7dc4164c9f58bb6629d504d781d020a30b6ce077d771b8",
       "duration_ms": 2664,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8188,7 +8188,7 @@
     "chapters/c01/line-5": {
       "text": "I have breakfast with my family.",
       "path": "assets/group-two-audio/chapters/c01/line-5.mp3",
-      "audio_sha256": "31d74fae2eb4f28cf5f877e13b5eb03605b4529e9398a6f389361b01b5461ec2",
+      "audio_sha256": "2ded325926f206c9b9861e9981c5e1fee0bd4d3249c868e8b1fb9a974e6fd86b",
       "duration_ms": 2952,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8230,7 +8230,7 @@
     "chapters/c01/line-6": {
       "text": "Before I leave, I check my bag.",
       "path": "assets/group-two-audio/chapters/c01/line-6.mp3",
-      "audio_sha256": "f1ac93cf8121ec613b3b55eac766ca53490b26b48343103bf4a7a3602b4c710a",
+      "audio_sha256": "7ce861b48f3bff30a94ca8446ac8b5aba9ed239394806df948c65290e26274a4",
       "duration_ms": 3216,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8277,7 +8277,7 @@
     "chapters/c02/line-1": {
       "text": "I go to school five days a week.",
       "path": "assets/group-two-audio/chapters/c02/line-1.mp3",
-      "audio_sha256": "4b00dd1a89d238b878f3a1af5dc9649478dbd7334221ced04020b153cbcf069a",
+      "audio_sha256": "3c3baf98dac56e6501e14d5748f9165e1a8d704da95f74c3152dc95a681db294",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8329,7 +8329,7 @@
     "chapters/c02/line-2": {
       "text": "I usually walk to school.",
       "path": "assets/group-two-audio/chapters/c02/line-2.mp3",
-      "audio_sha256": "d1e594bdea5acb79caaa96fcb368436339f979112d7e85d71083ff065ee36b1c",
+      "audio_sha256": "0d0db3e2df89049935256f97331bf6dc108022810db56b8195666b44900b4d7d",
       "duration_ms": 2688,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8366,7 +8366,7 @@
     "chapters/c02/line-3": {
       "text": "I often study with my friends.",
       "path": "assets/group-two-audio/chapters/c02/line-3.mp3",
-      "audio_sha256": "e0ddab35b9076774ce6948b10cc77b70efe75e6a4c3021338c3315d28e05af01",
+      "audio_sha256": "d699e4092dbefb03c562df918c4424249e08e6733656aa6645d44804b38b17df",
       "duration_ms": 3024,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8408,7 +8408,7 @@
     "chapters/c02/line-4": {
       "text": "I sometimes eat fruit for lunch.",
       "path": "assets/group-two-audio/chapters/c02/line-4.mp3",
-      "audio_sha256": "0d678a993b4324aaa0b0c5ba087d6d7bd98d922e334eb282ab0cd1c3b4026f0b",
+      "audio_sha256": "3d209633bc8b2f4b0f4aa8c0502e6560fd21c4fedd346b0cf312450222082a8a",
       "duration_ms": 2904,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8450,7 +8450,7 @@
     "chapters/c02/line-5": {
       "text": "After I get home, I eat lunch.",
       "path": "assets/group-two-audio/chapters/c02/line-5.mp3",
-      "audio_sha256": "b360f00e7775fe996e58e30a60b1f987f67244640c24fdb1aa8aa2fc1f4cfe1d",
+      "audio_sha256": "6c3fc3cf6880b8dda04e2f7ca2351be954e4bada250ca6ade6aba8c5918d3d41",
       "duration_ms": 3192,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8497,7 +8497,7 @@
     "chapters/c02/line-6": {
       "text": "I practice English every day.",
       "path": "assets/group-two-audio/chapters/c02/line-6.mp3",
-      "audio_sha256": "932918b7ffca9d6e2b10ea9fe6758800194609d94e1108dda0f169d4352f98e6",
+      "audio_sha256": "7a8ca66175cfc88659c007559421daf54cf4ac39a6b979d028e2798cb960ff3c",
       "duration_ms": 2856,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8534,7 +8534,7 @@
     "chapters/c03/line-1": {
       "text": "On weekends, I wake up later.",
       "path": "assets/group-two-audio/chapters/c03/line-1.mp3",
-      "audio_sha256": "a00686c0598906e01c917bb5a02d60a9bb24a446b647fcb00f2cfe9e75f387df",
+      "audio_sha256": "915715e708d658c7b201638839ae9b226c1bec7ed592ad0703243537ddd1f9fe",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8576,7 +8576,7 @@
     "chapters/c03/line-2": {
       "text": "I have breakfast at home.",
       "path": "assets/group-two-audio/chapters/c03/line-2.mp3",
-      "audio_sha256": "6e340855a9dc7f6e15841bb31074e4f7e0c30df65b8c5c082c9f1119e8d3848a",
+      "audio_sha256": "1d227c92d6017ffd9f98f4c46055588f25c58444a5f78246f642c3e738bd5f8f",
       "duration_ms": 2544,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8613,7 +8613,7 @@
     "chapters/c03/line-3": {
       "text": "I often visit my grandparents.",
       "path": "assets/group-two-audio/chapters/c03/line-3.mp3",
-      "audio_sha256": "0d677c69b9710d46bdbcf8c981569268531ec6d15d2c0b1f07295fce7d460265",
+      "audio_sha256": "e8c02012ddd6cd8fabb54927e8a8dae4809c07fcd09647dae7fd47dbd5f7d669",
       "duration_ms": 3000,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8650,7 +8650,7 @@
     "chapters/c03/line-4": {
       "text": "Sometimes, I play football with friends.",
       "path": "assets/group-two-audio/chapters/c03/line-4.mp3",
-      "audio_sha256": "0b482554aca1eded9bd22422301758466f0426f90da8650cb0085a291d54d1d0",
+      "audio_sha256": "16b82fc002cde0c410c036d112489fb4bd8323d019fc121baea5c94b07966065",
       "duration_ms": 3552,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8692,7 +8692,7 @@
     "chapters/c03/line-5": {
       "text": "At night, I read a short story.",
       "path": "assets/group-two-audio/chapters/c03/line-5.mp3",
-      "audio_sha256": "6d52e9c739bc7a64af07b779430115eda46dad285afbac1bbdc58530247550be",
+      "audio_sha256": "179ff6731a547076006a2eb660b9211593f34e55f67a0314adcf2a576b0c0a99",
       "duration_ms": 3144,
       "language": "en",
       "voice": "en-US-JennyNeural",
@@ -8739,7 +8739,7 @@
     "chapters/c03/line-6": {
       "text": "I go to bed early.",
       "path": "assets/group-two-audio/chapters/c03/line-6.mp3",
-      "audio_sha256": "0b3fc9d19bcf78e2f5243c49cdf5db85d6461d90527c759f1a61c21f8388c155",
+      "audio_sha256": "430a2e03586599113157378c1126a84f6d4639cec53ced354ee26f3417307016",
       "duration_ms": 2280,
       "language": "en",
       "voice": "en-US-JennyNeural",
