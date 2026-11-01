@@ -89,7 +89,26 @@ function play(text,clip,target=null,slow=false,done=null){
  player.onerror=fallback;
  player.play().catch(fallback);
 }
+
+const g1ReadyAtlases=new Set(),g1RequestedAtlases=new Set();
+function requestAtlas(id){
+ if(!/^atlas-0[1-6]$/.test(id)||g1RequestedAtlases.has(id))return;
+ g1RequestedAtlases.add(id);
+ const image=new Image();
+ image.onload=()=>{
+  if(image.naturalWidth!==1448||image.naturalHeight!==1086)return;
+  g1ReadyAtlases.add(id);
+  if(active&&example()?.atlas?.[0]===id&&$("g1Visual"))$("g1Visual").innerHTML=thumbnail(example());
+ };
+ image.onerror=()=>{};
+ image.src="assets/group-one/"+id+".webp";
+}
 function thumbnail(it){
+ const a=it.atlas;
+ if(a&&g1ReadyAtlases.has(a[0])&&Number.isInteger(a[1])&&a[1]>=0&&a[1]<12){
+  const x=a[1]%4,y=Math.floor(a[1]/4);
+  return '<div class="g1Photo" role="img" aria-label="'+esc(it.context)+'" style="background-image:url(assets/group-one/'+a[0]+'.webp);background-size:400% 300%;background-position:'+(x*100/3)+'% '+(y*50)+'%"></div>';
+ }
  const p=it.photo;
  if(p&&["this","have","got"].includes(p[0])&&Number.isInteger(p[1])&&p[1]>=0&&p[1]<12){
   const x=p[1]%4,y=Math.floor(p[1]/4);
@@ -113,7 +132,7 @@ function renderStudy(){
  $("g1Explanation").textContent=p.explanation;$("g1ExplanationEn").textContent=p.explanationEn;
  $("g1Contrast").textContent=p.contrast;$("g1Number").textContent="النمط "+p.id+" / "+data.items.length;
  $("g1Source").textContent="يرتبط بمدخلات المصدر: "+p.sourceIds.map(n=>"#"+n).join("، ")+" · قد تكون بعض الأمثلة توسعًا تعليميًا جديدًا";
- $("g1Visual").innerHTML=thumbnail(s);$("g1SceneContext").textContent=s.context;
+ requestAtlas(s.atlas?.[0]);$("g1Visual").innerHTML=thumbnail(s);$("g1SceneContext").textContent=s.context;
  $("g1MainEnglish").textContent=s.en;$("g1MainArabic").textContent=s.ar;
  $("g1SceneNumber").textContent="الموقف "+(scene+1)+" / 4";
  $("g1SceneSteps").innerHTML=p.scenes.map((x,i)=>'<button data-g1-scene="'+i+'" class="'+(scene===i?"active":"")+'" aria-label="الموقف '+(i+1)+'">'+(i+1)+'</button>').join("");
