@@ -86,14 +86,37 @@ function renderStats(){$("sPatterns").textContent=CORPUS.patterns.length.toLocal
 function go(view){stopAudio();state.auto=false;state.view=view;["learn","catalog","compare","guide"].forEach(v=>$("view-"+v).classList.toggle("hidden",v!==view));document.querySelectorAll("[data-view]").forEach(btn=>btn.classList.toggle("active",btn.dataset.view===view));if(view==="catalog")renderCatalog();if(view==="compare")renderCompare();window.scrollTo({top:0,behavior:"smooth"})}
 function chooseLesson(i){stopAudio();state.auto=false;state.lesson=Math.max(0,Math.min(LIB.length-1,i));state.depth=0;state.scene=0;renderStudy();go("learn");$("study").scrollIntoView({behavior:"smooth",block:"start"})}
 function thumbPosition(tile){return (tile%4)*100/3+"% "+Math.floor(tile/4)*50+"%"}
-// Context-specific real-photo scenes. The original SVG remains a fallback.
-const SCENE_PHOTOS=["https://images.pexels.com/photos/7577378/pexels-photo-7577378.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/7777001/pexels-photo-7777001.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/37170158/pexels-photo-37170158.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/8031873/pexels-photo-8031873.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/19747889/pexels-photo-19747889.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/7144195/pexels-photo-7144195.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/8154167/pexels-photo-8154167.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/8154228/pexels-photo-8154228.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/8554845/pexels-photo-8554845.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/3783527/pexels-photo-3783527.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/9186152/pexels-photo-9186152.jpeg?auto=compress&cs=tinysrgb&w=960","https://images.pexels.com/photos/19747866/pexels-photo-19747866.jpeg?auto=compress&cs=tinysrgb&w=960"];
-function photoStyle(tile){
- const fallback=thumbPosition(tile);
- const u=SCENE_PHOTOS[tile]||SCENE_PHOTOS[0];
- return "background-image:linear-gradient(transparent,rgba(9,24,50,.15)),url('"+u+"'),url('assets/scenes.svg');background-size:cover,cover,400% 300%;background-position:center,center,"+fallback+";";
+// Original 4x3 WebP photographic atlases, created for every English lesson scene.
+function photoStyle(lessonId,tile){
+ const number=Math.max(0,Math.min(11,Math.floor(Number(tile)||0)));
+ const pos=thumbPosition(number);
+ return 'background-image:url("assets/real-scenes/'+lessonId+'-scenes.webp"),url("assets/scenes.svg");background-size:400% 300%,400% 300%;background-position:'+pos+','+pos+';background-repeat:no-repeat;';
 }
-function renderLessonCards(){$("lessonCards").innerHTML=LIB.map((l,i)=>'<article class="lessonCard '+(i===state.lesson?"active":"")+'"><div class="thumb" style="'+photoStyle(l.levels[0].scenes[0].tile)+'"><span class="n">#'+(i+1)+'</span></div><div class="copy"><b lang="en">'+escapeHtml(l.title)+'</b><p>'+escapeHtml(l.ar)+' · 12 مشهدًا</p><button class="btn '+(i===state.lesson?"primary":"alt")+'" data-lesson="'+i+'">'+(i===state.lesson?"الدرس الجاري":"ابدأ الرحلة")+'</button></div></article>').join("");
+function storyPhotoIndex(lessonId,entry){
+ const t=String(entry?.en||"").toLowerCase();
+ const lesson=LIB.find(l=>l.id===lessonId);
+ if(lesson)for(let d=0;d<lesson.levels.length;d++)for(let i=0;i<lesson.levels[d].scenes.length;i++)if(lesson.levels[d].scenes[i].en.toLowerCase()===t)return d*4+i;
+ if(lessonId==="this"){
+  if(/bags?/.test(t))return 11;if(/work|live|office/.test(t))return 10;
+  if(/books/.test(t))return 5;if(/book/.test(t))return 1;
+  if(/friends/.test(t))return 6;if(/friend/.test(t))return 2;
+  if(/far|that|there/.test(t))return 4;if(/house|home|room/.test(t))return 0;
+  return Math.max(0,Math.min(11,Number(entry?.tile)||0));
+ }
+ if(lessonId==="have"){
+  if(/tickets?|train/.test(t))return 6;if(/books?/.test(t))return 7;
+  if(/laptop|computer/.test(t))return 1;if(/ideas?|meeting|plan/.test(t))return 2;
+  if(/cars?/.test(t))return 4;if(/time|talk|minute/.test(t))return 10;
+  if(/new job|good job|my job|work|manager|desk|office/.test(t))return 0;
+  return 0;
+ }
+ if(/phone|message/.test(t))return 1;if(/ticket|train/.test(t))return 2;
+ if(/pens?/.test(t))return 3;if(/books?/.test(t))return 11;
+ if(/cars?/.test(t))return 5;if(/everything|travel|trip|bag|packing/.test(t))return 6;
+ if(/leave|late|now/.test(t))return 8;if(/ask|minute|talk/.test(t))return 10;
+ if(/job|work|manager/.test(t))return 0;return 7;
+}
+function renderLessonCards(){$("lessonCards").innerHTML=LIB.map((l,i)=>'<article class="lessonCard '+(i===state.lesson?"active":"")+'"><div class="thumb" style="'+photoStyle(l.id,0)+'"><span class="n">#'+(i+1)+'</span></div><div class="copy"><b lang="en">'+escapeHtml(l.title)+'</b><p>'+escapeHtml(l.ar)+' · 12 مشهدًا</p><button class="btn '+(i===state.lesson?"primary":"alt")+'" data-lesson="'+i+'">'+(i===state.lesson?"الدرس الجاري":"ابدأ الرحلة")+'</button></div></article>').join("");
  document.querySelectorAll("[data-lesson]").forEach(b=>b.onclick=()=>chooseLesson(+b.dataset.lesson))}
 function highlighted(line){let regex=state.lesson===0?/\b(this is|that is|these are|those are|is this|this isn't)\b/i:state.lesson===1?/\b(have to|have|has|does|don't have|do you have)\b/i:/\b(i've got|she's got|haven't got|has he got|we've got|got to|you've got)\b/i;const m=line.match(regex);if(!m)return escapeHtml(line);return escapeHtml(line.slice(0,m.index))+'<span class="focus">'+escapeHtml(m[0])+'</span>'+escapeHtml(line.slice(m.index+m[0].length))}
 function renderStudy(){renderLessonCards();let l=activeLesson(),lev=activeLevel();$("lessonBadge").textContent="النمط "+(state.lesson+1)+" من 3 · "+deepNames[["basic","intermediate","advanced"][state.depth]];$("lessonTitle").textContent=l.title;$("lessonDescription").textContent=l.description;$("lessonInfo").textContent=l.description;$("formula").textContent=l.formula;
@@ -102,8 +125,8 @@ function renderStudy(){renderLessonCards();let l=activeLesson(),lev=activeLevel(
  $("relationships").innerHTML=l.related.map(id=>{let other=LIB.find(x=>x.id===id);return other?'<button class="btn tiny" data-rel="'+escapeHtml(id)+'">'+escapeHtml(other.title)+'</button>':""}).join("")+'<button class="btn tiny" id="viewLibrary">بحث في المكتبة ←</button>';
  document.querySelectorAll("[data-rel]").forEach(b=>b.onclick=()=>chooseLesson(LIB.findIndex(x=>x.id===b.dataset.rel)));$("viewLibrary").onclick=()=>{go("catalog");$("search").value=state.lesson===0?"this":state.lesson===1?"have":"got";renderCatalog()};
  renderScene();renderStory()}
-function renderScene(){const s=activeScene(),l=activeLesson(),lev=activeLevel(),i=state.scene;const col=s.tile%4,row=Math.floor(s.tile/4);
- $("sceneArt").style.cssText=photoStyle(s.tile);$("sceneLocation").textContent=s.context;$("sceneBubble").textContent=s.en;$("sceneCount").textContent="المشهد "+(i+1)+" / "+lev.scenes.length;$("sentenceEn").innerHTML=highlighted(s.en);$("sentenceAr").textContent=s.ar;$("sentenceHint").textContent="مفتاح الفهم: "+s.hint;
+function renderScene(){const s=activeScene(),l=activeLesson(),lev=activeLevel(),i=state.scene;const atlasTile=state.depth*4+i;
+ $("sceneArt").style.cssText=photoStyle(l.id,atlasTile);$("sceneLocation").textContent=s.context;$("sceneBubble").textContent=s.en;$("sceneCount").textContent="المشهد "+(i+1)+" / "+lev.scenes.length;$("sentenceEn").innerHTML=highlighted(s.en);$("sentenceAr").textContent=s.ar;$("sentenceHint").textContent="مفتاح الفهم: "+s.hint;
  $("stepLabel").textContent=lev.label+" · المشهد "+(i+1)+" / 4";$("prevScene").disabled=state.depth===0&&i===0;
  $("nextScene").textContent=state.depth===2&&i===3?"العودة لأول مشهد ←":"التالي ←";
  $("sceneDots").innerHTML=lev.scenes.map((x,n)=>'<button data-dot="'+n+'" aria-label="المشهد '+(n+1)+'" class="'+(n===i?"active":"")+'"></button>').join("");document.querySelectorAll("[data-dot]").forEach(b=>b.onclick=()=>{stopAudio();state.scene=+b.dataset.dot;renderScene()});
@@ -152,7 +175,7 @@ function renderStory(){
  $("introDownload").href=resolvePreviewAudio("assets/audio/"+activeLesson().id+"/intro.mp3");
  $("storyAudioState").textContent="استمع للنطق الطبيعي المسجل عند توفره؛ البديل صوت الجهاز. تلوين MP3 يعمل فقط عندما تتوفر توقيتات صوتية مقاسة للتسجيل نفسه؛ وإلا لا نعرض تلوينًا تخمينيًا.";
  $("storyList").innerHTML=items.map((x,i)=>{
- const pos=photoStyle(x.tile);
+ const pos=photoStyle(activeLesson().id,storyPhotoIndex(activeLesson().id,x));
  const speaker=isDialogue?'<span class="storySpeaker">'+(i%2?"المتحدث B":"المتحدث A")+"</span>":"";
  return '<button type="button" class="storyLine" data-story-index="'+i+'" aria-label="استمع للجملة '+(i+1)+'"><span class="storyMini" style="'+pos+'"></span><span class="storyText">'+speaker+'<span class="storyEnglish" lang="en" dir="ltr">'+escapeHtml(x.en)+'</span><span class="storyArabic">'+escapeHtml(x.ar)+'</span></span></button>';
  }).join("");
