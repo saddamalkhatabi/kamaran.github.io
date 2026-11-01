@@ -4,7 +4,7 @@
    automatically when verified pattern assets are published.
 */
 (function(window,document){"use strict";
-var corpus=null,byId=new Map(),selected=1,ordered=[],subset=[],limit=40,offset=0,progress=new Set(),audio=null,talk=null,clock=0,last=-9,session=0,voiceIndex=null,recordingCueIndex=null,audioCues=null;
+var corpus=null,byId=new Map(),selected=1,ordered=[],subset=[],limit=40,offset=0,progress=new Set(),audio=null,talk=null,clock=0,last=-9,session=0,voiceIndex=null,recordingCueIndex=null,audioCues=null,expansions={};
 var state={search:"",category:"",depth:"",unique:true,show:"all",quizAnswer:[],quizWords:[],correct:false};
 var CAT_ICON={demonstratives:"🏠",possession:"🎒",desire:"💭",necessity:"📋",ability:"💪",questions:"❓",time:"🕰️",conditions:"🌦️",negation:"🚫",comparison:"⚖️",emotion:"💗",conversation:"💬",habits:"🔄",movement:"🧳",complex:"🔗"};
 var $=id=>document.getElementById(id);
@@ -102,6 +102,42 @@ function drawPractice(){
  document.querySelectorAll("[data-token]").forEach(b=>b.onclick=()=>{state.quizAnswer.push(+b.dataset.token);drawPractice()});
  document.querySelectorAll("[data-unpick]").forEach(b=>b.onclick=()=>{state.quizAnswer.splice(+b.dataset.unpick,1);drawPractice()});
 }
+
+function playBonus(text,target){
+ stop();
+ if(!("speechSynthesis" in window))return;
+ var seq=session,utterance=new SpeechSynthesisUtterance(text);talk=utterance;utterance.lang="en-US";utterance.rate=.90;
+ var hits=[...text.matchAll(/\\S+/g)],lastIdx=-2;
+ target.textContent=text;window.PATTERN_READ_ALONG?.begin(target,text);
+ var status=$("patternVoiceStatus");
+ if(status)status.textContent="قصة تعليمية إضافية · نطق المتصفح مع التمييز عند دعمه حدود الكلمات";
+ utterance.onboundary=e=>{
+  if(seq!==session)return;
+  var index=hits.findIndex((m,i)=>e.charIndex>=m.index&&(i===hits.length-1||e.charIndex<hits[i+1].index));
+  if(index<0||index===lastIdx)return;lastIdx=index;
+  target.innerHTML=hits.map((w,i)=>i===index?'<span class="speakingWord">'+escapeHTML(w[0])+'</span>':escapeHTML(w[0])).join(" ");
+  window.PATTERN_READ_ALONG?.update(target,text,index);
+ };
+ utterance.onend=()=>{if(seq===session){target.textContent=text;window.PATTERN_READ_ALONG?.end()}};
+ speechSynthesis.speak(utterance);
+}
+function renderExpansion(p){
+ var root=$("patternExpansion");if(!root)return;
+ var lesson=expansions[String(p.id)];
+ if(!lesson){root.hidden=true;return}
+ root.hidden=false;
+ var contrast=lesson.contrast.map(x=>'<span lang="en" dir="ltr">'+escapeHTML(x)+'</span>').join('<span class="contrastArrow">↔</span>');
+ root.innerHTML='<h3>📘 شرح موسع وتأليف تعليمي</h3>'+
+ '<p class="patternTranslation">'+escapeHTML(lesson.ar)+'</p>'+
+ '<p class="patternArabicNote">'+escapeHTML(lesson.note)+'</p>'+
+ '<h4>⚖️ قارن بين عبارتين</h4><div class="patternContrast">'+contrast+'</div>'+
+ '<h4>📖 قصة قصيرة لتثبيت النمط</h4>'+
+ '<p class="patternAuthorship">هذه الأمثلة والقصص أُلفت لتوسيع المادة الأصلية، وتحتاج مراجعة بشرية قبل اعتمادها نهائيًا. النطق المساعد للقصة من المتصفح.</p>'+
+ '<div class="patternMiniStory">'+lesson.story.map((line,i)=>'<div class="patternMiniLine"><button type="button" data-bonus="'+i+'" aria-label="استمع إلى الجملة">🔊</button><p lang="en" dir="ltr">'+escapeHTML(line)+'</p></div>').join("")+'</div>';
+ root.querySelectorAll("[data-bonus]").forEach(b=>b.onclick=()=>{
+  var i=+b.dataset.bonus;playBonus(lesson.story[i],root.querySelectorAll(".patternMiniLine p")[i]);
+ });
+}
 function selectedImage(p){
  var source=null;
  if(p.id===1)source={file:"this",index:0};
@@ -124,7 +160,7 @@ function select(id){
  var p=byId.get(id);if(!p)return;stop();selected=id;practice();selectedImage(p);
  $("patternNumber").textContent="#"+p.id+" من "+corpus.patterns.length;
  $("patternSentence").textContent=p.en;
- $("patternRule").textContent=p.rule;
+ $("patternRule").textContent=p.rule;renderExpansion(p);
  $("patternCategory").textContent=categoryName(category(p));
  $("patternDepth").textContent=({basic:"أساسي",intermediate:"متوسط",advanced:"متقدم"})[p.depth]||p.depth;
  $("patternMediaStatus").textContent=p.id<=3?"درس كامل: صورة أصلية وتسجيل ومزامنة":"مستوى المكتبة · "+(sourceFor(p)?.entry?"تسجيل صوتي متزامن":"صوت المتصفح لحين تجهيز تسجيل مقاس");
@@ -167,10 +203,12 @@ function mount(data){
  var start=location.hash.match(/^#pattern-(\d+)$/);select(start&&byId.has(+start[1])?+start[1]:1);
  Promise.all([
   fetch("data/audio-word-cues.json").then(r=>r.ok?r.json():null).catch(()=>null),
-  fetch("data/pattern-audio-index.json").then(r=>r.ok?r.json():null).catch(()=>null)
- ]).then(([recorded,patterns])=>{
+  fetch("data/pattern-audio-index.json").then(r=>r.ok?r.json():null).catch(()=>null),
+  fetch("data/pattern-expansions.json").then(r=>r.ok?r.json():null).catch(()=>null)
+ ]).then(([recorded,patterns,extensions])=>{
   if(recorded&&recorded.total_recordings===96)recordingCueIndex=recorded;
   if(patterns&&patterns.schema===1&&patterns.items)voiceIndex=patterns;
+  if(extensions&&extensions.schema===1&&extensions.lessons)expansions=extensions.lessons;
   displayIndex();select(selected);
  });
  window.addEventListener("hashchange",()=>{var m=location.hash.match(/^#pattern-(\d+)$/);if(m&&byId.has(+m[1]))select(+m[1])});
