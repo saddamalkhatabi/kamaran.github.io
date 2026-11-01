@@ -56,3 +56,15 @@
 .introReadAlong strong{font-size:12px;color:#3c4f80}
 .introReadAlong p{font-size:16px;line-height:2.1;font-weight:650;color:#263a66;max-height:200px;overflow-y:auto;margin:7px 0 0}
 .sceneBox .speechBubble .speakingWord{color:#1d2d52!important;background:#ffdb58!important}
+
+/* Persistent offscreen read-along, only visible if the active text is off viewport. */
+.floatingReadAlong{position:fixed;z-index:190;inset:auto 15px 15px 15px;max-width:740px;margin:auto;border:1px solid #b9c9f2;border-radius:18px;background:#fffffff7;box-shadow:0 14px 48px #13244a5c;padding:11px 15px;backdrop-filter:blur(12px);direction:rtl}
+.floatingReadAlong[hidden]{display:none!important}
+.floatingReadingTop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.floatingReadingTop strong{font-size:12px;color:#465984}
+.floatingReadingTop>div{display:flex;gap:7px}
+.floatingReadingTop button{border:1px solid #dae2f3;border-radius:9px;background:#edf2fe;min-height:32px;padding:3px 10px;color:#3b4d80;font-size:13px;cursor:pointer}
+.floatingWords{margin:9px 0 0;line-height:2.2;font-weight:800;font-size:clamp(16px,2.6vw,23px);color:#20304e;text-align:left;direction:ltr;max-height:min(20vh,120px);overflow-y:auto;overflow-x:hidden}
+.floatingToken{border-radius:5px;padding:0 1px}
+.floatingToken.isSpeaking{background:#ffe16b;color:#19294b;box-shadow:0 2px 0 #dcac2c}
+@media(max-width:680px){.floatingReadAlong{inset:auto 7px 7px;padding:9px 11px;border-radius:13px}.floatingWords{font-size:18px;max-height:90px}}
