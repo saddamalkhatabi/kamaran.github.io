@@ -5,12 +5,19 @@ const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
 const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
 const errors=[],bad=[];
 page.on("pageerror",e=>errors.push(e.message));
-page.on("response",r=>{if(r.status()>=400&&/\\.(js|json|mp3)/.test(r.url()))bad.push(r.status()+" "+r.url())});
+page.on("response",r=>{if(r.status()>=400&&/\.(js|json|mp3)/.test(r.url()))bad.push(r.status()+" "+r.url())});
 try{
  await page.goto(root,{waitUntil:"networkidle",timeout:30000});
  await page.locator('[data-view="group-three"]').click();
  await page.locator("#g3PatternList .g3PatternChip").first().waitFor({timeout:15000});
  assert.equal(await page.locator("#g3PatternList .g3PatternChip").count(),18);
+ const voiceIndex=await page.evaluate(async()=>await (await fetch("data/group-three-audio-index.json")).json());
+ if(Object.keys(voiceIndex.items||{}).length){
+  await page.waitForFunction(()=>!!window.LE_GROUP_THREE_AUDIO?.["p01/intro"],null,{timeout:20000});
+  const voices=await page.evaluate(()=>Object.keys(window.LE_GROUP_THREE_AUDIO||{}));
+  assert(voices.includes("p01/intro"));
+ }
+
  assert.equal((await page.locator("#g3Title").innerText()).trim(),"I can");
  assert.equal(await page.locator("#g3SceneSteps button").count(),4);
  assert.equal((await page.locator("#g3MainEnglish").innerText()).trim(),"I can speak English.");
