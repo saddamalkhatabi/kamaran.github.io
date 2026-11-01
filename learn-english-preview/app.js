@@ -83,24 +83,30 @@ function playAudio(path,text,slow=false,onDone=null,target=null){
 function audioFile(kind){const l=activeLesson();return "assets/audio/"+l.id+"/"+(kind==="intro"?"intro.mp3":"scene-"+(state.depth+1)+"-"+(state.scene+1)+".mp3")}
 function markComplete(){state.complete.add(sceneKey());try{localStorage.setItem("pattern-universe-complete",JSON.stringify([...state.complete]))}catch(e){};renderStats()}
 function renderStats(){$("sPatterns").textContent=CORPUS.patterns.length.toLocaleString("en-US");$("sProgress").textContent=state.complete.size+" / 36";$("headerStats").textContent="36 مشهدًا · "+state.complete.size+" مكتملًا"}
-function go(view){stopAudio();state.auto=false;state.view=view;["learn","catalog","compare","guide"].forEach(v=>$("view-"+v).classList.toggle("hidden",v!==view));document.querySelectorAll("[data-view]").forEach(btn=>btn.classList.toggle("active",btn.dataset.view===view));if(view==="catalog")renderCatalog();if(view==="compare")renderCompare();window.scrollTo({top:0,behavior:"smooth"})}
+function go(view){stopAudio();if(view!=="paths")window.PATTERN_CURRICULUM?.stop();state.auto=false;state.view=view;["learn","paths","catalog","compare","guide"].forEach(v=>$("view-"+v).classList.toggle("hidden",v!==view));document.querySelectorAll("[data-view]").forEach(btn=>btn.classList.toggle("active",btn.dataset.view===view));if(view==="catalog")renderCatalog();if(view==="compare")renderCompare();window.scrollTo({top:0,behavior:"smooth"})}
 function chooseLesson(i){stopAudio();state.auto=false;state.lesson=Math.max(0,Math.min(LIB.length-1,i));state.depth=0;state.scene=0;renderStudy();go("learn");$("study").scrollIntoView({behavior:"smooth",block:"start"})}
 function thumbPosition(tile){return (tile%4)*100/3+"% "+Math.floor(tile/4)*50+"%"}
-// Original 4x3 WebP photographic atlases, created for every English lesson scene.
-function photoStyle(lessonId,tile){
+// Authored 4x3 WebP atlases, each with twelve original photorealistic lesson scenes.
+// Lesson 0..2 and scene 0..11 map exactly to the text, level and scene position.
+function photoStyle(lessonId, tile){
  const number=Math.max(0,Math.min(11,Math.floor(Number(tile)||0)));
  const pos=thumbPosition(number);
- return 'background-image:url("assets/real-scenes/'+lessonId+'-scenes.webp"),url("assets/scenes.svg");background-size:400% 300%,400% 300%;background-position:'+pos+','+pos+';background-repeat:no-repeat;';
+ const atlas="assets/real-scenes/"+lessonId+"-scenes.webp";
+ return 'background-image:url("'+atlas+'"),url("assets/scenes.svg");background-size:400% 300%,400% 300%;background-position:'+pos+','+pos+';background-repeat:no-repeat;';
 }
-function storyPhotoIndex(lessonId,entry){
+function storyPhotoIndex(lessonId, entry){
  const t=String(entry?.en||"").toLowerCase();
+ // Prefer exact matching of an authored main lesson utterance to its corresponding picture.
  const lesson=LIB.find(l=>l.id===lessonId);
- if(lesson)for(let d=0;d<lesson.levels.length;d++)for(let i=0;i<lesson.levels[d].scenes.length;i++)if(lesson.levels[d].scenes[i].en.toLowerCase()===t)return d*4+i;
+ if(lesson)for(let d=0;d<lesson.levels.length;d++)for(let i=0;i<lesson.levels[d].scenes.length;i++){
+  if(lesson.levels[d].scenes[i].en.toLowerCase()===t)return d*4+i;
+ }
  if(lessonId==="this"){
   if(/bags?/.test(t))return 11;if(/work|live|office/.test(t))return 10;
   if(/books/.test(t))return 5;if(/book/.test(t))return 1;
   if(/friends/.test(t))return 6;if(/friend/.test(t))return 2;
-  if(/far|that|there/.test(t))return 4;if(/house|home|room/.test(t))return 0;
+  if(/far|that|there/.test(t))return 4;
+  if(/house|home|room/.test(t))return 0;
   return Math.max(0,Math.min(11,Number(entry?.tile)||0));
  }
  if(lessonId==="have"){
@@ -110,11 +116,14 @@ function storyPhotoIndex(lessonId,entry){
   if(/new job|good job|my job|work|manager|desk|office/.test(t))return 0;
   return 0;
  }
- if(/phone|message/.test(t))return 1;if(/ticket|train/.test(t))return 2;
- if(/pens?/.test(t))return 3;if(/books?/.test(t))return 11;
- if(/cars?/.test(t))return 5;if(/everything|travel|trip|bag|packing/.test(t))return 6;
- if(/leave|late|now/.test(t))return 8;if(/ask|minute|talk/.test(t))return 10;
- if(/job|work|manager/.test(t))return 0;return 7;
+ if(/phone|message/.test(t))return 1;
+ if(/ticket|train/.test(t))return 2;if(/pens?/.test(t))return 3;
+ if(/books?/.test(t))return 11;if(/cars?/.test(t))return 5;
+ if(/everything|travel|trip|bag|packing/.test(t))return 6;
+ if(/leave|late|now/.test(t))return 8;
+ if(/ask|minute|talk/.test(t))return 10;
+ if(/job|work|manager/.test(t))return 0;
+ return 7;
 }
 function renderLessonCards(){$("lessonCards").innerHTML=LIB.map((l,i)=>'<article class="lessonCard '+(i===state.lesson?"active":"")+'"><div class="thumb" style="'+photoStyle(l.id,0)+'"><span class="n">#'+(i+1)+'</span></div><div class="copy"><b lang="en">'+escapeHtml(l.title)+'</b><p>'+escapeHtml(l.ar)+' · 12 مشهدًا</p><button class="btn '+(i===state.lesson?"primary":"alt")+'" data-lesson="'+i+'">'+(i===state.lesson?"الدرس الجاري":"ابدأ الرحلة")+'</button></div></article>').join("");
  document.querySelectorAll("[data-lesson]").forEach(b=>b.onclick=()=>chooseLesson(+b.dataset.lesson))}
@@ -195,7 +204,7 @@ function playStoryLine(i,all=false,session=storyPlayToken){
 }
 
 async function init(){
- try{const [lr,pr,sr]=await Promise.all([fetch("data/lessons.json"),fetch("data/patterns.json"),fetch("data/stories.json")]);if(!lr.ok||!pr.ok)throw Error("HTTP "+lr.status+" / "+pr.status);const l=await lr.json(),p=await pr.json();LIB=l.lessons;CORPUS=p;STORIES=sr.ok?await sr.json():{lessons:{}};renderStats();renderStudy();renderFilters()}catch(e){document.querySelector(".layout").innerHTML='<div class="empty"><h2>تعذر تحميل محتوى التطبيق</h2><p>افتح التطبيق عبر GitHub Pages أو خادم HTTP محلي. لا يعمل تحميل JSON مباشرة باستخدام عنوان file:// في أغلب المتصفحات.</p><p dir="ltr">'+escapeHtml(e.message)+'</p></div>';return}
+ try{const [lr,pr,sr]=await Promise.all([fetch("data/lessons.json"),fetch("data/patterns.json"),fetch("data/stories.json")]);if(!lr.ok||!pr.ok)throw Error("HTTP "+lr.status+" / "+pr.status);const l=await lr.json(),p=await pr.json();LIB=l.lessons;CORPUS=p;STORIES=sr.ok?await sr.json():{lessons:{}};renderStats();renderStudy();renderFilters();window.PATTERN_CURRICULUM?.mount(CORPUS)}catch(e){document.querySelector(".layout").innerHTML='<div class="empty"><h2>تعذر تحميل محتوى التطبيق</h2><p>افتح التطبيق عبر GitHub Pages أو خادم HTTP محلي. لا يعمل تحميل JSON مباشرة باستخدام عنوان file:// في أغلب المتصفحات.</p><p dir="ltr">'+escapeHtml(e.message)+'</p></div>';return}
  document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>go(b.dataset.view));$("heroStart").onclick=()=>$("study").scrollIntoView({behavior:"smooth",block:"start"});
  $("sceneArt").tabIndex=0;$("sceneArt").setAttribute("aria-label","اضغط على المشهد لسماع الجملة الإنجليزية");$("sceneArt").onclick=()=>playCurrent(false);$("sceneArt").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();playCurrent(false)}};$("sceneAudio").onclick=()=>playCurrent(false);$("slowAudio").onclick=()=>playAudio(audioFile("scene"),activeScene().en,true,null,$("sentenceEn"));$("explanationAudio").onclick=playIntro;
  $("storyMode").onchange=()=>{storyPlayToken++;stopAudio();renderStory()};$("storyAll").onclick=()=>{storyPlayToken++;playStoryLine(0,true,storyPlayToken)};$("storyStop").onclick=()=>{storyPlayToken++;stopAudio();document.querySelectorAll(".storyLine").forEach(x=>x.classList.remove("playing"))};
@@ -203,7 +212,7 @@ async function init(){
  $("autoplay").onclick=()=>{stopAudio();state.auto=!state.auto;$("autoplay").textContent="⟳ تسلسل المشاهد: "+(state.auto?"مفعّل":"مغلق");if(state.auto)playCurrent(true)};
  $("reviewAudio").onclick=()=>playAudio(null,activeLevel().scenes.map(x=>x.en).join(" ... "));
  $("search").oninput=()=>{state.visible=28;renderCatalog()};$("categorySelect").onchange=()=>{state.category=$("categorySelect").value;state.visible=28;renderFilters();renderCatalog()};$("depthSelect").onchange=()=>{state.visible=28;renderCatalog()};$("uniqueOnly").onchange=()=>{state.visible=28;renderCatalog()};$("showMore").onclick=()=>{state.visible+=28;renderCatalog()};
- $("modalClose").onclick=()=>$("patternDialog").close();$("modalSpeak").onclick=()=>state.modal&&playAudio(null,state.modal.en);$("modalRelated").onclick=()=>{if(state.modal&&state.modal.id<=3){let i=state.modal.id-1;$("patternDialog").close();chooseLesson(i)}};
+ $("modalClose").onclick=()=>$("patternDialog").close();$("modalStudy").onclick=()=>{if(state.modal){const id=state.modal.id;$("patternDialog").close();go("paths");window.PATTERN_CURRICULUM?.select(id)}};$("modalSpeak").onclick=()=>state.modal&&playAudio(null,state.modal.en);$("modalRelated").onclick=()=>{if(state.modal&&state.modal.id<=3){let i=state.modal.id-1;$("patternDialog").close();chooseLesson(i)}};
  document.addEventListener("keydown",e=>{if(state.view!=="learn"||e.target.matches("input,select,button")||e.ctrlKey||e.altKey)return;if(e.key==="ArrowLeft"){e.preventDefault();move(1)}if(e.key==="ArrowRight"){e.preventDefault();move(-1)}});
 }
 init();
