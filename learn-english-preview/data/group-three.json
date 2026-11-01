@@ -1204,7 +1204,7 @@
       "scenes": [
         {
           "id": 1,
-          "en": "Please close the door.",
+          "en": "Close the door, please.",
           "ar": "من فضلك أغلق الباب.",
           "context": "إغلاق الباب",
           "icon": "🚪",
@@ -1212,7 +1212,7 @@
         },
         {
           "id": 2,
-          "en": "Please wait a moment.",
+          "en": "Wait a moment, please.",
           "ar": "من فضلك انتظر لحظة.",
           "context": "الانتظار قليلًا",
           "icon": "⏱️",
@@ -1220,7 +1220,7 @@
         },
         {
           "id": 3,
-          "en": "Please speak slowly.",
+          "en": "Speak slowly, please.",
           "ar": "من فضلك تحدث ببطء.",
           "context": "فهم الشرح",
           "icon": "🐢",
@@ -1228,7 +1228,7 @@
         },
         {
           "id": 4,
-          "en": "Please show me the way.",
+          "en": "Show me the way, please.",
           "ar": "من فضلك أرشدني إلى الطريق.",
           "context": "طلب الاتجاهات",
           "icon": "🧭",
@@ -1243,7 +1243,7 @@
         },
         {
           "id": 2,
-          "en": "He asks, 'Please show me the way.'",
+          "en": "He asks, 'Show me the way, please.'",
           "ar": "يسأل: من فضلك أرشدني إلى الطريق."
         },
         {
@@ -1449,7 +1449,7 @@
         },
         {
           "id": 4,
-          "en": "Please speak slowly.",
+          "en": "Speak slowly, please.",
           "ar": "من فضلك تحدث ببطء."
         },
         {
