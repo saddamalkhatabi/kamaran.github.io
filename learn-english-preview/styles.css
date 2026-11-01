@@ -135,3 +135,7 @@
 .g2ChapterTabs{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
 .g2ChapterTabs .btn{min-height:40px;white-space:normal}
 .g2RoutineCard small{max-width:92%;line-height:1.6}
+
+/* Emphasize target English constructions inside group-two stories without hiding the other words. */
+.g2LineEnglish{font-weight:500}
+.g2Focus{font-weight:900;color:#294ca1;text-decoration:underline;text-decoration-color:#9eb3ed;text-decoration-thickness:2px;text-underline-offset:4px}
