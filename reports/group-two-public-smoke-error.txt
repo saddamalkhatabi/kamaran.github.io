@@ -1,0 +1,65 @@
+  - waiting for locator('[data-view="group-one"]')
+    - locator resolved to <button data-view="group-one">🌱 المجموعة الأولى</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div id="headerStats" class="headerStats">المجموعة الثانية · 18 نمطًا / 72 موقفًا</div> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div id="headerStats" class="headerStats">المجموعة الثانية · 18 نمطًا / 72 موقفًا</div> intercepts pointer events
+  2 × retrying click action
+      - waiting 100ms
+      - waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="topinner">…</div> intercepts pointer events
+  14 × retrying click action
+       - waiting 500ms
+       - waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div id="headerStats" class="headerStats">المجموعة الثانية · 18 نمطًا / 72 موقفًا</div> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+       - waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div id="headerStats" class="headerStats">المجموعة الثانية · 18 نمطًا / 72 موقفًا</div> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+       - waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="topinner">…</div> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+       - waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div class="topinner">…</div> intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+    - done scrolling
+    - <div id="headerStats" class="headerStats">المجموعة الثانية · 18 نمطًا / 72 موقفًا</div> intercepts pointer events
+  - retrying click action
+    - waiting 500ms
+
+    at /home/runner/work/kamaran.github.io/kamaran.github.io/scripts/smoke_group_two.mjs:42:48 {
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.4
