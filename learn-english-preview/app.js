@@ -119,7 +119,7 @@ function storyPhotoIndex(lessonId,entry){
 function renderLessonCards(){$("lessonCards").innerHTML=LIB.map((l,i)=>'<article class="lessonCard '+(i===state.lesson?"active":"")+'"><div class="thumb" style="'+photoStyle(l.id,0)+'"><span class="n">#'+(i+1)+'</span></div><div class="copy"><b lang="en">'+escapeHtml(l.title)+'</b><p>'+escapeHtml(l.ar)+' · 12 مشهدًا</p><button class="btn '+(i===state.lesson?"primary":"alt")+'" data-lesson="'+i+'">'+(i===state.lesson?"الدرس الجاري":"ابدأ الرحلة")+'</button></div></article>').join("");
  document.querySelectorAll("[data-lesson]").forEach(b=>b.onclick=()=>chooseLesson(+b.dataset.lesson))}
 function highlighted(line){let regex=state.lesson===0?/\b(this is|that is|these are|those are|is this|this isn't)\b/i:state.lesson===1?/\b(have to|have|has|does|don't have|do you have)\b/i:/\b(i've got|she's got|haven't got|has he got|we've got|got to|you've got)\b/i;const m=line.match(regex);if(!m)return escapeHtml(line);return escapeHtml(line.slice(0,m.index))+'<span class="focus">'+escapeHtml(m[0])+'</span>'+escapeHtml(line.slice(m.index+m[0].length))}
-function renderStudy(){renderLessonCards();let l=activeLesson(),lev=activeLevel();$("lessonBadge").textContent="النمط "+(state.lesson+1)+" من 3 · "+deepNames[["basic","intermediate","advanced"][state.depth]];$("lessonTitle").textContent=l.title;$("lessonDescription").textContent=l.description;$("lessonInfo").textContent=l.description;$("formula").textContent=l.formula;
+function renderStudy(){if($("introReadAlong"))$("introReadAlong").hidden=true;renderLessonCards();let l=activeLesson(),lev=activeLevel();$("lessonBadge").textContent="النمط "+(state.lesson+1)+" من 3 · "+deepNames[["basic","intermediate","advanced"][state.depth]];$("lessonTitle").textContent=l.title;$("lessonDescription").textContent=l.description;$("lessonInfo").textContent=l.description;$("formula").textContent=l.formula;
  $("depthTabs").innerHTML=l.levels.map((d,i)=>'<button data-depth="'+i+'" class="'+(i===state.depth?"active":"")+'">'+escapeHtml(d.label)+'<small>'+(i===0?"تعرف وبساطة":i===1?"النفي والسؤال":"الدمج والاستخدام")+'</small></button>').join("");
  document.querySelectorAll("[data-depth]").forEach(b=>b.onclick=()=>{stopAudio();state.auto=false;state.depth=+b.dataset.depth;state.scene=0;renderStudy()});
  $("relationships").innerHTML=l.related.map(id=>{let other=LIB.find(x=>x.id===id);return other?'<button class="btn tiny" data-rel="'+escapeHtml(id)+'">'+escapeHtml(other.title)+'</button>':""}).join("")+'<button class="btn tiny" id="viewLibrary">بحث في المكتبة ←</button>';
@@ -136,7 +136,7 @@ function renderScene(){const s=activeScene(),l=activeLesson(),lev=activeLevel(),
 function move(dir){stopAudio();let n=state.scene+dir;if(n>=4){state.scene=0;state.depth=(state.depth+1)%3;renderStudy()}else if(n<0){if(state.depth===0)return;state.depth--;state.scene=3;renderStudy()}else{state.scene=n;renderScene()};$("study").scrollIntoView({block:"start",behavior:"smooth"})}
 function playCurrent(chain=false){const s=activeScene();playAudio(audioFile("scene"),s.en,false,()=>{if(chain&&state.auto){markComplete();conf.autoTimer=setTimeout(()=>moveAuto(),700)}},$("sentenceEn"))}
 function moveAuto(){if(!state.auto)return;if(state.scene===3&&state.depth===2){state.auto=false;toast("أتممت رحلة المشاهد الثلاثة. جرّب الاختبار الآن.");renderScene();return}move(1);playCurrent(true)}
-function playIntro(){playAudio(audioFile("intro"),activeLesson().explanationEn,false,null)}
+function playIntro(){const panel=$("introReadAlong"),target=$("explanationEn");panel.hidden=false;target.textContent=activeLesson().explanationEn;playAudio(audioFile("intro"),activeLesson().explanationEn,false,null,target)}
 function shuffle(xs){let a=[...xs];for(let i=a.length-1;i>0;i--){let j=(i*5+state.lesson+state.scene*7+state.depth)% (i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
 function renderQuiz(){const current=activeScene();let others=activeLevel().scenes.filter(x=>x!==current).map(x=>x.en);let options=shuffle([current.en,others[(state.scene+1)%others.length],others[(state.scene+2)%others.length]]);$("quiz").innerHTML=options.map((x,i)=>'<button data-answer="'+i+'">'+escapeHtml(x)+'</button>').join("");document.querySelectorAll("[data-answer]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-answer]").forEach(x=>x.classList.remove("bad","good"));if(options[+b.dataset.answer]===current.en){b.classList.add("good");$("quizFeedback").textContent="أحسنت! اخترت التعبير المناسب ✓";markComplete()}else{b.classList.add("bad");$("quizFeedback").textContent="جرّب مجددًا وفكر في معنى المشهد."}})}
 function resetBuilder(){state.answer=[];drawBuilder()}
@@ -160,6 +160,7 @@ function markWord(target,text,idx){
  if(!target||!target.isConnected)return;
  const words=text.trim().split(/\s+/);
  target.innerHTML=words.map((w,i)=>i===idx?'<span class="speakingWord">'+escapeHtml(w)+'</span>':escapeHtml(w)).join(" ");
+ if(target.id==="sentenceEn"){const bubble=$("sceneBubble");if(bubble&&bubble.isConnected)bubble.innerHTML=target.innerHTML}
 }
 function storyLines(){
  const d=STORIES.lessons[activeLesson().id];
