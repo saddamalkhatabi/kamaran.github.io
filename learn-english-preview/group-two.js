@@ -71,7 +71,7 @@ function play(text,clip,target=null,slow=false,done=null){
  if(target){paintWord(target,text,-1);window.PATTERN_READ_ALONG?.begin(target,text)}
  const row=audioRow(text,clip);
  if(!row){speakBrowser(text,slow,done,token,target);return}
- if(!window.LE_GROUP_TWO_AUDIO?.[clip]&&/^((p[0-9]{2})|chapters)\\//.test(clip)){
+ if(!window.LE_GROUP_TWO_AUDIO?.[clip]&&/^((p[0-9]{2})|chapters)\//.test(clip)){
   const bundle=clip.startsWith("chapters")?"chapters":Number(clip.slice(1,3));
   preloadGroupTwoAudio(bundle).then(ok=>{
    if(token!==seq)return;
