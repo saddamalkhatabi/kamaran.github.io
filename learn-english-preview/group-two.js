@@ -7,6 +7,10 @@ const STORE="pattern-universe-group-two-v1";
 const LINKS={"i-wake-up":["i-get-up","in-the-morning"],"i-get-up":["i-wake-up","i-have-breakfast"],"in-the-morning":["at-night","i-wake-up"],"i-brush-my-teeth":["i-always","before-i"],"i-have-breakfast":["i-eat","before-i"],"i-go-to":["on-weekends","i-usually"],"i-usually":["i-always","i-often","i-sometimes"],"i-always":["i-usually","i-never"],"i-often":["i-usually","i-sometimes"],"i-sometimes":["i-often","i-never"],"i-never":["i-always","i-sometimes"],"i-eat":["i-have-breakfast","after-i"],"before-i":["after-i","i-brush-my-teeth"],"after-i":["before-i","at-night"],"every-day":["i-usually","on-weekends"],"at-night":["in-the-morning","i-go-to-bed"],"i-go-to-bed":["at-night","i-wake-up"],"on-weekends":["every-day","i-often"]};
 let data=null,voices={},sourceVoices={},kokoroVoices={},chapterSelected=0,selected=0,scene=0,mode="story",answers={},answer=[],quizResult=false,builderResult=false,seq=0,audio=null,utterance=null,frame=0,highlightTarget=null,highlightText="",auto=false,active=false;
 try{answers=JSON.parse(localStorage.getItem(STORE)||"{}")||{}}catch(e){answers={}}
+function focusHtml(value){
+ const pattern=/\b(in the morning|before i|after i|brush my teeth|have breakfast|go to bed|go to|wake up|get up|every day|at night|on weekends|usually|always|often|sometimes|never)\b/gi;
+ return esc(value).replace(pattern,'<strong class="g2Focus">$1</strong>');
+}
 function current(){return data?.items[selected]}
 function example(){return current()?.scenes[scene]}
 function saved(){try{localStorage.setItem(STORE,JSON.stringify(answers))}catch(e){}}
@@ -24,7 +28,7 @@ function stop(){
 function paintWord(node,text,index){
  if(!node?.isConnected)return;
  const words=text.trim().split(/\s+/);
- node.innerHTML=words.map((w,i)=>i===index?'<mark class="g2Spoken">'+esc(w)+'</mark>':esc(w)).join(" ");
+ node.innerHTML=index<0?focusHtml(text):words.map((w,i)=>i===index?'<mark class="g2Spoken">'+esc(w)+'</mark>':esc(w)).join(" ");
  window.PATTERN_READ_ALONG?.update(node,text,index);
 }
 function findCue(cues,ms){
@@ -160,7 +164,7 @@ function renderBuilder(){
 function renderStory(){
  const p=current(),lines=mode==="story"?p.story:p.dialogue;
  $("g2StoryToggle").textContent=mode==="story"?"🎭 انتقل إلى الحوار":"📖 انتقل إلى القصة";
- $("g2StoryList").innerHTML=lines.map((s,i)=>'<button class="g2StoryRow" data-g2-line="'+i+'"><span class="g2LineMeta">'+(mode==="dialogue"?"المتحدث "+s.speaker:"جزء "+(i+1))+'</span><span lang="en" dir="ltr" class="g2LineEnglish" data-g2-target="'+i+'">'+esc(s.en)+'</span><span class="g2LineArabic">'+esc(s.ar)+'</span></button>').join("");
+ $("g2StoryList").innerHTML=lines.map((s,i)=>'<button class="g2StoryRow" data-g2-line="'+i+'"><span class="g2LineMeta">'+(mode==="dialogue"?"المتحدث "+s.speaker:"جزء "+(i+1))+'</span><span lang="en" dir="ltr" class="g2LineEnglish" data-g2-target="'+i+'">'+focusHtml(s.en)+'</span><span class="g2LineArabic">'+esc(s.ar)+'</span></button>').join("");
 }
 function playStoryLine(i,continuous=false,token=seq){
  const p=current(),lines=mode==="story"?p.story:p.dialogue,s=lines[i];if(!s||!active)return;
@@ -173,7 +177,7 @@ function renderChapters(){
  const chapters=data?.chapters||[];
  $("g2ChapterTabs").innerHTML=chapters.map((c,i)=>'<button data-g2-chapter="'+i+'" class="btn '+(i===chapterSelected?"primary":"alt")+'">'+esc(c.icon)+" "+esc(c.title)+" — "+esc(c.titleAr)+'</button>').join("");
  const chosen=chapters[chapterSelected];
- $("g2ChapterLines").innerHTML=chosen?chosen.lines.map((line,i)=>'<button class="g2StoryRow" data-g2-chapter-line="'+i+'"><span class="g2LineMeta">المقطع '+(i+1)+'</span><span lang="en" dir="ltr" class="g2LineEnglish" data-g2-chapter-target="'+i+'">'+esc(line.en)+'</span><span class="g2LineArabic">'+esc(line.ar)+'</span></button>').join(""):"";
+ $("g2ChapterLines").innerHTML=chosen?chosen.lines.map((line,i)=>'<button class="g2StoryRow" data-g2-chapter-line="'+i+'"><span class="g2LineMeta">المقطع '+(i+1)+'</span><span lang="en" dir="ltr" class="g2LineEnglish" data-g2-chapter-target="'+i+'">'+focusHtml(line.en)+'</span><span class="g2LineArabic">'+esc(line.ar)+'</span></button>').join(""):"";
 }
 function playChapterLine(i,continuous=false){
  preloadGroupTwoAudio("chapters");
