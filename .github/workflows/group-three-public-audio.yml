@@ -32,7 +32,7 @@ jobs:
       - name: Synthesize authentic English and build lazy base64 MP3 packs
         run: |
           cd learn-english-preview
-          python scripts/render_group_three_public_audio.py --concurrency 3 --retries 4
+          python scripts/render_group_three_public_audio.py --concurrency 3 --retries 4 2>&1 | tee /tmp/g3-public-voices.log
       - name: Validate all recorded transcripts and precise word timing
         run: |
           python - <<'PY'
@@ -71,6 +71,24 @@ jobs:
           git add learn-english-preview/data/group-three-audio-index.json learn-english-preview/assets/group-three-audio-bundles/
           if ! git diff --cached --quiet; then
             git commit -m 'Publish verified Group Three static speech bundles with real word cues [skip ci]'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+
+      - name: Preserve failure trace for Group Three diagnostics
+        if: failure()
+        run: |
+          mkdir -p reports
+          if [ -s "/tmp/g3-public-voices.log" ]; then
+            tail -n 85 "/tmp/g3-public-voices.log" > reports/group-three-public-voice-error.txt
+          else
+            echo "No recording or browser trace was produced; inspect earlier installation and validation steps." > reports/group-three-public-voice-error.txt
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/group-three-public-voice-error.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Capture Group Three CI failure details [skip ci]'
             git pull --rebase origin master
             git push origin HEAD:master
           fi
