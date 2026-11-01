@@ -2,7 +2,7 @@
   "schema": 1,
   "group": "asking-questions-finding-information",
   "title": "المجموعة الرابعة: تكوين الأسئلة وفهم الإجابات",
-  "status": "draft 6/18",
+  "status": "draft 12/18",
   "items": [
     {
       "id": 1,
@@ -474,6 +474,480 @@
           "speaker": "B",
           "en": "It is great, thank you.",
           "ar": "إنها رائعة، شكرًا لك."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "key": "what-do-you",
+      "title": "What do you",
+      "meaning": "ماذا تفعل / ماذا",
+      "formula": "What do you + base verb...?",
+      "explanation": "نسأل عن فعل أو اختيار في المضارع البسيط باستخدام do ثم you والفعل الأساسي.",
+      "explanationEn": "What do you followed by a base verb asks about actions or preferences.",
+      "contrast": "What do you eat? فعل؛ What is this? تعريف شيء.",
+      "sourceIds": [
+        21,
+        550
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "What do you do after school?",
+          "ar": "ماذا تفعل بعد المدرسة؟",
+          "context": "بعد الدراسة",
+          "icon": "🎒",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "What do you want to learn?",
+          "ar": "ماذا تريد أن تتعلم؟",
+          "context": "هدف التعلم",
+          "icon": "🎯",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "What do you eat for breakfast?",
+          "ar": "ماذا تأكل في الإفطار؟",
+          "context": "الإفطار",
+          "icon": "🍳",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "What do you think about this idea?",
+          "ar": "ما رأيك في هذه الفكرة؟",
+          "context": "مناقشة فكرة",
+          "icon": "💡",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "The class chooses a new activity.",
+          "ar": "يختار الصف نشاطًا جديدًا."
+        },
+        {
+          "id": 2,
+          "en": "The teacher asks, 'What do you want to learn?'",
+          "ar": "تسأل المعلمة: ماذا تريدون أن تتعلموا؟"
+        },
+        {
+          "id": 3,
+          "en": "The students say they want to learn English.",
+          "ar": "يقول الطلاب إنهم يريدون تعلم الإنجليزية."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "What do you do in the evening?",
+          "ar": "ماذا تفعل في المساء؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "I read and practice English.",
+          "ar": "أقرأ وأمارس الإنجليزية."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "key": "where-do-you",
+      "title": "Where do you",
+      "meaning": "أين تفعل / إلى أين",
+      "formula": "Where do you + base verb...?",
+      "explanation": "للسؤال عن مكان نشاط معتاد أو وجهته، نستخدم do مع you والفعل الأساسي.",
+      "explanationEn": "Where do you asks about the place of a habit or regular activity.",
+      "contrast": "Where do you work? عادة؛ Where are you working? نشاط جارٍ.",
+      "sourceIds": [
+        598,
+        653
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "Where do you live?",
+          "ar": "أين تسكن؟",
+          "context": "عنوان السكن",
+          "icon": "🏠",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "Where do you work?",
+          "ar": "أين تعمل؟",
+          "context": "مكان العمل",
+          "icon": "🏢",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "Where do you study English?",
+          "ar": "أين تدرس الإنجليزية؟",
+          "context": "مركز تعلم",
+          "icon": "📘",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "Where do you buy books?",
+          "ar": "من أين تشتري الكتب؟",
+          "context": "متجر الكتب",
+          "icon": "📚",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Omar meets a new classmate.",
+          "ar": "يقابل عمر زميلًا جديدًا."
+        },
+        {
+          "id": 2,
+          "en": "He asks, 'Where do you live?'",
+          "ar": "يسأله: أين تسكن؟"
+        },
+        {
+          "id": 3,
+          "en": "His classmate lives near the park.",
+          "ar": "يسكن زميله قرب الحديقة."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "Where do you study English?",
+          "ar": "أين تدرس الإنجليزية؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "I study at home.",
+          "ar": "أدرس في المنزل."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "key": "when-do-you",
+      "title": "When do you",
+      "meaning": "متى تفعل",
+      "formula": "When do you + base verb...?",
+      "explanation": "للسؤال عن وقت فعل معتاد، نستخدم do you مع الفعل الأساسي.",
+      "explanationEn": "When do you asks about the usual time of an action.",
+      "contrast": "When do you wake up? عادة؛ When are you waking up? ترتيب محدد.",
+      "sourceIds": [
+        507,
+        528
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "When do you wake up?",
+          "ar": "متى تستيقظ؟",
+          "context": "منبه الصباح",
+          "icon": "⏰",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "When do you have lunch?",
+          "ar": "متى تتناول الغداء؟",
+          "context": "وقت الغداء",
+          "icon": "🍽️",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "When do you start work?",
+          "ar": "متى تبدأ العمل؟",
+          "context": "بداية العمل",
+          "icon": "💼",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "When do you practice English?",
+          "ar": "متى تمارس الإنجليزية؟",
+          "context": "وقت المذاكرة",
+          "icon": "📚",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Nour plans her study time.",
+          "ar": "تخطط نور لموعد مذاكرتها."
+        },
+        {
+          "id": 2,
+          "en": "Her friend asks, 'When do you practice English?'",
+          "ar": "تسألها صديقتها: متى تمارسين الإنجليزية؟"
+        },
+        {
+          "id": 3,
+          "en": "Nour says she practices every evening.",
+          "ar": "تقول نور إنها تمارسها كل مساء."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "When do you have breakfast?",
+          "ar": "متى تتناول الإفطار؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "I have breakfast at seven.",
+          "ar": "أتناول الإفطار الساعة السابعة."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "key": "why-do-you",
+      "title": "Why do you",
+      "meaning": "لماذا تفعل",
+      "formula": "Why do you + base verb...?",
+      "explanation": "للسؤال عن سبب فعل معتاد أو قرار، وغالبًا نجيب باستخدام because.",
+      "explanationEn": "Why do you asks why someone does something.",
+      "contrast": "Why do you study? سبب؛ When do you study? وقت.",
+      "sourceIds": [
+        512,
+        593
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "Why do you study English?",
+          "ar": "لماذا تدرس الإنجليزية؟",
+          "context": "دافع التعلم",
+          "icon": "📘",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "Why do you walk to school?",
+          "ar": "لماذا تمشي إلى المدرسة؟",
+          "context": "المشي إلى المدرسة",
+          "icon": "🚶",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "Why do you need this book?",
+          "ar": "لماذا تحتاج هذا الكتاب؟",
+          "context": "اختيار كتاب",
+          "icon": "📚",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "Why do you like this song?",
+          "ar": "لماذا تحب هذه الأغنية؟",
+          "context": "موسيقى مفضلة",
+          "icon": "🎵",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "The teacher asks about learning goals.",
+          "ar": "تسأل المعلمة عن أهداف التعلم."
+        },
+        {
+          "id": 2,
+          "en": "She asks, 'Why do you study English?'",
+          "ar": "تسأل: لماذا تدرسون الإنجليزية؟"
+        },
+        {
+          "id": 3,
+          "en": "Ali answers, 'Because I want to travel.'",
+          "ar": "يجيب علي: لأنني أريد السفر."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "Why do you walk to school?",
+          "ar": "لماذا تمشي إلى المدرسة؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "Because it is near my house.",
+          "ar": "لأنها قريبة من منزلي."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "key": "how-do-you",
+      "title": "How do you",
+      "meaning": "كيف تفعل",
+      "formula": "How do you + base verb...?",
+      "explanation": "للسؤال عن الطريقة أو الوسيلة أو الخطوات اللازمة للفعل.",
+      "explanationEn": "How do you asks about the method or means of doing something.",
+      "contrast": "How do you get there? الطريقة؛ Where do you go? الوجهة.",
+      "sourceIds": [
+        536,
+        584
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "How do you get to school?",
+          "ar": "كيف تصل إلى المدرسة؟",
+          "context": "وسيلة النقل",
+          "icon": "🚌",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "How do you spell your name?",
+          "ar": "كيف تتهجى اسمك؟",
+          "context": "تهجئة الاسم",
+          "icon": "🔤",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "How do you make tea?",
+          "ar": "كيف تصنع الشاي؟",
+          "context": "تحضير الشاي",
+          "icon": "🍵",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "How do you open this app?",
+          "ar": "كيف تفتح هذا التطبيق؟",
+          "context": "استخدام التطبيق",
+          "icon": "📱",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Sara learns a new game.",
+          "ar": "تتعلم سارة لعبة جديدة."
+        },
+        {
+          "id": 2,
+          "en": "She asks, 'How do you play this game?'",
+          "ar": "تسأل: كيف تلعب هذه اللعبة؟"
+        },
+        {
+          "id": 3,
+          "en": "Her friend shows her the first step.",
+          "ar": "يريها صديقها الخطوة الأولى."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "How do you go to school?",
+          "ar": "كيف تذهب إلى المدرسة؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "I go by bus.",
+          "ar": "أذهب بالحافلة."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "key": "do-you",
+      "title": "Do you",
+      "meaning": "هل تفعل",
+      "formula": "Do you + base verb...?",
+      "explanation": "لصياغة سؤال نعم/لا عن عادة أو رأي أو امتلاك في المضارع البسيط؛ بعد do يأتي الفعل الأساسي.",
+      "explanationEn": "Do you starts a yes-or-no question about habits, preferences, or facts.",
+      "contrast": "Do you like apples? نعم أو لا؛ What do you like? إجابة مفتوحة.",
+      "sourceIds": [
+        12,
+        504
+      ],
+      "scenes": [
+        {
+          "id": 1,
+          "en": "Do you like apples?",
+          "ar": "هل تحب التفاح؟",
+          "context": "تفضيل الطعام",
+          "icon": "🍎",
+          "photo": null
+        },
+        {
+          "id": 2,
+          "en": "Do you speak English?",
+          "ar": "هل تتحدث الإنجليزية؟",
+          "context": "التعارف",
+          "icon": "🗣️",
+          "photo": null
+        },
+        {
+          "id": 3,
+          "en": "Do you have a pencil?",
+          "ar": "هل لديك قلم رصاص؟",
+          "context": "استعارة قلم",
+          "icon": "✏️",
+          "photo": null
+        },
+        {
+          "id": 4,
+          "en": "Do you study every day?",
+          "ar": "هل تدرس كل يوم؟",
+          "context": "عادة الدراسة",
+          "icon": "📚",
+          "photo": null
+        }
+      ],
+      "story": [
+        {
+          "id": 1,
+          "en": "Maya meets a new student.",
+          "ar": "تلتقي مايا طالبًا جديدًا."
+        },
+        {
+          "id": 2,
+          "en": "She asks, 'Do you speak English?'",
+          "ar": "تسأله: هل تتحدث الإنجليزية؟"
+        },
+        {
+          "id": 3,
+          "en": "He replies, 'Yes, I do.'",
+          "ar": "يجيب: نعم، أفعل."
+        }
+      ],
+      "dialogue": [
+        {
+          "id": 1,
+          "speaker": "A",
+          "en": "Do you have a notebook?",
+          "ar": "هل لديك دفتر؟"
+        },
+        {
+          "id": 2,
+          "speaker": "B",
+          "en": "Yes, I do.",
+          "ar": "نعم، لدي."
         }
       ]
     }
