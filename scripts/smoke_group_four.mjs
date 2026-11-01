@@ -33,10 +33,19 @@ const voiceIndex=await page.evaluate(async()=>await (await fetch("data/group-fou
  assert.match(await page.locator("#g4Progress").innerText(),/1 \/ 72/);
  await page.locator("#g4ChapterTabs [data-g4-chapter='1']").click();
  assert.match(await page.locator("#g4ChapterLines").innerText(),/Where is the bus stop/);
+ if(Object.keys(voiceIndex.items||{}).length){
+   await page.locator("#g4ChapterLines .g4StoryRow").first().click();
+   await page.waitForFunction(()=>!!window.LE_GROUP_FOUR_AUDIO?.["chapters/c02/line-1"],null,{timeout:20000});
+ }
+
  await page.locator("#g4StoryToggle").click();
  assert.equal(await page.locator("#g4StoryList .g4StoryRow").count(),2);
  await page.locator('[data-g4-pattern="17"]').first().click();
  assert.equal((await page.locator("#g4Title").innerText()).trim(),"Which one");
+ if(Object.keys(voiceIndex.items||{}).length){
+   await page.waitForFunction(()=>!!window.LE_GROUP_FOUR_AUDIO?.["p18/intro"],null,{timeout:20000});
+ }
+
  assert.equal(await page.locator("#g4SceneSteps button").count(),4);
  assert.equal(await page.locator("#g4ChapterTabs button").count(),3);
  assert.equal(await page.locator("#g4Visual img").count(),0);
