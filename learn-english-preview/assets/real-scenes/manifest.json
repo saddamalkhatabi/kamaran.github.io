@@ -1,0 +1,242 @@
+{
+  "schema": 1,
+  "source": "Original generated photo-realistic scene atlases for Learn English (not stock photos)",
+  "format": "image/webp",
+  "columns": 4,
+  "rows": 3,
+  "sceneWidth": 348,
+  "sceneHeight": 348,
+  "files": {
+    "this": {
+      "path": "this-scenes.webp",
+      "tiles": [
+        {
+          "index": 0,
+          "english": "This is my house.",
+          "arabic": "هذا منزلي.",
+          "context": "أمام منزل قريب"
+        },
+        {
+          "index": 1,
+          "english": "This is my book.",
+          "arabic": "هذا كتابي.",
+          "context": "كتاب بين اليدين"
+        },
+        {
+          "index": 2,
+          "english": "This is my friend.",
+          "arabic": "هذا صديقي.",
+          "context": "التعريف بصديق"
+        },
+        {
+          "index": 3,
+          "english": "Is this your house?",
+          "arabic": "هل هذا منزلك؟",
+          "context": "السؤال عن منزل"
+        },
+        {
+          "index": 4,
+          "english": "That is my house.",
+          "arabic": "ذلك منزلي.",
+          "context": "منزل بعيد"
+        },
+        {
+          "index": 5,
+          "english": "These are my books.",
+          "arabic": "هذه كتبي.",
+          "context": "كتب قريبة"
+        },
+        {
+          "index": 6,
+          "english": "Those are my friends.",
+          "arabic": "أولئك أصدقائي.",
+          "context": "أصدقاء بعيدون"
+        },
+        {
+          "index": 7,
+          "english": "No, this isn't my house.",
+          "arabic": "لا، هذا ليس منزلي.",
+          "context": "تصحيح معلومة"
+        },
+        {
+          "index": 8,
+          "english": "This is the house I want to buy.",
+          "arabic": "هذا المنزل الذي أريد شراءه.",
+          "context": "زيارة عقار"
+        },
+        {
+          "index": 9,
+          "english": "Is this the book you were talking about?",
+          "arabic": "هل هذا الكتاب الذي كنت تتحدث عنه؟",
+          "context": "مكتبة"
+        },
+        {
+          "index": 10,
+          "english": "This is where I work, and that is where I live.",
+          "arabic": "هنا أعمل، وهناك أعيش.",
+          "context": "شرح الأماكن"
+        },
+        {
+          "index": 11,
+          "english": "If this is your bag, you can take it.",
+          "arabic": "إذا كانت هذه حقيبتك، فيمكنك أخذها.",
+          "context": "حقيبة مفقودة"
+        }
+      ]
+    },
+    "have": {
+      "path": "have-scenes.webp",
+      "tiles": [
+        {
+          "index": 0,
+          "english": "I have a good job.",
+          "arabic": "لدي وظيفة جيدة.",
+          "context": "موظف سعيد في المكتب"
+        },
+        {
+          "index": 1,
+          "english": "I have a laptop.",
+          "arabic": "لدي حاسوب محمول.",
+          "context": "على مكتب العمل"
+        },
+        {
+          "index": 2,
+          "english": "I have a new idea.",
+          "arabic": "لدي فكرة جديدة.",
+          "context": "اجتماع عمل"
+        },
+        {
+          "index": 3,
+          "english": "Do you have a job?",
+          "arabic": "هل لديك وظيفة؟",
+          "context": "مقابلة تعريفية"
+        },
+        {
+          "index": 4,
+          "english": "I don't have a car.",
+          "arabic": "ليس لدي سيارة.",
+          "context": "قبل الخروج"
+        },
+        {
+          "index": 5,
+          "english": "She has a good job.",
+          "arabic": "لديها وظيفة جيدة.",
+          "context": "زميلة في العمل"
+        },
+        {
+          "index": 6,
+          "english": "Does he have a ticket?",
+          "arabic": "هل لديه تذكرة؟",
+          "context": "عند شباك التذاكر"
+        },
+        {
+          "index": 7,
+          "english": "How many books do you have?",
+          "arabic": "كم كتابًا لديك؟",
+          "context": "المكتبة"
+        },
+        {
+          "index": 8,
+          "english": "I have a job, but I want a better one.",
+          "arabic": "لدي وظيفة، لكنني أريد وظيفة أفضل.",
+          "context": "التخطيط المهني"
+        },
+        {
+          "index": 9,
+          "english": "I have to finish my work today.",
+          "arabic": "يجب عليّ إنهاء عملي اليوم.",
+          "context": "ضغط العمل"
+        },
+        {
+          "index": 10,
+          "english": "If you have time, we can talk.",
+          "arabic": "إذا كان لديك وقت، يمكننا التحدث.",
+          "context": "دعوة للحديث"
+        },
+        {
+          "index": 11,
+          "english": "I've had this job for three years.",
+          "arabic": "أشغل هذه الوظيفة منذ ثلاث سنوات.",
+          "context": "سرد الخبرة"
+        }
+      ]
+    },
+    "got": {
+      "path": "got-scenes.webp",
+      "tiles": [
+        {
+          "index": 0,
+          "english": "I've got a job!",
+          "arabic": "لقد حصلت على وظيفة! / لدي وظيفة!",
+          "context": "إعلان خبر سعيد"
+        },
+        {
+          "index": 1,
+          "english": "I've got a new phone.",
+          "arabic": "لدي هاتف جديد.",
+          "context": "عرض الهاتف"
+        },
+        {
+          "index": 2,
+          "english": "She's got a ticket.",
+          "arabic": "لديها تذكرة.",
+          "context": "التذاكر في المحطة"
+        },
+        {
+          "index": 3,
+          "english": "Have you got a pen?",
+          "arabic": "هل معك قلم؟",
+          "context": "طلب قلم"
+        },
+        {
+          "index": 4,
+          "english": "I haven't got a ticket.",
+          "arabic": "ليس لدي تذكرة.",
+          "context": "نسيان التذكرة"
+        },
+        {
+          "index": 5,
+          "english": "Has he got a car?",
+          "arabic": "هل لديه سيارة؟",
+          "context": "التخطيط للرحلة"
+        },
+        {
+          "index": 6,
+          "english": "We've got everything we need.",
+          "arabic": "لدينا كل ما نحتاجه.",
+          "context": "الاستعداد للسفر"
+        },
+        {
+          "index": 7,
+          "english": "I have a job. I've got a job.",
+          "arabic": "الجملتان تعبّران عن وجود وظيفة لديّ.",
+          "context": "مقارنة صيغتين"
+        },
+        {
+          "index": 8,
+          "english": "I've got to leave now.",
+          "arabic": "يجب عليّ المغادرة الآن.",
+          "context": "تأخر عن القطار"
+        },
+        {
+          "index": 9,
+          "english": "I've got a job, but I'm looking for a better one.",
+          "arabic": "لدي وظيفة، لكنني أبحث عن أفضل منها.",
+          "context": "مقابلة مهنية"
+        },
+        {
+          "index": 10,
+          "english": "If you've got a minute, I'd like to ask something.",
+          "arabic": "إذا كان لديك دقيقة، أود أن أسأل شيئًا.",
+          "context": "طلب مهذب"
+        },
+        {
+          "index": 11,
+          "english": "She's got the book that I was looking for.",
+          "arabic": "لديها الكتاب الذي كنت أبحث عنه.",
+          "context": "إعارة كتاب"
+        }
+      ]
+    }
+  }
+}
