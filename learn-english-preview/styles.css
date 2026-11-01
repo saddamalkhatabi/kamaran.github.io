@@ -28,9 +28,25 @@
 @media(max-width:680px){.storyJourney{padding:13px;margin:14px 0}.storyHeader h2{font-size:20px}.storyTools{width:100%}.storyTools select{flex:1}.storyList{grid-template-columns:1fr}.storyMini{flex-basis:68px;height:64px}}
 
 /* Photo-first learning: real situations, with original SVG available offline. */
-.heroImg .illus{background-image:linear-gradient(120deg,#101f4512,#152c6c38),url('https://images.pexels.com/photos/7577378/pexels-photo-7577378.jpeg?auto=compress&cs=tinysrgb&w=960'),url('assets/scenes.svg');background-size:cover,cover,400% 300%;background-position:center,center,0 0}
+.heroImg .illus{background-image:url('assets/real-scenes/this-scenes.webp'),url('assets/scenes.svg');background-size:400% 300%,400% 300%;background-position:0% 0%,0% 0%;background-repeat:no-repeat}
 .sceneArt{cursor:pointer;transition:transform .45s ease,filter .45s ease;transform-origin:center;filter:saturate(1.08)}
 .sceneArt:hover,.sceneArt:focus-visible{transform:scale(1.035);filter:saturate(1.16)}
 .sceneBox:focus-within{outline:3px solid #7f66d8;outline-offset:2px}
 .storyMini{background-color:#d9e4f5;box-shadow:inset 0 0 0 1px #ffffff50}
 .speakingWord{color:#1d2d52!important;background:#ffdb58!important;border-radius:7px;box-shadow:0 2px 0 #e3a93d80;padding:0 .06em;transition:background .06s linear}
+
+/* Original self-hosted scene atlas: each cell is a square 348px WebP portrait.
+   Preserve the intrinsic aspect ratio on teaching scenes; no distorted faces. */
+.sceneBox{aspect-ratio:1 / 1;max-width:620px;margin-inline:auto}
+.sceneArt{background-color:#dde5f6;image-rendering:auto}
+.lessonCard .thumb,.storyMini{background-color:#dce5f4;image-rendering:auto}
+@media(min-width:681px){
+ .lessonCard{display:grid;grid-template-columns:minmax(120px,43%) minmax(0,1fr);align-items:stretch}
+ .lessonCard .thumb{height:175px}
+ .lessonCard .copy{padding:13px}
+ .lessonCard .copy b{font-size:16px}
+}
+@media(max-width:680px){
+ .sceneBox{aspect-ratio:1 / 1;max-width:100%}
+ .lessonCard .thumb{height:100%}
+}
