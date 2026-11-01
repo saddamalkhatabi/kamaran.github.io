@@ -46,7 +46,7 @@ function audioRow(text,clip){
  return row;
 }
 const publicAudioPacks=new Map();
-function preloadGroupOneAudio(id){
+function preloadGroupThreeAudio(id){
  const key=id==="chapters"?"chapters":"p"+String(id).padStart(2,"0");
  if(publicAudioPacks.has(key))return publicAudioPacks.get(key);
  const promise=new Promise(resolve=>{
@@ -75,9 +75,9 @@ function play(text,clip,target=null,slow=false,done=null){
  if(target){paintWord(target,text,-1);window.PATTERN_READ_ALONG?.begin(target,text)}
  const row=audioRow(text,clip);
  if(!row){speakBrowser(text,slow,done,token,target);return}
- if(!window.LE_GROUP_THREE_AUDIO?.[clip]&&/^((p[0-9]{2})|chapters)\//.test(clip)){
+ if(voices?.items?.[clip]&&!window.LE_GROUP_THREE_AUDIO?.[clip]&&/^((p[0-9]{2})|chapters)\//.test(clip)){
   const bundle=clip.startsWith("chapters")?"chapters":Number(clip.slice(1,3));
-  preloadGroupTwoAudio(bundle).then(ok=>{
+  preloadGroupThreeAudio(bundle).then(ok=>{
    if(token!==seq)return;
    if(ok&&window.LE_GROUP_THREE_AUDIO?.[clip])play(text,clip,target,slow,done);
    else speakBrowser(text,slow,done,token,target);
@@ -117,7 +117,7 @@ function renderList(){
 }
 function renderStudy(){
  const p=current(),s=example();if(!p||!s)return;
- quizResult=!!answers[key()]?.quiz;builderResult=!!answers[key()]?.builder;answer=[];auto=false;preloadGroupOneAudio(p.id);
+ quizResult=!!answers[key()]?.quiz;builderResult=!!answers[key()]?.builder;answer=[];auto=false;if(Object.keys(voices?.items||{}).some(k=>k.startsWith("p"+String(p.id).padStart(2,"0")+"/")))preloadGroupThreeAudio(p.id);
  $("g3Title").textContent=p.title;$("g3Meaning").textContent=p.meaning;$("g3Formula").textContent=p.formula;
  $("g3Explanation").textContent=p.explanation;$("g3ExplanationEn").textContent=p.explanationEn;
  $("g3Contrast").textContent=p.contrast;$("g3Number").textContent="النمط "+p.id+" / "+data.items.length;
@@ -180,7 +180,7 @@ function renderChapters(){
  $("g3ChapterLines").innerHTML=chosen?chosen.lines.map((line,i)=>'<button class="g3StoryRow" data-g3-chapter-line="'+i+'"><span class="g3LineMeta">المقطع '+(i+1)+'</span><span lang="en" dir="ltr" class="g3LineEnglish" data-g3-chapter-target="'+i+'">'+focusHtml(line.en)+'</span><span class="g3LineArabic">'+esc(line.ar)+'</span></button>').join(""):"";
 }
 function playChapterLine(i,continuous=false){
- preloadGroupTwoAudio("chapters");
+ preloadGroupThreeAudio("chapters");
  const chapter=data?.chapters?.[chapterSelected],line=chapter?.lines?.[i];if(!line||!active)return;
  document.querySelectorAll("#g3ChapterLines .g3StoryRow").forEach(x=>x.classList.toggle("active",+x.dataset.g3ChapterLine===i));
  const node=$("g3ChapterLines").querySelector('[data-g3-chapter-target="'+i+'"]');
