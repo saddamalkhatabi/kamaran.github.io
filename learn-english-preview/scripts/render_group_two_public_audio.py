@@ -131,7 +131,7 @@ async def main():
     for group,entries in bundles.items():
         p=target/(group+".js")
         p.write_text("window.LE_GROUP_TWO_AUDIO=Object.assign(window.LE_GROUP_TWO_AUDIO||{},"
-                     +json.dumps(entries,separators=(",",":"))+");\\n",encoding="utf-8")
+                     +json.dumps(entries,separators=(",",":"))+");\n",encoding="utf-8")
     print(f"BUNDLED {len(bundles)} lazy voice scripts with {sum(map(len,bundles.values()))} verified clips",flush=True)
     print(f"COMPLETE {len(raw)} requested, {len(pending)} synthesized, {len(raw) - len(pending)} reused", flush=True)
 
