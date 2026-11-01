@@ -104,7 +104,7 @@ function play(text,clip,target=null,slow=false,done=null){
 }
 
 function thumbnail(it){
- return '<div class="g3Illustration g3RoutineCard" role="img" aria-label="'+esc(it.context)+'">'<span aria-hidden="true">''+esc(it.icon||"🤝")+'</span><strong>'+esc(it.context)+'</strong><small>مشهد توضيحي مؤقت — نضيف الصور الواقعية لاحقًا</small></div>';
+ return '<div class="g3Illustration g3RoutineCard" role="img" aria-label="'+esc(it.context)+'"><span aria-hidden="true">'+esc(it.icon||"🤝")+'</span><strong>'+esc(it.context)+'</strong><small>مشهد توضيحي مؤقت — نضيف الصور الواقعية لاحقًا</small></div>';
 }
 function renderList(){
  $("g3PatternList").innerHTML=data.items.map((p,i)=>{
