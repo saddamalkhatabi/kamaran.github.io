@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "source": "Assistant-authored extensions based on the supplied corpus; not verbatim source",
+  "reviewStatus": "draft for educator/native-speaker review",
+  "lessons": {
+    "4": {
+      "id": 4,
+      "ar": "يجب أن أفكر في الأمر.",
+      "scene": "A thoughtful young professional pauses before signing an important decision, looking at two choices on a desk.",
+      "contrast": [
+        "I have a job.",
+        "I have to find a job."
+      ],
+      "story": [
+        "Maya receives an important offer.",
+        "She says, 'I have to think about it.'",
+        "She will make a decision tomorrow."
+      ],
+      "note": "Have to + الفعل الأساسي يدل على الضرورة، وليس امتلاك شيء."
+    },
+    "5": {
+      "id": 5,
+      "ar": "أستطيع الإجابة عن سؤالك.",
+      "scene": "In a classroom a confident student raises his hand as a teacher asks a question.",
+      "contrast": [
+        "I can answer your question.",
+        "Can you answer my question?"
+      ],
+      "story": [
+        "The teacher asks a question.",
+        "Ali raises his hand.",
+        "He says, 'I can answer your question.'"
+      ],
+      "note": "Can + فعل مجرد من to؛ نضع Can أولًا عند السؤال."
+    },
+    "6": {
+      "id": 6,
+      "ar": "كانت مزحة.",
+      "scene": "Two friends laugh as one holds a funny handmade greeting card after a harmless prank, visibly friendly situation.",
+      "contrast": [
+        "It is a joke.",
+        "It was a joke."
+      ],
+      "story": [
+        "Omar tells a funny story.",
+        "His friend looks surprised.",
+        "Omar smiles and says, 'It was a joke.'"
+      ],
+      "note": "Was للماضي مع it وhe وshe، بينما is للحاضر."
+    },
+    "7": {
+      "id": 7,
+      "ar": "لا أريد تفاحة.",
+      "scene": "A person politely declines an apple offered in a fruit market, with an unmistakable open-hand no-thanks gesture.",
+      "contrast": [
+        "I want an apple.",
+        "I don't want an apple."
+      ],
+      "story": [
+        "Sara visits the fruit shop.",
+        "The seller offers her an apple.",
+        "She says, 'I don't want an apple. Thank you.'"
+      ],
+      "note": "Don't + base verb يستخدم لنفي الفعل في الحاضر مع I وyou وwe وthey."
+    },
+    "8": {
+      "id": 8,
+      "ar": "ما اسمك؟",
+      "scene": "Two new classmates greeting one another at the entrance of a school, each wearing a blank nametag, friendly expression.",
+      "contrast": [
+        "What's your name?",
+        "What is your name?"
+      ],
+      "story": [
+        "Sam meets a new classmate.",
+        "He asks, 'What's your name?'",
+        "She answers, 'My name is Lina.'"
+      ],
+      "note": "What's اختصار What is في سؤال الاسم هنا."
+    },
+    "9": {
+      "id": 9,
+      "ar": "أريد كلبًا.",
+      "scene": "A cheerful young person kneels beside a friendly dog at an animal adoption center, expressing an affectionate wish.",
+      "contrast": [
+        "I want a dog.",
+        "I don't want a dog."
+      ],
+      "story": [
+        "Nora visits an animal shelter.",
+        "She sees a small friendly dog.",
+        "She says, 'I want a dog.'"
+      ],
+      "note": "Want + اسم للتعبير عن رغبة في شيء."
+    },
+    "10": {
+      "id": 10,
+      "ar": "أريد أن أعتذر عما فعلته.",
+      "scene": "One friend sincerely apologizes to another in a quiet school courtyard, with a respectful open gesture, no exaggerated sadness.",
+      "contrast": [
+        "I want to apologize.",
+        "I apologized yesterday."
+      ],
+      "story": [
+        "Adam remembers his mistake.",
+        "He wants to make things right.",
+        "He says, 'I want to apologize for what I did.'"
+      ],
+      "note": "Want to + الفعل الأساسي يدل على رغبة في تنفيذ فعل."
+    },
+    "11": {
+      "id": 11,
+      "ar": "أود أن أعيش في نيويورك.",
+      "scene": "An aspirational traveler looking toward the New York skyline from Brooklyn waterfront, suitcase beside them.",
+      "contrast": [
+        "I want to live in New York.",
+        "I'd like to live in New York."
+      ],
+      "story": [
+        "Leila dreams of a new home.",
+        "She looks at a photo of New York.",
+        "She says, 'I'd like to live in New York.'"
+      ],
+      "note": "I'd like to = I would like to؛ صيغة مهذبة ولطيفة للتعبير عن الرغبة."
+    },
+    "12": {
+      "id": 12,
+      "ar": "هل تريد أطفالًا؟",
+      "scene": "Two adults sitting together discussing their future family plans in a comfortable sunny living room with a family photo album.",
+      "contrast": [
+        "Do you want kids?",
+        "I want kids."
+      ],
+      "story": [
+        "A couple discusses their future.",
+        "They talk about family plans.",
+        "One asks, 'Do you want kids?'"
+      ],
+      "note": "Do you + base verb هو ترتيب السؤال في المضارع البسيط."
+    },
+    "13": {
+      "id": 13,
+      "ar": "هل ترغب في كوب من الشاي؟",
+      "scene": "A welcoming host politely offering a steaming cup of tea to a guest seated at a cozy home table.",
+      "contrast": [
+        "Would you like a cup of tea?",
+        "Do you want tea?"
+      ],
+      "story": [
+        "Mina welcomes a guest.",
+        "She brings a tray of tea.",
+        "She asks, 'Would you like a cup of tea?'"
+      ],
+      "note": "Would you like + اسم صيغة عرض مهذبة."
+    },
+    "14": {
+      "id": 14,
+      "ar": "هل ترغب أن تسألني شيئًا آخر؟",
+      "scene": "A helpful teacher sits across from an inquisitive adult student in a bright study space and invites another question.",
+      "contrast": [
+        "Would you like a cup of tea?",
+        "Would you like to ask me something else?"
+      ],
+      "story": [
+        "The lesson is almost over.",
+        "The teacher smiles at the student.",
+        "She asks, 'Would you like to ask me something else?'"
+      ],
+      "note": "Would you like to + فعل، بينما Would you like + اسم عند عرض شيء."
+    },
+    "15": {
+      "id": 15,
+      "ar": "أنا طالب.",
+      "scene": "An upbeat student holding textbooks and a backpack standing at a university campus entrance.",
+      "contrast": [
+        "I'm a student.",
+        "I was a student."
+      ],
+      "story": [
+        "Yousef walks into the university.",
+        "He meets his new classmates.",
+        "He says, 'I'm a student.'"
+      ],
+      "note": "I'm = I am، ويأتي بعدها اسم المهنة أو الصفة أو الحالة."
+    }
+  }
+}
