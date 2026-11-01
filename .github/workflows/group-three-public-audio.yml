@@ -12,7 +12,7 @@ permissions:
   contents: write
 concurrency:
   group: english-group-three-voices-public-master
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   record:
     runs-on: ubuntu-latest
