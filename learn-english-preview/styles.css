@@ -68,3 +68,37 @@
 .floatingToken{border-radius:5px;padding:0 1px}
 .floatingToken.isSpeaking{background:#ffe16b;color:#19294b;box-shadow:0 2px 0 #dcac2c}
 @media(max-width:680px){.floatingReadAlong{inset:auto 7px 7px;padding:9px 11px;border-radius:13px}.floatingWords{font-size:18px;max-height:90px}}
+
+/* Full-corpus progressive learning paths */
+.patternPathMetrics{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.patternPathMetrics span{background:#fff;border:1px solid #e2e8f6;border-radius:12px;padding:9px 13px;font-size:13px}
+.patternPathMetrics b{color:#5c49c4}
+.patternNotice{font-size:12px;color:#6b7895;background:#f9f6e8;border:1px solid #efe6c6;padding:10px;border-radius:12px}
+.pathCategories{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.pathCategories button{border:1px solid #d8e2f1;background:#fff;border-radius:11px;font-size:12px;padding:8px 11px;color:#445a7d}
+.pathCategories button.selected{background:#6651be;color:#fff;border-color:#6651be}
+.patternLearningGrid{display:grid;grid-template-columns:minmax(265px,0.85fr) minmax(0,1.7fr);gap:15px;align-items:start}
+.patternIndexPane,.patternLessonPane{background:#fff;border:1px solid #e0e6f3;border-radius:18px;padding:17px;min-width:0}
+.patternIndexPane{position:sticky;top:87px;max-height:calc(100vh - 105px);overflow-y:auto}
+.patternSearchTools{display:grid;gap:8px;margin-bottom:10px}
+.patternSearchTools input,.patternSearchTools select{width:100%;border:1px solid #dce3f0;background:#fff;padding:10px;border-radius:10px}
+.patternUnique{display:block;font-size:12px;margin:9px 0;color:#64728d}
+.patternItems{display:grid;gap:7px;margin:13px 0}
+.patternChoice{display:grid;gap:5px;text-align:right;background:#f9faff;border:1px solid #e5e9f4;border-radius:12px;padding:10px;white-space:normal;color:#2c3e60}
+.patternChoice.chosen{border-color:#886cd1;background:#f0edfb}
+.patternChoice small{color:#7784a1}.patternChoice>span{text-align:left;font-size:14px;font-weight:800}
+.patternChoice em{font-style:normal;font-size:10px;color:#6f7d97}
+.patternScene{height:clamp(210px,35vw,320px);border-radius:15px;overflow:hidden;background:linear-gradient(135deg,#d9e9fe,#eee8ff);margin-bottom:13px}
+.patternScenePhoto{width:100%;height:100%;background-repeat:no-repeat}
+.patternScenePlaceholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:#344b75;padding:16px;text-align:center}
+.patternScenePlaceholder span{font-size:65px}
+.patternScenePlaceholder small{font-size:12px;color:#77869e}
+.patternSentence{font-size:clamp(24px,3vw,35px);font-weight:900;line-height:1.65;text-align:left;color:#263b67;overflow-wrap:anywhere;margin:11px 0}
+.patternLearnTags{display:flex;flex-wrap:wrap;gap:7px}.patternLearnTags span{font-size:12px;background:#f0f1fc;color:#55458e;padding:6px 9px;border-radius:8px}
+.patternExplanation{direction:ltr;text-align:left;background:#f7f8ff;border-left:3px solid #8c69d4;border-radius:9px;padding:11px;font-size:14px;line-height:1.75;color:#4a5c77}
+.patternStudyActions{display:flex;flex-wrap:wrap;gap:7px}.patternStudyActions button{font-size:12px}
+.patternRelated{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.patternRelated button{border:1px solid #d9e1f0;background:#f8faff;padding:8px;border-radius:9px;color:#3e5377;direction:ltr;font-size:12px;text-align:left}
+.patternPracticeStatus{font-size:12px;color:#ac563c}.patternPracticeStatus.success{color:#18834d;font-weight:900}
+.patternPager{margin-top:10px}
+@media(max-width:800px){.patternLearningGrid{grid-template-columns:1fr}.patternIndexPane{position:static;max-height:360px}.patternScene{height:245px}}
