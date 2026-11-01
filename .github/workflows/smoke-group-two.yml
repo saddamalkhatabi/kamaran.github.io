@@ -13,7 +13,7 @@ on:
       - .github/workflows/smoke-group-two.yml
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   browser:
     runs-on: ubuntu-latest
@@ -32,3 +32,16 @@ jobs:
           (cd learn-english-preview && python -m http.server 3178 --bind 127.0.0.1 >/tmp/public-g2.log 2>&1) &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3178/index.html >/dev/null && break || sleep 1; done
           node scripts/smoke_group_two.mjs
+
+      - name: Record successful real-browser acceptance check
+        run: |
+          mkdir -p reports
+          printf '{"status":"passed","run_id":"%s","source_sha":"%s","test":"group-two-mobile-chromium","browser":"chromium"}\\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > reports/group-two-public-smoke.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/group-two-public-smoke.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Attest Group Two mobile browser acceptance [skip ci]'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
