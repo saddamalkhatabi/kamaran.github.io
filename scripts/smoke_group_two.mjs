@@ -21,9 +21,9 @@ try{
  const sentence="I wake up at six.";
  await page.locator("#g2QuizOptions button").filter({hasText:sentence}).click();
  assert.match(await page.locator("#g2QuizFeedback").innerText(),/أحسنت/);
- const words=sentence.split(/\\s+/);
+ const words=sentence.split(/\s+/);
  for(let i=0;i<words.length;i++) await page.locator('[data-g2-token="'+i+'"]').click();
- assert.match(await page.locator("#g2Progress").innerText(),/1 \\/ 72/);
+ assert.match(await page.locator("#g2Progress").innerText(),/1 \/ 72/);
  await page.locator("#g2ChapterTabs [data-g2-chapter='1']").click();
  assert.match(await page.locator("#g2ChapterLines").innerText(),/I go to school/);
  await page.locator("#g2StoryToggle").click();
@@ -38,7 +38,7 @@ try{
  await page.reload({waitUntil:"networkidle"});
  await page.locator('[data-view="group-two"]').click();
  await page.locator("#g2PatternList .g2PatternChip").first().waitFor();
- assert.match(await page.locator("#g2Progress").innerText(),/1 \\/ 72/);
+ assert.match(await page.locator("#g2Progress").innerText(),/1 \/ 72/);
  await page.locator('[data-view="group-one"]').click();
  await page.locator("#g1PatternList .g1PatternChip").first().waitFor();
  assert.equal(await page.locator("#g1PatternList .g1PatternChip").count(),18);
