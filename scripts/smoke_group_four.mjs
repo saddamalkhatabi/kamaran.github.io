@@ -11,13 +11,7 @@ try{
  await page.locator('[data-view="group-four"]').click();
  await page.locator("#g4PatternList .g4PatternChip").first().waitFor({timeout:15000});
  assert.equal(await page.locator("#g4PatternList .g4PatternChip").count(),18);
- const voiceIndex=await page.evaluate(async()=>await (await fetch("data/group-four-audio-index.json")).json());
- if(Object.keys(voiceIndex.items||{}).length){
-   // Group Four public voice packs are loaded lazily after opening a pattern.
-   await page.waitForFunction(()=>!!window.LE_GROUP_FOUR_AUDIO?.["p01/intro"]||!!window.GROUP_FOUR?.getStatus(),null,{timeout:20000});
- }
- 
- const voiceIndex=await page.evaluate(async()=>await (await fetch("data/group-four-audio-index.json")).json());
+const voiceIndex=await page.evaluate(async()=>await (await fetch("data/group-four-audio-index.json")).json());
  if(Object.keys(voiceIndex.items||{}).length){
   await page.waitForFunction(()=>!!window.LE_GROUP_FOUR_AUDIO?.["p01/intro"],null,{timeout:20000});
   const voices=await page.evaluate(()=>Object.keys(window.LE_GROUP_FOUR_AUDIO||{}));
@@ -38,7 +32,7 @@ try{
  for(let i=0;i<words.length;i++) await page.locator('[data-g4-token="'+i+'"]').click();
  assert.match(await page.locator("#g4Progress").innerText(),/1 \/ 72/);
  await page.locator("#g4ChapterTabs [data-g4-chapter='1']").click();
- assert.match(await page.locator("#g4ChapterLines").innerText(),/Who is our new teacher/);
+ assert.match(await page.locator("#g4ChapterLines").innerText(),/Where is the bus stop/);
  await page.locator("#g4StoryToggle").click();
  assert.equal(await page.locator("#g4StoryList .g4StoryRow").count(),2);
  await page.locator('[data-g4-pattern="17"]').first().click();
