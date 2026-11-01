@@ -19,6 +19,7 @@ OUT = ROOT / "assets/group-three-audio"
 INDEX = ROOT / "data/group-three-audio-index.json"
 VOICE = "en-US-JennyNeural"
 RATE = "-8%"
+VOICE_CANDIDATES = ("en-US-JennyNeural", "en-US-AriaNeural", "en-GB-SoniaNeural", "en-US-GuyNeural", "en-AU-NatashaNeural", "en-US-JennyNeural")
 
 def clips():
     patterns = json.loads(DATA.read_text(encoding="utf-8"))["items"]
@@ -60,7 +61,8 @@ async def one(key, text, semaphore, tries):
         for attempt in range(1, tries + 1):
             try:
                 if not (path.exists() and metadata.exists() and metadata.stat().st_size):
-                    client = edge_tts.Communicate(text, voice=VOICE, rate=RATE,
+                    voice = VOICE_CANDIDATES[(attempt - 1) % len(VOICE_CANDIDATES)]
+                    client = edge_tts.Communicate(text, voice=voice, rate=RATE,
                                                   boundary="WordBoundary")
                     await asyncio.wait_for(client.save(str(path), str(metadata)), timeout=100)
                 words = [json.loads(s) for s in metadata.read_text(encoding="utf-8").splitlines() if s.strip()]
@@ -69,7 +71,7 @@ async def one(key, text, semaphore, tries):
                 row = {
                     "text": text, "path": str(path.relative_to(ROOT)).replace("\\", "/"),
                     "audio_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-                    "duration_ms": ms, "language": "en", "voice": VOICE,
+                    "duration_ms": ms, "language": "en", "voice": voice,
                     "timing_source": "WordBoundary from the same Edge Neural TTS MP3",
                     "small_overlap_repairs": repairs, "cues": cues,
                 }
