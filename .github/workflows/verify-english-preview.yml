@@ -1,0 +1,35 @@
+name: Verify public English preview on mobile Chromium
+on:
+  push:
+    branches: [master]
+    paths:
+      - learn-english-preview/group-one.js
+      - learn-english-preview/app.js
+      - learn-english-preview/index.html
+      - learn-english-preview/data/group-one.json
+      - learn-english-preview/assets/group-one-audio-bundles/**
+      - .github/workflows/verify-english-preview.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Open full published static app with browser
+        run: |
+          (cd learn-english-preview && python -m http.server 3178 --bind 127.0.0.1 >/tmp/public-english.log 2>&1) &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3178/index.html >/dev/null && break || sleep 1; done
+          node scripts/smoke_group_one.mjs
