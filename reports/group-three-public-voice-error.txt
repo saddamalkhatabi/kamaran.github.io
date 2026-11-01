@@ -12,17 +12,17 @@ RENDERED 120 / 197 new recordings
 RENDERED 132 / 197 new recordings
 RENDERED 144 / 197 new recordings
 Traceback (most recent call last):
-  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 68, in one
+  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 70, in one
     cues, repairs = cue_words(text, words, ms)
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_pattern_audio.py", line 53, in cue_words
     raise ValueError(f"Unreliable WordBoundary overlap {overlap}ms at word {i}: {text}")
-ValueError: Unreliable WordBoundary overlap 653ms at word 1: Please close the door.
+ValueError: Unreliable WordBoundary overlap 666ms at word 1: Please close the door.
 
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 139, in <module>
+  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 141, in <module>
     asyncio.run(main())
   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/asyncio/runners.py", line 190, in run
     return runner.run(main)
@@ -33,9 +33,9 @@ Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
-  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 116, in main
+  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 118, in main
     records = await asyncio.gather(*(one(key, text, semaphore, args.retries) for key, text in batch))
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 82, in one
+  File "/home/runner/work/kamaran.github.io/kamaran.github.io/learn-english-preview/scripts/render_group_three_public_audio.py", line 84, in one
     raise RuntimeError(f"{key}: failed to synthesize and verify {text}: {exc}") from exc
-RuntimeError: p16/scene-1: failed to synthesize and verify Please close the door.: Unreliable WordBoundary overlap 653ms at word 1: Please close the door.
+RuntimeError: p16/scene-1: failed to synthesize and verify Please close the door.: Unreliable WordBoundary overlap 666ms at word 1: Please close the door.
