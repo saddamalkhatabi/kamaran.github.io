@@ -50,3 +50,9 @@
  .sceneBox{aspect-ratio:1 / 1;max-width:100%}
  .lessonCard .thumb{height:100%}
 }
+
+/* Same-recording synchronized English explanation and scene bubble */
+.introReadAlong{padding:13px 16px;background:#f3f6ff;border:1px solid #d9e2fa;border-radius:14px;margin:10px 0}
+.introReadAlong strong{font-size:12px;color:#3c4f80}
+.introReadAlong p{font-size:16px;line-height:2.1;font-weight:650;color:#263a66;max-height:200px;overflow-y:auto;margin:7px 0 0}
+.sceneBox .speechBubble .speakingWord{color:#1d2d52!important;background:#ffdb58!important}
