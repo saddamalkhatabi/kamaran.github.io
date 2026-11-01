@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "kind": "square-tiles-webp",
+  "grid": {
+    "columns": 4,
+    "rows": 3,
+    "atlasWidth": 1448,
+    "atlasHeight": 1086,
+    "tileWidth": 362,
+    "tileHeight": 362
+  },
+  "images": 6,
+  "scenes": 72,
+  "readyForMediaUpload": true,
+  "files": [
+    {
+      "name": "atlas-01.webp",
+      "path": "assets/group-one/atlas-01.webp",
+      "patternIds": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "name": "atlas-02.webp",
+      "path": "assets/group-one/atlas-02.webp",
+      "patternIds": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "atlas-03.webp",
+      "path": "assets/group-one/atlas-03.webp",
+      "patternIds": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "name": "atlas-04.webp",
+      "path": "assets/group-one/atlas-04.webp",
+      "patternIds": [
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "name": "atlas-05.webp",
+      "path": "assets/group-one/atlas-05.webp",
+      "patternIds": [
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "name": "atlas-06.webp",
+      "path": "assets/group-one/atlas-06.webp",
+      "patternIds": [
+        16,
+        17,
+        18
+      ]
+    }
+  ],
+  "note": "WebP files must be uploaded separately. Viewer falls back to original scenes until all six images are available."
+}
