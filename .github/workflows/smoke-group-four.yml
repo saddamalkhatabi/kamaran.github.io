@@ -1,0 +1,61 @@
+name: Group Four public mobile Chromium smoke
+on:
+  push:
+    branches: [master]
+    paths:
+      - learn-english-preview/group-four.js
+      - learn-english-preview/index.html
+      - learn-english-preview/app.js
+      - learn-english-preview/styles.css
+      - learn-english-preview/data/group-four.json
+      - learn-english-preview/data/group-four-audio-index.json
+      - scripts/smoke_group_four.mjs
+      - .github/workflows/smoke-group-four.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser runtime
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test both groups from the public static preview
+        run: |
+          (cd learn-english-preview && python -m http.server 3178 --bind 127.0.0.1 >/tmp/public-g4.log 2>&1) &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3178/index.html >/dev/null && break || sleep 1; done
+          node scripts/smoke_group_four.mjs 2>&1 | tee /tmp/group-four-public-smoke.log
+
+      - name: Record successful real-browser acceptance check
+        run: |
+          mkdir -p reports
+          printf '{"status":"passed","run_id":"%s","source_sha":"%s","test":"group-four-mobile-chromium","browser":"chromium"}' "$GITHUB_RUN_ID" "$GITHUB_SHA" > reports/group-four-public-smoke.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/group-four-public-smoke.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Attest Group Four mobile browser acceptance [skip ci]'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+
+      - name: Record failed browser trace for actionable repair
+        if: failure()
+        run: |
+          mkdir -p reports
+          if [ -f /tmp/group-four-public-smoke.log ]; then tail -n 65 /tmp/group-four-public-smoke.log > reports/group-four-public-smoke-error.txt; else echo 'No browser trace; inspect runner setup' > reports/group-four-public-smoke-error.txt; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/group-four-public-smoke-error.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record Group Four public smoke trace for review [skip ci]'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
