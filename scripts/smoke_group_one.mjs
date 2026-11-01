@@ -1,0 +1,42 @@
+import { chromium } from "playwright";
+import assert from "node:assert/strict";
+
+const browser = await chromium.launch({headless:true,args:["--no-sandbox"]});
+const page = await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
+const errors=[],failedResources=[];
+page.on("pageerror",err=>errors.push(err.message));
+page.on("response",response=>{if(response.status()>=400&&/\.(js|json|mp3)/.test(response.url()))failedResources.push(response.status()+" "+response.url())});
+try{
+ await page.goto("http://127.0.0.1:3178/",{waitUntil:"networkidle",timeout:30000});
+ await page.locator('[data-view="group-one"]').click();
+ await page.locator("#g1PatternList .g1PatternChip").first().waitFor({timeout:15000});
+ await page.waitForFunction(()=>!!window.LE_GROUP_ONE_AUDIO?.["p01/intro"],null,{timeout:20000});
+ assert.equal(await page.locator("#g1PatternList .g1PatternChip").count(),18);
+ assert.match(await page.locator("#g1Title").innerText(),/This is/);
+ assert.equal(await page.locator("#g1SceneSteps button").count(),4);
+ assert.match(await page.locator("#g1MainEnglish").innerText(),/This is my house/);
+ await page.locator("#g1QuizOptions button").filter({hasText:"This is my house."}).click();
+ assert.match(await page.locator("#g1QuizFeedback").innerText(),/أحسنت/);
+ for(let i=0;i<4;i++)await page.locator('#g1BankWords [data-g1-token="'+i+'"]').click();
+ assert.match(await page.locator("#g1Progress").innerText(),/1 \/ 72/);
+ await page.reload({waitUntil:"networkidle"});
+ await page.locator('[data-view="group-one"]').click();
+ await page.locator("#g1PatternList .g1PatternChip").first().waitFor();
+ assert.match(await page.locator("#g1Progress").innerText(),/1 \/ 72/);
+ await page.locator('[data-g1-pattern="17"]').first().click();
+ assert.equal((await page.locator("#g1Title").innerText()).trim(),"There are");
+ await page.waitForFunction(()=>!!window.LE_GROUP_ONE_AUDIO?.["p18/intro"],null,{timeout:20000});
+ assert.equal(await page.locator("#g1StoryList .g1StoryRow").count(),3);
+ await page.locator("#g1StoryToggle").click();
+ assert.equal(await page.locator("#g1StoryList .g1StoryRow").count(),2);
+ await page.locator("#g1Secret").check();
+ assert.equal(await page.locator("#g1MainEnglish").evaluate(el=>el.classList.contains("g1Masked")),true);
+ const width=await page.evaluate(()=>({body:document.body.scrollWidth,view:window.innerWidth}));
+ assert.ok(width.body<=width.view+3,"Page exceeds mobile viewport: "+JSON.stringify(width));
+ await page.locator('[data-view="learn"]').click();
+ assert.equal(await page.locator("#view-group-one").evaluate(el=>el.classList.contains("hidden")),true);
+ assert.equal(await page.locator("#view-learn").evaluate(el=>el.classList.contains("hidden")),false);
+ assert.deepEqual(errors,[],"Browser errors");
+ assert.deepEqual(failedResources,[],"Broken JS, JSON or MP3 references");
+ console.log("GROUP ONE MOBILE SMOKE PASS: 18 patterns, quiz, builder, persisted progress, stories, privacy, navigation");
+}finally{await browser.close()}
