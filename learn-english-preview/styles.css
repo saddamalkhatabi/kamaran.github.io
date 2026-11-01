@@ -102,3 +102,17 @@
 .patternPracticeStatus{font-size:12px;color:#ac563c}.patternPracticeStatus.success{color:#18834d;font-weight:900}
 .patternPager{margin-top:10px}
 @media(max-width:800px){.patternLearningGrid{grid-template-columns:1fr}.patternIndexPane{position:static;max-height:360px}.patternScene{height:245px}}
+
+.patternExpansion{border:1px solid #dce4f6;border-radius:15px;background:#fafaff;padding:15px;margin:13px 0}
+.patternExpansion[hidden]{display:none}
+.patternExpansion h3{margin:3px 0 11px;font-size:17px;color:#423f9f}
+.patternExpansion h4{margin:13px 0 8px;font-size:14px;color:#3d5076}
+.patternExpansion .patternTranslation{font-size:17px;font-weight:800;margin:7px 0;color:#2a456b}
+.patternArabicNote{font-size:13px;line-height:1.9;color:#576982}
+.patternContrast{display:flex;gap:8px;flex-wrap:wrap;align-items:center;direction:ltr}
+.patternContrast span:not(.contrastArrow){border:1px solid #dce3f4;padding:8px;background:white;border-radius:8px;font-weight:850;color:#263c63}
+.patternAuthorship{font-size:11px;color:#7c88a0}
+.patternMiniStory{display:grid;gap:7px}
+.patternMiniLine{display:flex;align-items:center;gap:10px;border:1px solid #dfe6f4;padding:9px;border-radius:10px;background:#fff}
+.patternMiniLine button{border:0;background:#e7f1ff;border-radius:50%;min-width:34px;height:34px;cursor:pointer}
+.patternMiniLine p{margin:0;font-weight:800;text-align:left;font-size:14px;line-height:1.9;flex:1;direction:ltr}
