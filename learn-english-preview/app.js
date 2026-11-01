@@ -12,7 +12,7 @@ const activeLesson=()=>LIB[state.lesson];
 const activeLevel=()=>activeLesson().levels[state.depth];
 const activeScene=()=>activeLevel().scenes[state.scene];
 function toast(message){let el=$("toast");el.textContent=message;el.classList.add("show");clearTimeout(conf.toastTimer);conf.toastTimer=setTimeout(()=>el.classList.remove("show"),3300)}
-function stopAudio(){state.playSeq++;clearTimeout(conf.autoTimer);if(conf.highlightFrame){cancelAnimationFrame(conf.highlightFrame);conf.highlightFrame=null}if(state.audioHighlightTarget){markWord(state.audioHighlightTarget,state.audioHighlightText,-1);state.audioHighlightTarget=null}if(state.playing){state.playing.pause();state.playing.currentTime=0;state.playing=null}if("speechSynthesis" in window)speechSynthesis.cancel()}
+function stopAudio(){window.PATTERN_READ_ALONG?.end();state.playSeq++;clearTimeout(conf.autoTimer);if(conf.highlightFrame){cancelAnimationFrame(conf.highlightFrame);conf.highlightFrame=null}if(state.audioHighlightTarget){markWord(state.audioHighlightTarget,state.audioHighlightText,-1);state.audioHighlightTarget=null}if(state.playing){state.playing.pause();state.playing.currentTime=0;state.playing=null}if("speechSynthesis" in window)speechSynthesis.cancel()}
 function statusAudio(kind){$("audioStatus").textContent="مصدر الصوت الحالي: "+kind}
 function utter(text,slow,onDone,seq,target=null){if(!("speechSynthesis" in window)){toast("لا يتوفر صوت اصطناعي في هذا المتصفح.");return}const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=slow?.78:.94;u.pitch=1.02;let vs=speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith("en"));let choice=vs.find(v=>/natural|samantha|jenny|google us english|aria|emma/i.test(v.name));if(choice)u.voice=choice;u.onend=()=>{if(seq===state.playSeq){if(target)markWord(target,text,-1);if(onDone)onDone()}};u.onerror=()=>{};if(target){u.onboundary=e=>{const hits=[...text.matchAll(/\S+/g)];const idx=hits.findIndex((m,i)=>e.charIndex>=m.index&&(i===hits.length-1||e.charIndex<hits[i+1].index));if(idx>=0)markWord(target,text,idx)}}speechSynthesis.speak(u)}
 // Match word highlighting to actual decoded MP3 time, as in app360 Read Along.
@@ -44,7 +44,7 @@ function resolvePreviewAudio(path){
 }
 function playAudio(path,text,slow=false,onDone=null,target=null){
  stopAudio();const seq=state.playSeq;let finished=false;
- if(target){state.audioHighlightTarget=target;state.audioHighlightText=text;markWord(target,text,-1)}
+ if(target){state.audioHighlightTarget=target;state.audioHighlightText=text;markWord(target,text,-1);window.PATTERN_READ_ALONG?.begin(target,text)}
  const fallback=()=>{
   if(seq!==state.playSeq||finished)return;finished=true;
   statusAudio("نطق المتصفح الإنجليزي — الإشارة للكلمة تعتمد على حدود النطق التي يدعمها المتصفح");
@@ -161,6 +161,7 @@ function markWord(target,text,idx){
  const words=text.trim().split(/\s+/);
  target.innerHTML=words.map((w,i)=>i===idx?'<span class="speakingWord">'+escapeHtml(w)+'</span>':escapeHtml(w)).join(" ");
  if(target.id==="sentenceEn"){const bubble=$("sceneBubble");if(bubble&&bubble.isConnected)bubble.innerHTML=target.innerHTML}
+ window.PATTERN_READ_ALONG?.update(target,text,idx);
 }
 function storyLines(){
  const d=STORIES.lessons[activeLesson().id];
