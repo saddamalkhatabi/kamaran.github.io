@@ -95,7 +95,8 @@ async def main():
         raise ValueError("Expect exactly 180 unique third-group clip IDs")
     if args.only_pattern:
         raw = [(k, t) for k, t in raw if k.startswith(f"p{args.only_pattern:02d}/")]
-    original = preexisting()
+    # Public standalone preview must include every clip in its lazy JS bundles; do not skip source voice clips.
+    original = {}
     current = json.loads(INDEX.read_text(encoding="utf-8")) if INDEX.exists() else {"schema": 1, "items": {}}
     current["schema"] = 1
     current["source"] = "Only verified group-three MP3s and measured same-synthesis word boundaries"
