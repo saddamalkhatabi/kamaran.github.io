@@ -6,6 +6,7 @@
 (function(window,document){"use strict";
 var corpus=null,byId=new Map(),selected=1,ordered=[],subset=[],limit=40,offset=0,progress=new Set(),audio=null,talk=null,clock=0,last=-9,session=0,voiceIndex=null,recordingCueIndex=null,audioCues=null,expansions={};
 var state={search:"",category:"",depth:"",unique:true,show:"all",quizAnswer:[],quizWords:[],correct:false};
+var packLoads={};
 var CAT_ICON={demonstratives:"🏠",possession:"🎒",desire:"💭",necessity:"📋",ability:"💪",questions:"❓",time:"🕰️",conditions:"🌦️",negation:"🚫",comparison:"⚖️",emotion:"💗",conversation:"💬",habits:"🔄",movement:"🧳",complex:"🔗"};
 var $=id=>document.getElementById(id);
 function escapeHTML(x){return String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
@@ -28,17 +29,35 @@ function verifyEntry(entry,txt){
  return entry&&entry.text===txt&&Array.isArray(entry.cues)&&entry.cues.length===parts.length&&
    entry.cues.every((v,i)=>v.length===3&&v[0]===i&&v[1]>=0&&v[2]>v[1]&&v[2]<=entry.duration_ms+45&&(!i||entry.cues[i-1][2]<=v[1]));
 }
+
+function ensurePreviewAudio(p){
+ if(p.id<=15||!voiceIndex?.items?.[p.id]||!window.location.hostname.includes("githack.com"))return Promise.resolve(true);
+ if(window.LE_PATTERN_AUDIO?.[p.id])return Promise.resolve(true);
+ const start=4+Math.floor((p.id-4)/32)*32;
+ const name="pack-"+String(start).padStart(4,"0");
+ if(packLoads[name])return packLoads[name];
+ packLoads[name]=new Promise(resolve=>{
+   const script=document.createElement("script");
+   script.src="assets/pattern-audio-bundles/"+name+".js";
+   script.async=true;
+   script.onload=()=>resolve(!!window.LE_PATTERN_AUDIO?.[p.id]);
+   script.onerror=()=>resolve(false);
+   document.head.appendChild(script);
+ });
+ return packLoads[name];
+}
 function sourceFor(p){
  var originals={1:["this","scene-1-1.mp3"],2:["have","scene-1-1.mp3"],3:["got","scene-1-1.mp3"]};
  var choice=originals[p.id];
  if(choice){var path="assets/audio/"+choice[0]+"/"+choice[1];return {url:window.LE_ENGLISH_AUDIO?.[choice[0]]?.[choice[1]]?"data:audio/mpeg;base64,"+window.LE_ENGLISH_AUDIO[choice[0]][choice[1]]:path,entry:recordingCueIndex?.items?.[path],type:"kokoro"}}
  var row=voiceIndex?.items?.[p.id];
- if(row&&row.text===p.en&&row.path)return {url:row.path,entry:row,type:"pattern"};
+ if(row&&row.text===p.en&&row.path){const recorded=window.LE_PATTERN_AUDIO?.[p.id];return {url:recorded?"data:audio/mpeg;base64,"+recorded:row.path,entry:row,type:"pattern"}}
  return null;
 }
-function play(){
+async function play(){
  stop();var p=byId.get(selected);if(!p)return;var seq=session,target=$("patternSentence");last=-9;
  if(target)window.PATTERN_READ_ALONG?.begin(target,p.en);
+ await ensurePreviewAudio(p);if(seq!==session)return;
  var source=sourceFor(p),entry=source?.entry;
  function status(t){var e=$("patternVoiceStatus");if(e&&seq===session)e.textContent=t}
  if(source&&verifyEntry(entry,p.en)){
